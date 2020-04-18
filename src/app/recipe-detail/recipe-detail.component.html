@@ -1,11 +1,7 @@
 <div>
   <h1>{{selectedRecipe.title}}</h1>
-  <ul>
-    <li>Chicken</li>
-    <li>White</li>
-    <li>Chili</li>
-    <li>Spicy</li>
-    <li>Cheese</li>
+  <ul >
+    <li *ngFor="let ingredient of selectedRecipe.ingredients">{{ingredient.quantity}} {{ingredient.name}}</li>
   </ul>
   <p>{{selectedRecipe.instructions}}</p>
 </div>

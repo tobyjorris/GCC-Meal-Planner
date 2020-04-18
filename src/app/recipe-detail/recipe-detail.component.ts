@@ -9,7 +9,6 @@ import {RECIPES} from '../mock-recipes';
 })
 
 export class RecipeDetailComponent implements OnInit {
-  // selectedRecipe: Recipe;
   recipes = RECIPES;
 
   constructor() {

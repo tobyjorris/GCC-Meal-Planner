@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../../recipe';
-import { Ingredient } from '../../ingredient';
+import {Component, OnInit} from '@angular/core';
+import {RECIPES} from '../mock-recipes';
+
 
 @Component({
   selector: 'app-recipe-detail',
@@ -9,33 +9,13 @@ import { Ingredient } from '../../ingredient';
 })
 
 export class RecipeDetailComponent implements OnInit {
-  selectedRecipe: Recipe;
+  // selectedRecipe: Recipe;
+  recipes = RECIPES;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.getSelectedRecipe();
+    console.log(this.recipes);
   }
-
-  getSelectedRecipe(): void {
-    this.selectedRecipe = new Recipe();
-    this.selectedRecipe.title = 'White Cucco Chili';
-    this.selectedRecipe.instructions = 'Cook until done, eat until full';
-    this.selectedRecipe.ingredients = [];
-    const ingredientOne = new Ingredient();
-    ingredientOne.name = 'Cucco';
-    ingredientOne.quantity = 2;
-    this.selectedRecipe.ingredients.push(ingredientOne);
-
-    const ingredientTwo = new Ingredient();
-    ingredientTwo.name = 'Chili';
-    ingredientTwo.quantity = 4;
-    this.selectedRecipe.ingredients.push(ingredientTwo);
-
-    const ingredientThree = new Ingredient();
-    ingredientThree.name = 'Cheese';
-    ingredientThree.quantity = 600;
-    this.selectedRecipe.ingredients.push(ingredientThree);
-  }
-
 }

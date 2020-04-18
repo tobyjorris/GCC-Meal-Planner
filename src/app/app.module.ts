@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { RecipeModalComponent } from './recipe-modal/recipe-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeDetailComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    RecipeModalComponent
   ],
   imports: [
     BrowserModule

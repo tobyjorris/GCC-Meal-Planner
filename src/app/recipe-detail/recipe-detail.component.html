@@ -1,8 +1,11 @@
-<div class="card">
-  <h1>{{selectedRecipe.title}}</h1>
-  <ul >
-    <li *ngFor="let ingredient of selectedRecipe.ingredients">{{ingredient.quantity}} {{ingredient.name}}</li>
-  </ul>
-  <p>{{selectedRecipe.instructions}}</p>
+<div class="card" *ngFor="let recipe of recipes">
+  <div class="container">
+    <h1>{{recipe.title}}</h1>
+    <ul>
+      <li>
+        <span class="badge">{{recipe.ingredients}}</span>
+      </li>
+    </ul>
+    <p class="card-text">{{recipe.instructions}}</p>
+  </div>
 </div>
-

@@ -1,6 +1,6 @@
 import { Ingredient } from './ingredient';
 
-export class Recipe {
+export interface Recipe {
   title: string;
   instructions: string;
   ingredients: Ingredient[];

@@ -1,5 +1,6 @@
-export class Ingredient {
+export interface Ingredient {
   name: string;
   quantity: number;
+  measurement: string;
 }
 

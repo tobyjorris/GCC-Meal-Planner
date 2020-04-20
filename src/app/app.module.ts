@@ -2,16 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RecipeModalComponent } from './recipe-modal/recipe-modal.component';
+import { BackdropComponent } from './backdrop/backdrop.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecipeDetailComponent,
+    RecipeCardComponent,
     ToolbarComponent,
-    RecipeModalComponent
+    RecipeModalComponent,
+    BackdropComponent
   ],
   imports: [
     BrowserModule

@@ -1,0 +1,14 @@
+
+<app-recipe-modal></app-recipe-modal>
+<div class="card" *ngFor="let recipe of recipes">
+  <div class="container">
+    <h1>{{recipe.title}}</h1>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}</li>
+    </ul>
+    <p class="card-text">{{recipe.instructions}}</p>
+    <button type="button" class="btn btn-outline-secondary">
+      Print Recipe
+    </button>
+  </div>
+</div>

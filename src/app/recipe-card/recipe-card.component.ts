@@ -10,19 +10,10 @@ import {RECIPES} from '../mock-recipes';
 
 export class RecipeCardComponent implements OnInit {
   recipes = RECIPES;
-  ingredients = [];
 
   constructor() {
   }
 
   ngOnInit(): void {
-    // console.log(this.recipes);
-    // const recipe = this.recipes;
-    // for (const recipeItem of recipe) {
-    //   // console.log(recipe);
-    //   // console.log(recipeItem.ingredients);
-    //   this.ingredients.push(recipeItem.ingredients);
-    // }
-    // console.log(this.ingredients);
   }
 }

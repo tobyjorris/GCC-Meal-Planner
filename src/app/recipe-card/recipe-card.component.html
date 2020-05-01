@@ -1,8 +1,7 @@
 
-<app-recipe-modal></app-recipe-modal>
 <div class="card border-dark" *ngFor="let recipe of recipes">
   <div class="container">
-    <h1>{{recipe.title}}</h1>
+    <h1>{{recipe.title | uppercase }}</h1>
     <ul>
       <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} - {{ingredient.measurement}} {{ingredient.name}}</li>
     </ul>
@@ -10,10 +9,8 @@
     <h5>Instructions</h5>
     <p class="card-text">{{recipe.instructions}}</p>
     <button type="button" class="btn btn-outline-info">
-      Print Recipe
-    </button>
-    <button type="button" class="btn btn-outline-info">
       Edit Recipe
     </button>
+    <ngbd-modal-basic></ngbd-modal-basic>
   </div>
 </div>

@@ -3,7 +3,7 @@ import {RECIPES} from '../mock-recipes';
 
 
 @Component({
-  selector: 'app-recipe-detail',
+  selector: 'app-recipe-card',
   templateUrl: './recipe-card.component.html',
   styleUrls: ['./recipe-card.component.css']
 })

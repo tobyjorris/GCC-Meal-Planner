@@ -4,19 +4,25 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { RecipeModalComponent } from './recipe-modal/recipe-modal.component';
 import { BackdropComponent } from './backdrop/backdrop.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdDropdownBasic } from './shared/dropdown/dropdown-basic';
+import { NgbdModalBasic } from './recipe-modal/recipe-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeCardComponent,
     ToolbarComponent,
-    RecipeModalComponent,
-    BackdropComponent
+    BackdropComponent,
+    ShoppingListComponent,
+    NgbdDropdownBasic,
+    NgbdModalBasic
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

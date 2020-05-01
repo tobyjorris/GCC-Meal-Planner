@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RECIPES} from '../mock-recipes';
+import {Recipe} from '../../recipe';
 
 
 @Component({
@@ -9,6 +10,7 @@ import {RECIPES} from '../mock-recipes';
 })
 
 export class RecipeCardComponent implements OnInit {
+
   recipes = RECIPES;
 
   constructor() {
@@ -16,4 +18,5 @@ export class RecipeCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }

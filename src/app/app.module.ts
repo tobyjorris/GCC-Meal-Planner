@@ -9,6 +9,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDropdownBasic } from './shared/dropdown/dropdown-basic';
 import { NgbdModalBasic } from './recipe-modal/recipe-modal.component';
+import { InstructionsListComponent } from './instructions-list/instructions-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgbdModalBasic } from './recipe-modal/recipe-modal.component';
     BackdropComponent,
     ShoppingListComponent,
     NgbdDropdownBasic,
-    NgbdModalBasic
+    NgbdModalBasic,
+    InstructionsListComponent
   ],
   imports: [
     BrowserModule,

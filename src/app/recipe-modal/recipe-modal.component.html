@@ -1,25 +1,39 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{recipe.title}}</h4>
+    <h1 class="modal-title" id="modal-basic-title">{{recipe.title}}</h1>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div>
+    <h4>Ingredients</h4>
       <ul>
         <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} - {{ingredient.measurement}} {{ingredient.name}}</li>
       </ul>
+    <div class="quantity-form container">
+      <div class="row">
+        <select class="form-control form-control-sm col-sm-6">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+        <button class="btn btn-secondary btn-sm col-sm-6">Change Batch Quantity</button>
+      </div>
     </div>
+
   </div>
-  <hr>
   <app-instructions-list class="card-text" [recipe]="recipe"></app-instructions-list>
   <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark">Add To Shopping List</button>
     <button type="button" class="btn btn-outline-dark">Print</button>
     <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+
   </div>
 </ng-template>
 
-<button class="btn btn-outline-info" (click)="open(content)">Detail View</button>
+<button class="btn btn-outline-dark detail-view-btn" (click)="open(content)">Detail View</button>
+
+
 
 

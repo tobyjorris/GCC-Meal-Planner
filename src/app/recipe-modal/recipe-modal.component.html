@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Recipe Name Goes Here</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{recipe.title}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,16 +8,18 @@
   <div class="modal-body">
     <div>
       <ul>
-        <li>Recipe Ingredients Go Here</li>
+        <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} - {{ingredient.measurement}} {{ingredient.name}}</li>
       </ul>
     </div>
   </div>
+  <hr>
+  <app-instructions-list class="card-text" [recipe]="recipe"></app-instructions-list>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark">Print</button>
     <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
   </div>
 </ng-template>
 
-<button class="btn btn-outline-info" (click)="open(content)">Print Recipe</button>
+<button class="btn btn-outline-info" (click)="open(content)">Detail View</button>
 
 

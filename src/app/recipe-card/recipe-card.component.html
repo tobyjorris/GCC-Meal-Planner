@@ -1,4 +1,3 @@
-
 <div class="card border-dark" *ngFor="let recipe of recipes">
   <div class="container">
     <h1>{{recipe.title | uppercase }}</h1>
@@ -12,6 +11,6 @@
     <button type="button" class="btn btn-outline-info">
       Edit Recipe
     </button>
-    <ngbd-modal-basic></ngbd-modal-basic>
+    <ngbd-modal-basic [recipe]="recipe"></ngbd-modal-basic>
   </div>
 </div>

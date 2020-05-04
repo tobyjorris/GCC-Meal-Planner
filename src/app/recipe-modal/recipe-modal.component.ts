@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Recipe} from '../../recipe';
 
 @Component({
   selector: 'ngbd-modal-basic',
@@ -8,6 +9,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgbdModalBasic {
   closeResult = '';
+  @Input() recipe: Recipe;
 
   constructor(private modalService: NgbModal) {}
 

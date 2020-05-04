@@ -1,13 +1,12 @@
 h1 {
   font-size: 25px;
   text-decoration: underline black;
-
 }
 
 .recipe-card {
   margin: 20px;
   padding: 10px;
-  background-color: lightgray;
+  background-color: #99cc66;
 }
 
 .container {

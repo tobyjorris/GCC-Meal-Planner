@@ -12,18 +12,24 @@
       </ul>
     <div class="quantity-form container">
       <div class="row">
-        <select class="form-control form-control-sm col-sm-6">
+        <!-- <select class="form-control form-control-sm col-sm-6" #quantityChange>
           <option>1</option>
           <option>2</option>
           <option>3</option>
           <option>4</option>
-        </select>
-        <button class="btn btn-secondary btn-sm col-sm-6">Change Batch Quantity</button>
+        </select> -->
+          <input type="text" id="quantity" class="form-control col-sm" placeholder="Enter Number Of Batches" #quantityChange>
+          <button class="btn btn-secondary btn-sm col-sm" (click)="updateQuantity()">Update Batch Quantity</button>
       </div>
     </div>
-
   </div>
-  <app-instructions-list class="card-text" [recipe]="recipe"></app-instructions-list>
+  <div class="modal-body">
+    <app-instructions-list class="card-text" [recipe]="recipe"></app-instructions-list>
+    <div>
+      <h6>Notes To The Chef</h6>
+      <p>Any special things of consideration should be listed here</p>
+    </div>
+  </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark">Add To Shopping List</button>
     <button type="button" class="btn btn-outline-dark">Print</button>

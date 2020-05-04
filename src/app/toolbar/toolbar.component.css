@@ -10,6 +10,21 @@
   border-color: black;
 }
 
+.jumbotron {
+  height: 250px;
+  background-image: url("../../assets/img/cooking-header.jpg");
+  color: white;
+}
+
+#header {
+  height: 50px;
+}
+
+h1, h3, p {
+
+}
+
+
 
 
 

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Recipe} from '../../recipe';
@@ -7,9 +7,11 @@ import {Recipe} from '../../recipe';
   selector: 'recipe-detail-modal',
   templateUrl: './recipe-detail-modal.component.html'
 })
+
 export class NgbdModalBasic {
   closeResult = '';
   @Input() recipe: Recipe;
+  @ViewChild('quantityChange', {static: false})quantityChangeRef: ElementRef;
 
   constructor(private modalService: NgbModal) {}
 
@@ -30,4 +32,14 @@ export class NgbdModalBasic {
   //     return `with: ${reason}`;
   //   }
   // }
+
+  updateQuantity() {
+    const quantityChange = this.quantityChangeRef.nativeElement.value;
+    console.log(quantityChange);
+    for (const ingredient of this.recipe.ingredients) {
+      console.log(ingredient.quantity);
+    }
+
+  }
+
 }

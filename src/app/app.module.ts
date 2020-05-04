@@ -8,7 +8,7 @@ import { BackdropComponent } from './backdrop/backdrop.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDropdownBasic } from './shared/dropdown/dropdown-basic';
-import { NgbdModalBasic } from './recipe-modal/recipe-modal.component';
+import { NgbdModalBasic } from './recipe-detail-modal/recipe-detail-modal.component';
 import { InstructionsListComponent } from './instructions-list/instructions-list.component';
 
 @NgModule({

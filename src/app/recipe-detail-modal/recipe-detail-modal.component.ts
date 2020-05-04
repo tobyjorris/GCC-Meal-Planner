@@ -4,8 +4,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Recipe} from '../../recipe';
 
 @Component({
-  selector: 'ngbd-modal-basic',
-  templateUrl: './recipe-modal.component.html'
+  selector: 'recipe-detail-modal',
+  templateUrl: './recipe-detail-modal.component.html'
 })
 export class NgbdModalBasic {
   closeResult = '';

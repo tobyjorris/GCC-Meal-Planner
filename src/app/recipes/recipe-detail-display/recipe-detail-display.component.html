@@ -1,0 +1,38 @@
+<ng-template>
+  <div >
+    <h1>{{recipe.title}}</h1>
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div>
+    <h4>Ingredients</h4>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} - {{ingredient.measurement}} {{ingredient.name}}</li>
+    </ul>
+    <div class="quantity-form container">
+      <div class="row">
+        <!-- <select class="form-control form-control-sm col-sm-6" #quantityChange>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select> -->
+        <input type="text" id="quantity" class="form-control col-sm" placeholder="Enter Number Of Batches" #quantityChange>
+        <button class="btn btn-secondary btn-sm col-sm">Update Batch Quantity</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-instructions-list [recipe]="recipe"></app-instructions-list>
+    <div>
+      <h6>Notes To The Chef</h6>
+      <p>Any special things of consideration should be listed here</p>
+    </div>
+  </div>
+  <div>
+    <button type="button" class="btn btn-outline-dark">Add To Shopping List</button>
+    <button type="button" class="btn btn-outline-dark">Print</button>
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+  </div>
+</ng-template>

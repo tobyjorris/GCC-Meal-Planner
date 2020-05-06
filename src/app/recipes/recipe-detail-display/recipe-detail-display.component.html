@@ -14,8 +14,8 @@
           <option>3</option>
           <option>4</option>
         </select> -->
-        <input type="text" id="quantity" class="form-control col-sm" placeholder="Enter Number Of Batches" #quantityChange>
-        <button class="btn btn-secondary btn-sm col-sm">Update Batch Quantity</button>
+        <input type="text" id="quantity" class="form-control col-sm" placeholder="# Of Batches" #quantityChange>
+        <button class="btn btn-secondary btn-sm col-sm" (click)="updateQuantity()">Update Batch Quantity</button>
       </div>
     </div>
   </div>

@@ -9,6 +9,10 @@ h1 {
   background-color: #99cc66;
 }
 
+a {
+  color: black;
+}
+
 .container {
   margin: 0;
   padding: 10px 10px 10px 10px;

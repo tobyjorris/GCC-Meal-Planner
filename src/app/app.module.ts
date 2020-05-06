@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { HeaderComponent } from './header/header.component';
 import { BackdropComponent } from './backdrop/backdrop.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,12 +13,13 @@ import { InstructionsListComponent } from './instructions-list/instructions-list
 import { RecipeDetailDisplayComponent } from './recipes/recipe-detail-display/recipe-detail-display.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { NavbarComponent } from './header/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeCardComponent,
-    ToolbarComponent,
+    HeaderComponent,
     BackdropComponent,
     ShoppingListComponent,
     NgbdDropdownBasic,
@@ -26,7 +27,8 @@ import { RecipesComponent } from './recipes/recipes.component';
     InstructionsListComponent,
     RecipeDetailDisplayComponent,
     RecipeListComponent,
-    RecipesComponent
+    RecipesComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

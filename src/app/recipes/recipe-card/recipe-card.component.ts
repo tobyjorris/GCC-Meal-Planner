@@ -19,7 +19,7 @@ export class RecipeCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSelected() {
+  onRecipeSelected() {
     this.recipeSelected.emit();
   }
 

@@ -1,0 +1,13 @@
+.recipe-detail {
+  max-height: 600px;
+  overflow: scroll;
+}
+
+.form-control {
+  max-width: 200px;
+  float: left;
+}
+
+.input-button {
+  max-width: 80px;
+}

@@ -3,7 +3,11 @@ import { Recipe } from '../recipe';
 export const RECIPES: Recipe[] = [
   { id: 1,
     title: 'White Chicken Chili',
-    instructions: 'Crock-pot for 8 hours',
+    directions: [
+      {stepNum: '1', content: 'In a Dutch oven over medium heat, cook chicken and onion in oil until lightly browned. Add garlic; cook 1 minute longer. Stir in the broth, chiles, cumin, oregano and cayenne; bring to a boil.'},
+      {stepNum: '2', content: 'Reduce heat to low. With a potato masher, mash one can of beans until smooth. Add to saucepan. Add remaining beans to saucepan. Simmer for 20-30 minutes or until chicken is no longer pink and onion is tender.'},
+      {stepNum: '3', content: 'Top each serving with cheese and, if desired, jalapeno pepper. Freeze option: Freeze cooled chili in freezer containers. To use, partially thaw in refrigerator overnight. Heat through in a saucepan, stirring occasionally; add broth or water if necessary.'},
+    ],
     ingredients: [
       {quantity: 3, name: 'Chicken', measurement: 'pounds'},
       {quantity: 1, name: 'Beans', measurement: '12 oz can'},
@@ -15,7 +19,13 @@ export const RECIPES: Recipe[] = [
   },
   { id: 2,
     title: 'Turkey Meatballs',
-    instructions: 'Cook in oven at 375 degrees for 4.5 - 5.0 hours',
+    directions: [
+      {stepNum: '1', content: 'In a large bowl, combine ground turkey, bread crumbs, onion, parsley, eggs, garlic, Worcestershire sauce, basil, oregano, 1 teaspoon salt, and 1/2 teaspoon pepper. '},
+      {stepNum: '2', content: 'Using a strong spatula or your hands (I like to wear latex gloves), mix well. Shape the mixture into 1-inch balls (you should have around 48 total).'},
+      {stepNum: '3', content: 'Preheat oven to 400 degrees. Line a rimmed baking sheet with foil for easy cleanup. Coat a wire rack with nonstick spray and set on prepared baking sheet.'},
+      {stepNum: '4', content: 'Arrange meatballs on rack, brush with oil, and bake until browned with crispy edges, about 15 to 20 minutes (an internal thermometer should read 155 degrees for 15 seconds).'},
+      {stepNum: '5', content: 'Heat oil in a large skillet over medium-high heat. Fry the meatballs in batches until browned on all sides and the meatballs are cooked, about 5 to 7 minutes per batch (an internal thermometer should read 155 degrees for 15 seconds). Add more oil between batches if the skillet looks dry.'},
+    ],
     ingredients: [
       {quantity: 8, name: 'Ground Turkey', measurement: 'pounds'},
       {quantity: 5, name: 'BBQ Sauce', measurement: 'cups'},
@@ -25,7 +35,11 @@ export const RECIPES: Recipe[] = [
   },
   { id: 3,
     title: 'Steak On The Grill',
-    instructions: 'Grill over high heat for 3 minutes each side',
+    directions: [
+      {stepNum: '1', content: 'About 20 minutes before grilling, remove the steaks from the refrigerator and let sit, covered, at room temperature.'},
+      {stepNum: '2', content: 'Heat your grill to high. Brush the steaks on both sides with oil and season liberally with salt and pepper. Place the steaks on the grill and cook until golden brown and slightly charred, 4 to 5 minutes. Turn the steaks over and continue to grill 3 to 5 minutes for medium-rare (an internal temperature of 135 degrees F), 5 to 7 minutes for medium (140 degrees F) or 8 to 10 minutes for medium-well (150 degrees F).'},
+      {stepNum: '3', content: 'Transfer the steaks to a cutting board or platter, tent loosely with foil and let rest 5 minutes before slicing.'},
+    ],
     ingredients: [
       {quantity: 10, name: 'Steak', measurement: 'pounds'},
       {quantity: 2, name: 'Salt', measurement: 'Tsp'},
@@ -34,7 +48,12 @@ export const RECIPES: Recipe[] = [
   },
   { id: 3,
     title: 'Korean Beef Bowls',
-    instructions: 'Instant Pot for 3:00hrs, serve with white rice',
+    directions: [
+      {stepNum: '1', content: 'In a small bowl, whisk together brown sugar, soy sauce, sesame oil, red pepper flakes and ginger.'},
+      {stepNum: '2', content: 'eat vegetable oil in a large skillet over medium high heat. Add garlic and cook, stirring constantly, until fragrant, about 1 minute. Add ground beef and cook until browned, about 3-5 minutes, making sure to crumble the beef as it cooks; drain excess fat.'},
+      {stepNum: '3', content: 'Stir in soy sauce mixture and green onions until well combined, allowing to simmer until heated through, about 2 minutes.'},
+      {stepNum: '4', content: 'Serve immediately, garnished with green onion and sesame seeds, if desired.'},
+    ],
     ingredients: [
       {quantity: 4, name: 'Ground Beef', measurement: 'pounds'},
       {quantity: 2, name: 'Salt', measurement: 'Tsp'},
@@ -46,7 +65,14 @@ export const RECIPES: Recipe[] = [
   },
   { id: 3,
     title: 'Tater Tot Hot Dish',
-    instructions: 'Combine all ingredients in 9x13 baking pan, top with tater tots. Bake for 55mins at 375 degrees',
+    directions: [
+      {stepNum: '1', content: 'Preheat oven to 350° F.'},
+      {stepNum: '2', content: 'Brown beef, drain.'},
+      {stepNum: '3', content: 'Mix browned beef, salt, pepper, soup and green beans. Pour in casserole.'},
+      {stepNum: '4', content: 'Place tater tots on top of beef mixture. Then top off with cheddar cheese.'},
+      {stepNum: '5', content: 'Cover with foil and bake 45 minutes. Remove foil and bake 15 minutes.'},
+      {stepNum: '6', content: 'Serve immediately.'},
+    ],
     ingredients: [
       {quantity: 6, name: 'Cream Of Chicken Soup', measurement: '13oz Cans'},
       {quantity: 4, name: 'Cream Of Mushroom Soup', measurement: '13oz Cans'},
@@ -59,7 +85,11 @@ export const RECIPES: Recipe[] = [
   },
   { id: 3,
     title: 'Chicken Tacos',
-    instructions: 'Never stop eating them. Ever.',
+    directions: [
+      {stepNum: '1', content: 'In a small bowl, combine chili powder, cumin, paprika, oregano, garlic powder, 1 teaspoon salt and 1/2 teaspoon pepper. Season chicken with chili powder mixture.'},
+      {stepNum: '2', content: 'Heat canola oil in a large skillet over medium high heat. Working in batches, add chicken to the skillet in a single layer and cook until golden brown and cooked through, reaching an internal temperature of 165 degrees F, about 4-5 minutes per side. Let cool before dicing into bite-size pieces.'},
+      {stepNum: '3', content: 'Serve chicken in tortillas, topped with pico de gallo, avocado, cilantro and lime.'},
+    ],
     ingredients: [
       {quantity: 8, name: 'Chicken', measurement: 'pounds'},
       {quantity: 2, name: 'Beans', measurement: 'Tsp'},

@@ -7,6 +7,11 @@ a {
   color: white;
 }
 
+.custom-nav {
+  max-width: 1000px;
+  justify-self: center;
+}
+
 
 
 

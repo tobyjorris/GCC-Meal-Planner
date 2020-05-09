@@ -14,6 +14,7 @@ import { RecipeDetailDisplayComponent } from './recipes/recipe-detail-display/re
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
+import { RecipeSearchBarComponent } from './recipes/recipe-search-bar/recipe-search-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NavbarComponent } from './header/navbar/navbar.component';
     RecipeDetailDisplayComponent,
     RecipeListComponent,
     RecipesComponent,
-    NavbarComponent
+    NavbarComponent,
+    RecipeSearchBarComponent
   ],
   imports: [
     BrowserModule,

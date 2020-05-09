@@ -1,8 +1,15 @@
-<div class="row">
+<app-recipe-search-bar></app-recipe-search-bar>
+<hr>
+<div class="container recipe-list">
+  <div class="row ">
     <app-recipe-card
-      class="col-sm-4"
+      class="col-sm-4 recCard"
       *ngFor="let recipeEl of recipes"
       [recipe]="recipeEl"
       (recipeSelected)="onRecipeSelected(recipeEl)"
     ></app-recipe-card>
+  </div>
 </div>
+
+
+

@@ -6,19 +6,18 @@
         Edit Recipe
       </button>
       <button type="button" class="btn" (click)="onSelected()">'Real' Detail</button>
-      <!-- <recipe-detail-modal [recipe]="recipe"></recipe-detail-modal>
+      <recipe-detail-modal [recipe]="recipe"></recipe-detail-modal>
     </div>
   </div>
 </div> -->
 
 <a
   href="#"
-  class="list-group-item clearfix"
+  class="list-group-item"
   (click)="onRecipeSelected()"
 >
-  <div class="pull-left">
-    <h6 class="list-group-item-heading">{{ recipe.title }}</h6>
-  </div>
+    <div>{{ recipe.title }}</div>
 </a>
+
 
 

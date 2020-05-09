@@ -1,0 +1,33 @@
+.recCard {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+a {
+  color: black;
+}
+
+.container {
+  max-height: 500px;
+  overflow: scroll;
+}
+
+
+.recipe-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.recipe-list::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+.recipe-list::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+hr {
+  margin-top: 0px;
+  padding-top: 0px;
+}

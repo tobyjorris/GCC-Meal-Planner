@@ -1,4 +1,4 @@
 <h3>Directions</h3>
-<ul >
-  <li *ngFor="let direction of recipe.directions">{{direction.stepNum}}. {{direction.content}}</li>
-</ul>
+<ol>
+  <li *ngFor="let direction of recipe.directions"> {{direction.content}}</li>
+</ol>

@@ -1,16 +1,11 @@
-h1 {
-  font-size: 25px;
-  text-decoration: underline black;
-}
-
-.recipe-card {
-  margin: 20px;
-  padding: 10px;
-  background-color: #99cc66;
-}
-
 a {
   color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  background-color: darkgreen;
+  color: white;
 }
 
 .container {
@@ -18,9 +13,10 @@ a {
   padding: 10px 10px 10px 10px;
 }
 
-button {
-  margin: 3px;
-  background-color: white;
+div {
+  font-size: 1.1vw;
+  margin: 5px 0px 5px 0px;
+  justify-content: center;
 }
 
 

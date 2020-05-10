@@ -2,14 +2,15 @@
   height: 220px;
   background-image: url("../../assets/img/image.jpg");
   color: white;
-  padding-top: 50px;
   padding-bottom: 0px;
+  padding-top: 0px;
   margin-bottom: 0px;
   justify-content: center !important;
 }
 
 #header {
   max-width: 1000px;
+  height: 220px;
 }
 
 p {
@@ -17,9 +18,11 @@ p {
 }
 
 .custom-nav {
-  max-width: 1000px;
-  justify-self: center;
+  padding-bottom: 50px;
+  padding-left: 0px;
+  margin-left: 0px;
 }
+
 
 
 

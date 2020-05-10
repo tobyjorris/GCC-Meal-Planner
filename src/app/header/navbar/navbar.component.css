@@ -7,9 +7,8 @@ a {
   color: white;
 }
 
-.custom-nav {
-  max-width: 1000px;
-  justify-self: center;
+#navbar {
+  padding-left: 0px;
 }
 
 

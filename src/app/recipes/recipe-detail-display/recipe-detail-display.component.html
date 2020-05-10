@@ -3,7 +3,7 @@
   <div>
     <h4>Ingredients</h4>
     <ul>
-      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}}
+      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity * batchMulti}}
         - {{ingredient.measurement}} {{ingredient.name}}</li>
     </ul>
     <div class="quantity-form container">
@@ -29,7 +29,7 @@
     </div>
   </div>
   <div>
-    <button type="button" class="btn btn-outline-dark">Add To Shopping List</button>
+    <button type="button" class="btn btn-outline-dark" (click)="addedToShoppingList()">Add To Shopping List</button>
     <button type="button" class="btn btn-outline-dark">Print</button>
     <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
   </div>

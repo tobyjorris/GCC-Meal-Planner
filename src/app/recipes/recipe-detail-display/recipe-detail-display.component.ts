@@ -1,29 +1,44 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import { Recipe } from '../../../recipe';
+import {Recipe} from '../../../recipe';
 
 @Component({
   selector: 'app-recipe-detail-display',
   templateUrl: './recipe-detail-display.component.html',
   styleUrls: ['./recipe-detail-display.component.css']
 })
+
 export class RecipeDetailDisplayComponent implements OnInit {
   @Input() recipe: Recipe;
-  @ViewChild('quantityChange', {static: false})quantityChangeRef: ElementRef;
+  @ViewChild('quantityChange', {static: false}) quantityChangeRef: ElementRef;
+  batchMulti = 1;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }
 
   updateQuantity() {
-    const qtyChange = this.quantityChangeRef.nativeElement.value;
-    const ingQty = [];
+    const qtyChangeInput = this.quantityChangeRef.nativeElement.value;
 
-    for (const ingredient of this.recipe.ingredients) {
-      ingQty.push(ingredient.quantity * qtyChange);
+
+    if (qtyChangeInput >= 1) {
+      for (const ingredient of this.recipe.ingredients) {
+        this.batchMulti = qtyChangeInput;
+      }
+    } else if (isNaN(qtyChangeInput)){
+      alert('Please enter a number');
+    } else {
+      alert('Please enter a number greater than 0');
     }
-    console.log(ingQty);
+  }
 
+  addedToShoppingList() {
+    const shoppingList = [];
+    shoppingList.push(this.recipe.ingredients);
+    console.log(this.recipe.ingredients);
+    alert('ingredients added to shopping list');
   }
 
 }

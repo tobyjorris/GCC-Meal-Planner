@@ -1,5 +1,6 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {Recipe} from '../../../recipe';
+import cloneDeep from 'lodash.clonedeep';
 
 @Component({
   selector: 'app-recipe-detail-display',
@@ -7,16 +8,20 @@ import {Recipe} from '../../../recipe';
   styleUrls: ['./recipe-detail-display.component.css']
 })
 
-export class RecipeDetailDisplayComponent implements OnInit {
+export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   @Input() recipe: Recipe;
   @ViewChild('quantityChange', {static: false}) quantityChangeRef: ElementRef;
   batchMulti = 1;
+  recipeCopy: Recipe;
 
   constructor() {
-
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges() {
+    this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
   }
 
   updateQuantity() {
@@ -24,20 +29,23 @@ export class RecipeDetailDisplayComponent implements OnInit {
 
 
     if (qtyChangeInput >= 1) {
-      for (const ingredient of this.recipe.ingredients) {
-        this.batchMulti = qtyChangeInput;
+      for (const ingredient of this.recipeCopy.ingredients) {
+        ingredient.quantity *= qtyChangeInput;
       }
-    } else if (isNaN(qtyChangeInput)){
-      alert('Please enter a number');
     } else {
-      alert('Please enter a number greater than 0');
+      if (isNaN(qtyChangeInput)) {
+        alert('Please enter a number');
+      } else {
+        alert('Please enter a number greater than 0');
+      }
     }
   }
 
   addedToShoppingList() {
     const shoppingList = [];
-    shoppingList.push(this.recipe.ingredients);
-    console.log(this.recipe.ingredients);
+    shoppingList.push(this.recipeCopy.ingredients);
+    console.log(this.recipe);
+    console.log(this.recipeCopy);
     alert('ingredients added to shopping list');
   }
 

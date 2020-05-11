@@ -1,9 +1,9 @@
 <div class="recipe-detail">
-  <h1>{{recipe.title}}</h1>
+  <h1>{{recipeCopy.title}}</h1>
   <div>
     <h4>Ingredients</h4>
     <ul>
-      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity * batchMulti}}
+      <li *ngFor="let ingredient of recipeCopy.ingredients">{{ingredient.quantity}}
         - {{ingredient.measurement}} {{ingredient.name}}</li>
     </ul>
     <div class="quantity-form container">

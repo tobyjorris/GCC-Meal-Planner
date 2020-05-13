@@ -15,6 +15,8 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { RecipeSearchBarComponent } from './recipes/recipe-search-bar/recipe-search-bar.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RecipeSearchBarComponent } from './recipes/recipe-search-bar/recipe-sea
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

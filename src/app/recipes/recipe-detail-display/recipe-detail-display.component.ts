@@ -11,7 +11,6 @@ import cloneDeep from 'lodash.clonedeep';
 export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   @Input() recipe: Recipe;
   @ViewChild('quantityChange', {static: false}) quantityChangeRef: ElementRef;
-  batchMulti = 1;
   recipeCopy: Recipe;
 
   constructor() {
@@ -26,8 +25,6 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
 
   updateQuantity() {
     const qtyChangeInput = this.quantityChangeRef.nativeElement.value;
-
-
     if (qtyChangeInput >= 1) {
       for (const ingredient of this.recipeCopy.ingredients) {
         ingredient.quantity *= qtyChangeInput;

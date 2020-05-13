@@ -1,10 +1,25 @@
-<app-recipe-search-bar></app-recipe-search-bar>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h2>Recipes</h2>
+    </div>
+    <div class="input-group col-sm">
+      <div class="input-group-prepend">
+        <div class="input-group-text" id="btnGroupAddon2">
+         <i class="fa fa-search"></i>
+        </div>
+      </div>
+      <input type="text" class="form-control" placeholder="Search" aria-label="Input group example" aria-describedby="btnGroupAddon2" [(ngModel)]="term">
+    </div>
+    <hr>
+  </div>
+</div>
 <hr>
 <div class="container recipe-list">
   <div class="row ">
     <app-recipe-card
       class="col-sm-4 recCard"
-      *ngFor="let recipeEl of recipes"
+      *ngFor="let recipeEl of recipes | filter:term"
       [recipe]="recipeEl"
       (recipeSelected)="onRecipeSelected(recipeEl)"
     ></app-recipe-card>

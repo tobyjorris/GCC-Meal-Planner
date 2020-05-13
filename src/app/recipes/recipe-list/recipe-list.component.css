@@ -7,7 +7,7 @@ a {
   color: black;
 }
 
-.container {
+.recipe-list {
   max-height: 500px;
   overflow: scroll;
 }
@@ -30,4 +30,13 @@ a {
 hr {
   margin-top: 0px;
   padding-top: 0px;
+}
+
+.input-group {
+  max-height: 10px;
+}
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }

@@ -16,6 +16,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {FormsModule} from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {FormsModule} from '@angular/forms';
     RecipeListComponent,
     RecipesComponent,
     NavbarComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

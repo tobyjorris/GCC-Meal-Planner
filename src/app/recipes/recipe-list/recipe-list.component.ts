@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {Recipe} from '../../../recipe';
 import {RECIPES} from '../../mock-recipes';
 
@@ -12,9 +12,11 @@ export class RecipeListComponent implements OnInit {
 
   recipes = RECIPES;
   term: string;
+  searchText: string;
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.recipes);
   }
 
   onRecipeSelected(recipe: Recipe) {

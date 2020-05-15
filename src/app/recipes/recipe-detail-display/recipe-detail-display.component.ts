@@ -38,7 +38,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
     }
   }
 
-  addedToShoppingList() {
+  addToShoppingList() {
     const shoppingList = [];
     shoppingList.push(this.recipeCopy.ingredients);
     alert('ingredients added to shopping list');

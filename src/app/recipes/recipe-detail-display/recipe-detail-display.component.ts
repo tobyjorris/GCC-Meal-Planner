@@ -1,6 +1,6 @@
 import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {Recipe} from '../../../recipe';
-import cloneDeep from 'lodash.clonedeep';
+
 
 @Component({
   selector: 'app-recipe-detail-display',

@@ -18,6 +18,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {FormsModule} from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +39,9 @@ import { FilterPipe } from './filter.pipe';
     BrowserModule,
     NgbModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

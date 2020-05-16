@@ -12,6 +12,8 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   @Input() recipe: Recipe;
   @ViewChild('quantityChange', {static: false}) quantityChangeRef: ElementRef;
   recipeCopy: Recipe;
+  prevMulti = 1;
+  batchMultiDisplay: number;
 
   constructor() {
   }
@@ -21,14 +23,17 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
+    this.batchMultiDisplay = 1;
   }
 
   updateQuantity() {
     const qtyChangeInput = this.quantityChangeRef.nativeElement.value;
     if (qtyChangeInput >= 1) {
       for (const ingredient of this.recipeCopy.ingredients) {
-        ingredient.quantity *= qtyChangeInput;
+        ingredient.quantity = (ingredient.quantity / this.prevMulti) * qtyChangeInput;
       }
+      this.batchMultiDisplay = qtyChangeInput;
+      this.prevMulti = qtyChangeInput;
     } else {
       if (isNaN(qtyChangeInput)) {
         alert('Please enter a number');
@@ -41,6 +46,8 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   addToShoppingList() {
     const shoppingList = [];
     shoppingList.push(this.recipeCopy.ingredients);
+    console.log(this.recipeCopy.ingredients)
+    console.log(this.recipe.ingredients)
     alert('ingredients added to shopping list');
   }
 

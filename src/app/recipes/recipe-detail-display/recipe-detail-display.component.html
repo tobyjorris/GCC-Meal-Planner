@@ -1,7 +1,7 @@
 <div class="recipe-detail">
   <h1>{{recipeCopy.title}}</h1>
   <div>
-    <h4>Ingredients</h4>
+    <h4>Ingredients <span *ngIf="batchMultiDisplay > 1">(x{{this.batchMultiDisplay}})</span></h4>
     <ul>
       <li *ngFor="let ingredient of recipeCopy.ingredients">{{ingredient.quantity}}
         - {{ingredient.measurement}} {{ingredient.name}}</li>
@@ -15,9 +15,7 @@
           <option>4</option>
         </select> -->
         <input type="text" class="form-control col-sm" placeholder="# Of Batches" #quantityChange>
-        <button class="btn btn-secondary col-sm input-button" (click)="updateQuantity()">Update</button>
-        <div>
-        </div>
+        <button class="btn btn-secondary col-sm input-button" (click)="updateQuantity()" (click)="quantityChange.value=''">Update</button>
       </div>
     </div>
   </div>

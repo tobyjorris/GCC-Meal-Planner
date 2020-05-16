@@ -6,10 +6,11 @@
 .form-control {
   max-width: 120px;
   float: left;
+  margin-left: 5px;
 }
 
 .input-button {
-  max-width: 120px;
+  max-width: 80px;
   margin-left: 5px;
 }
 

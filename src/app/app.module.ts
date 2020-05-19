@@ -17,8 +17,18 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {FormsModule} from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import {Routes, RouterModule} from '@angular/router';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
+const appRoutes: Routes = [
+  {path: '', component: RecipesComponent},
+  {path: 'recipes', component: RecipesComponent},
+  {path: 'shopping-list', component: ShoppingListComponent},
+  {path: 'recipe-edit', component: RecipeEditComponent}
+];
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,14 +44,19 @@ import { FilterPipe } from './filter.pipe';
     RecipesComponent,
     NavbarComponent,
     FilterPipe,
+    RecipeEditComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     Ng2SearchPipeModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+
+export class AppModule {
+
+}

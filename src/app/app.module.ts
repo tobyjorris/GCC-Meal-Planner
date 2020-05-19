@@ -14,8 +14,8 @@ import { RecipeDetailDisplayComponent } from './recipes/recipe-detail-display/re
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
-import {Ng2SearchPipeModule} from 'ng2-search-filter';
-import {FormsModule} from '@angular/forms';
+import { Ng2SearchPipeModule} from 'ng2-search-filter';
+import { FormsModule} from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import {Routes, RouterModule} from '@angular/router';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
@@ -27,8 +27,6 @@ const appRoutes: Routes = [
   {path: 'recipe-edit', component: RecipeEditComponent}
 ];
 
-// @ts-ignore
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,

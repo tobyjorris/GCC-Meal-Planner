@@ -1,1 +1,15 @@
-<p>recipe-edit works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h2 class="justify-content-center">Select A Recipe To Edit</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-secondary">Add Recipe</button>
+      <ul>
+        <li *ngFor="let recipe of recipes | async">{{recipe.title}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

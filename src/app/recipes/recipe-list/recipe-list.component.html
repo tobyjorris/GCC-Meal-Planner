@@ -25,9 +25,9 @@
   <div class="row ">
     <app-recipe-card
       class="col-sm-4 recCard"
-      *ngFor="let recipeEl of recipes | filter: searchText"
-      [recipe]="recipeEl"
-      (recipeSelected)="onRecipeSelected(recipeEl)"
+      *ngFor="let recipe of recipes | async | filter: searchText"
+      [recipe]="recipe"
+      (recipeSelected)="onRecipeSelected(recipe)"
     ></app-recipe-card>
   </div>
 </div>

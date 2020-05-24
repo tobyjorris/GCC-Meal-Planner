@@ -19,6 +19,8 @@ import { FormsModule} from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import {Routes, RouterModule} from '@angular/router';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { AngularFireModule } from '@angular/fire';
+import {environment} from '../environments/environment';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent},
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     NgbModule,
     Ng2SearchPipeModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]

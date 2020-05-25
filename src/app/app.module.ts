@@ -15,12 +15,13 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
-import { FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import {Routes, RouterModule} from '@angular/router';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AngularFireModule } from '@angular/fire';
 import {environment} from '../environments/environment';
+import { RecipeAddFormComponent } from './recipes/recipe-edit/recipe-add-form/recipe-add-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent},
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     NavbarComponent,
     FilterPipe,
     RecipeEditComponent,
+    RecipeAddFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     Ng2SearchPipeModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

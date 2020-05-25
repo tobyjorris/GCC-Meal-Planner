@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="recipeAddForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="title">Enter Title</label>
+            <input
+              type="text"
+              id="title"
+              class="form-control"
+              formControlName="title">
+            <!-- <span
+              class="help-block"
+              *ngIf="!recipeAddForm.get('userData.username').valid && recipeAddForm.get('userData.username').touched"
+            >
+            Please enter a valid title!
+          </span> -->
+          </div>
+        <div formArrayName="ingredients">
+          <label for="ingredients">Enter Ingredients</label>
+          <button class="btn btn-info" type="button" (click)="onAddIngredient()">Add Ingredient</button>
+          <div class="form-group" *ngFor="let ingredientControl of getIngredientsControls(); let i = index">
+            <select name="" id="qty">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            <select name="" id="measurement">
+              <option value="tsp">tsp</option>
+              <option value="tbsp">tbsp</option>
+              <option value="cups">cups</option>
+              <option value="oz">oz</option>
+              <option value="each">each</option>
+            </select>
+            <input type="text" id="ingredients" class="form-control" [formControlName]="i">
+          </div>
+        </div>
+        <div formArrayName="directions">
+          <label for="directions">Enter Directions</label>
+          <button class="btn btn-info" type="button" (click)="onAddDirections()">Add Directions</button>
+          <div class="form-group" *ngFor="let directionsControl of getDirectionsControls(); let i = index">
+            <input type="text" id="directions" class="form-control" [formControlName]="i">
+          </div>
+
+        </div>
+        <!--<span
+          class="help-block"
+          *ngIf="!recipeAddForm.valid && recipeAddForm.touched">
+            Please enter valid data!
+          </span> -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

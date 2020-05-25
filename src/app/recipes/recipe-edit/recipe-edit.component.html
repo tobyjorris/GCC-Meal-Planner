@@ -5,11 +5,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-md-3">
       <button class="btn btn-secondary">Add Recipe</button>
       <ul>
         <li *ngFor="let recipe of recipes | async">{{recipe.title}}</li>
       </ul>
+    </div>
+    <div class="col-md-9">
+      <app-recipe-add-form></app-recipe-add-form>
     </div>
   </div>
 </div>

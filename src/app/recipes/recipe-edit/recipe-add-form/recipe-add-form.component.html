@@ -1,54 +1,107 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div class="col-xs-12">
       <form [formGroup]="recipeAddForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="title">Enter Title</label>
+            <label for="title">Enter Recipe Title</label>
             <input
               type="text"
               id="title"
               class="form-control"
               formControlName="title">
-            <!-- <span
-              class="help-block"
-              *ngIf="!recipeAddForm.get('userData.username').valid && recipeAddForm.get('userData.username').touched"
-            >
-            Please enter a valid title!
-          </span> -->
           </div>
-        <div formArrayName="ingredients">
-          <label for="ingredients">Enter Ingredients</label>
-          <button class="btn btn-info" type="button" (click)="onAddIngredient()">Add Ingredient</button>
-          <div class="form-group" *ngFor="let ingredientControl of getIngredientsControls(); let i = index">
-            <select name="" id="qty">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-            <select name="" id="measurement">
-              <option value="tsp">tsp</option>
-              <option value="tbsp">tbsp</option>
-              <option value="cups">cups</option>
-              <option value="oz">oz</option>
-              <option value="each">each</option>
-            </select>
-            <input type="text" id="ingredients" class="form-control" [formControlName]="i">
+        <hr>
+        <div class="container" formArrayName="ingredients">
+          <div
+            class="row"
+            *ngFor="let ingredientCtrl of getIngredientsControls(); let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs">
+              <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="Ingredient Name"
+            >
+            </div>
+            <div class="col-xs">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="quantity"
+                placeholder="Quantity"
+              >
+            </div>
+            <div class="col-xs">
+              <select name="measurement" class="form-control" formControlName="measurement" id="">
+                <option value="tsp">Tsp</option>
+                <option value="tbsp">Tbsp</option>
+                <option value="oz">Oz</option>
+                <option value="cups">Cups</option>
+                <option value="pounds">Pounds</option>
+                <option value="eaches">Eaches</option>
+              </select>
+            </div>
+            <div class="col-xs">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteIngredient(i)">X</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddIngredient()">Add Ingredient</button>
+            </div>
           </div>
         </div>
-        <div formArrayName="directions">
-          <label for="directions">Enter Directions</label>
-          <button class="btn btn-info" type="button" (click)="onAddDirections()">Add Directions</button>
-          <div class="form-group" *ngFor="let directionsControl of getDirectionsControls(); let i = index">
-            <input type="text" id="directions" class="form-control" [formControlName]="i">
+        <hr>
+        <div class="col" formArrayName="directions">
+          <div
+            class="row"
+            *ngFor="let directionsCtrl of getDirectionsControls(); let j = index"
+            [formGroupName]="j"
+            style="margin-top: 10px;">
+            <div class="col-xs-3">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter Step Number"
+                formControlName="stepNum">
+            </div>
+            <div class="col-xs-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Direction"
+                formControlName="content">
+            </div>
+            <div class="col-xs-3">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteDirections(j)">X</button>
+            </div>
           </div>
-
+          <div class="row">
+            <div class="col-xs-12">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddDirections()">Add Direction</button>
+            </div>
+          </div>
         </div>
         <!--<span
           class="help-block"
           *ngIf="!recipeAddForm.valid && recipeAddForm.touched">
             Please enter valid data!
           </span> -->
+        <hr>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>

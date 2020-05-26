@@ -20,13 +20,30 @@ export class RecipeAddFormComponent implements OnInit {
   }
 
   onAddIngredient() {
-    const control = new FormControl(null, Validators.required);
-    (this.recipeAddForm.get('ingredients') as FormArray).push(control);
+    (<FormArray> this.recipeAddForm.get('ingredients')).push(
+      new FormGroup({
+        name: new FormControl(null, Validators.required),
+        quantity: new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+        measurement: new FormControl(null, Validators.required)
+      })
+    );
+  }
+
+  onDeleteIngredient(index: number) {
+    (<FormArray> this.recipeAddForm.get('ingredients')).removeAt(index);
   }
 
   onAddDirections() {
-    const control = new FormControl(null, Validators.required);
-    (this.recipeAddForm.get('directions') as FormArray).push(control);
+    (<FormArray> this.recipeAddForm.get('directions')).push(
+      new FormGroup({
+        stepNum: new FormControl(null, Validators.required),
+        content: new FormControl(null, Validators.required)
+      })
+    );
+  }
+
+  onDeleteDirections(index: number) {
+    (<FormArray> this.recipeAddForm.get('directions')).removeAt(index);
   }
 
   getIngredientsControls() {

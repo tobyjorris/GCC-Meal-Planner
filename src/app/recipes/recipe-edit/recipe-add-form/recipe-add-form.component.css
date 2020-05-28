@@ -19,43 +19,79 @@
 
 .delete {
   width: 40px;
-}
 
-.add-btn {
-  margin-top: 5px;
 }
 
 .col-sm {
-  padding-left: 0;
+  padding: 0;
 }
 
-.content-row {
-  margin-bottom: 10px;
-}
-
-#msmt {
+#quantity-field {
   max-width: 100px;
-  padding-right: 0;
+  padding-right: 10px;
 }
 
-.select-div {
-  max-width: 120px;
-  padding: 0 5px 0 5px;
+.quantity-div {
+  max-width: 100px;
 }
 
-.quantity-input {
-  max-width: 130px;
+#measurement-field {
+  max-width: 100px;
+  padding-right: 10px;
 }
 
-.ingredient-name {
-  max-width: 300px;
+.measurement-div {
+  max-width: 100px;
 }
 
-textarea {
-  width: 400px;
-  padding: 5px;
+#ingredient-field {
+  max-width: 200px;
+  padding-right: 10px;
 }
 
-.text-area {
-  width: 400px;
+.ingredient-div {
+  max-width: 200px;
 }
+
+#stepNum-field {
+  max-width: 100px;
+  padding-right: 10px;
+}
+
+.stepNum-div {
+  max-width: 100px;
+}
+
+
+#direction-field {
+  width: 500px;
+  height: 90px;
+  padding-right: 5px;
+}
+
+.direction-div {
+  width: 500px;
+  height: 90px;
+}
+
+button:disabled {
+  background-color: gray;
+  border-color: gray;
+}
+
+#title-field {
+  width: 654px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.title-div {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+hr {
+  margin: 10px 0 10px 0;
+}
+
+

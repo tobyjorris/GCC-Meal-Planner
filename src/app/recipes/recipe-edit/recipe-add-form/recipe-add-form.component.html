@@ -2,14 +2,13 @@
   <div class="row">
     <div class="col-12">
       <form [formGroup]="recipeAddForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="title">Enter Recipe Title</label>
-            <input
-              type="text"
-              id="title"
-              class="form-control"
-              formControlName="title">
-          </div>
+        <div class="title-div">
+          <mat-form-field appearance="fill" id="title-field">
+            <mat-label>Enter Recipe Title</mat-label>
+            <input matInput
+                   formControlName="title">
+          </mat-form-field>
+        </div>
         <hr>
         <div class="container ingredient-container" formArrayName="ingredients">
           <div
@@ -17,31 +16,32 @@
             *ngFor="let ingredientCtrl of getIngredientsControls(); let i = index"
             [formGroupName]="i"
             >
-            <div class="col-sm ingredient-name">
-              <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              placeholder="Ingredient Name"
-            >
+            <div class="col-sm ingredient-div">
+              <mat-form-field appearance="fill" id="ingredient-field">
+                <mat-label>Ingredient Name</mat-label>
+                <input matInput
+                       formControlName="name">
+              </mat-form-field>
             </div>
-            <div class="col-sm quantity-input">
-              <input
-                type="number"
-                class="form-control"
-                formControlName="quantity"
-                placeholder="Quantity"
-              >
+            <div class="col-sm quantity-div">
+              <mat-form-field appearance="fill" id="quantity-field">
+                <mat-label>Quantity</mat-label>
+                <input matInput
+                       formControlName="quantity">
+              </mat-form-field>
             </div>
-            <div class="col select-div">
-              <select name="measurement" class="form-control" formControlName="measurement" id="msmt">
-                <option value="tsp">Tsp</option>
-                <option value="tbsp">Tbsp</option>
-                <option value="oz">Oz</option>
-                <option value="cups">Cups</option>
-                <option value="pounds">Pounds</option>
-                <option value="eaches">Eaches</option>
-              </select>
+            <div class="col-sm measurement-div">
+              <mat-form-field appearance="fill" id="measurement-field">
+                <mat-label>Unit</mat-label>
+                <mat-select formControlName="measurement">
+                  <mat-option value="tsp">Tsp</mat-option>
+                  <mat-option value="tbsp">Tbsp</mat-option>
+                  <mat-option value="oz">Oz</mat-option>
+                  <mat-option value="cups">Cups</mat-option>
+                  <mat-option value="pounds">Pounds</mat-option>
+                  <mat-option value="eaches">Eaches</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
             <div class="col-sm">
               <button
@@ -66,19 +66,18 @@
             *ngFor="let directionsCtrl of getDirectionsControls(); let j = index"
             [formGroupName]="j"
             >
-            <div class="col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Enter Step Number"
-                formControlName="stepNum">
+            <div class="col-sm stepNum-div">
+              <mat-form-field appearance="fill" id="stepNum-field">
+                <mat-label>Step</mat-label>
+                <input matInput
+                       formControlName="stepNum">
+              </mat-form-field>
             </div>
-            <div class="col-sm text-area">
-              <textarea
-                type="text"
-                class="form-control"
-                placeholder="Enter Direction"
-                formControlName="content"></textarea>
+            <div class="col-sm direction-div">
+              <mat-form-field appearance="fill" id="direction-field">
+                <mat-label>Enter Direction</mat-label>
+                <textarea matInput formControlName="content"></textarea>
+              </mat-form-field>
             </div>
             <div class="col-sm">
               <button
@@ -102,7 +101,11 @@
             Please enter valid data!
           </span> -->
         <hr>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!recipeAddForm.valid"
+        >Submit</button>
       </form>
     </div>
   </div>

@@ -15,13 +15,18 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AngularFireModule } from '@angular/fire';
-import {environment} from '../environments/environment';
+import { environment } from '../environments/environment';
 import { RecipeAddFormComponent } from './recipes/recipe-edit/recipe-add-form/recipe-add-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { SimpleFieldComponent } from './forms/simple-field/simple-field.component';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent},
@@ -47,6 +52,7 @@ const appRoutes: Routes = [
     FilterPipe,
     RecipeEditComponent,
     RecipeAddFormComponent,
+    SimpleFieldComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,11 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

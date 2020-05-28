@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FirestormService} from '../../../services/firebaseservice.service';
+import {Recipe} from '../../../../recipe';
+import {Observable} from 'rxjs';
+import Item = firebase.analytics.Item;
 
 @Component({
   selector: 'app-recipe-add-form',
   templateUrl: './recipe-add-form.component.html',
   styleUrls: ['./recipe-add-form.component.css']
 })
+
 export class RecipeAddFormComponent implements OnInit {
   recipeAddForm: FormGroup;
+  recipes: Observable<any[]>;
 
-  constructor() { }
+  constructor(private db: FirestormService ) {
+  }
 
   ngOnInit(): void {
     this.recipeAddForm = new FormGroup({
@@ -55,6 +62,8 @@ export class RecipeAddFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.recipeAddForm);
+    console.log(this.recipeAddForm.value);
+    this.db.addNewDoc(this.recipeAddForm.value);
+    this.recipeAddForm.reset();
   }
 }

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestormService} from '../../../services/firebaseservice.service';
-import {Recipe} from '../../../../recipe';
-import {Observable} from 'rxjs';
-import Item = firebase.analytics.Item;
+import { FirestormService} from '../../../services/firestore-service/firebaseservice.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-recipe-add-form',
@@ -14,11 +13,14 @@ import Item = firebase.analytics.Item;
 export class RecipeAddFormComponent implements OnInit {
   recipeAddForm: FormGroup;
   recipes: Observable<any[]>;
+  editMode: false;
 
   constructor(private db: FirestormService ) {
   }
 
   ngOnInit(): void {
+    let recipeName = '';
+
     this.recipeAddForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       ingredients: new FormArray([], Validators.required),

@@ -5,3 +5,12 @@
 .content-row {
   height: 525px;
 }
+
+ul {
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+li {
+  margin: 3px 0 3px 0;
+}

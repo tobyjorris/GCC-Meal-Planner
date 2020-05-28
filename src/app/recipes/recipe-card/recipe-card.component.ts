@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RECIPES} from '../../mock-recipes';
 import {Recipe} from '../../../recipe';
 
 

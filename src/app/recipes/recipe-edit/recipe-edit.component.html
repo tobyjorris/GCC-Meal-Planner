@@ -6,9 +6,8 @@
   </div>
   <div class="row content-row">
     <div class="col-3">
-      <button class="btn btn-secondary">Add Recipe</button>
       <ul>
-        <li *ngFor="let recipe of recipes | async">{{recipe.title}}</li>
+        <li *ngFor="let recipe of recipes | async, let i = index" (click)="onEditItem()">{{recipe.title}}</li>
       </ul>
     </div>
     <div class="col-9">

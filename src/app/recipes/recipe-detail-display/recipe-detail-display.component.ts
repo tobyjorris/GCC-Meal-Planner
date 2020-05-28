@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {Recipe} from '../../../recipe';
+import {FirestormService} from '../../services/firestore-service/firebaseservice.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   prevMulti = 1;
   batchMultiDisplay: number;
 
-  constructor() {
+  constructor(private db: FirestormService) {
   }
 
   ngOnInit(): void {
@@ -44,9 +45,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   }
 
   addToShoppingList() {
-    const shoppingList = [];
-    shoppingList.push(this.recipeCopy.ingredients);
-    alert('ingredients added to shopping list');
+    this.db.updateShoppingList(this.recipeCopy);
   }
 
 }

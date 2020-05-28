@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FirestormService} from '../../services/firebaseservice.service';
+import {FirestormService} from '../../services/firestore-service/firebaseservice.service';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -17,4 +17,7 @@ export class RecipeEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onEditItem() {
+
+  }
 }

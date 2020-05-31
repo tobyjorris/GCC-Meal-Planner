@@ -1,7 +1,6 @@
-<h1>Your Shopping List</h1>
+<h3>Your Shopping List</h3>
 <div>
   <ul *ngFor="let item of shoppingList | async">
-    <h3>{{item.title}}</h3>
     <li *ngFor="let ingredient of item.ingredients">{{ingredient.quantity}}
       - {{ingredient.measurement}} {{ingredient.name}}</li>
   </ul>

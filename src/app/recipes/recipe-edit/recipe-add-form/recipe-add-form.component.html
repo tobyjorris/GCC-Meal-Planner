@@ -1,13 +1,14 @@
 <div class="container recipe-add-form">
   <div class="row">
     <div class="col-12">
-      <form [formGroup]="recipeAddForm" (ngSubmit)="onSubmit()">
-        <div *ngIf="editMode">Currently Editing: {{editedRecipe.title}}</div>
+      <form [formGroup]="recipeAddForm">
         <div class="title-div">
           <mat-form-field appearance="fill" id="title-field">
             <mat-label>Enter Recipe Title</mat-label>
             <input matInput
-                   formControlName="title">
+                   formControlName="title"
+                   [readonly]="editMode"
+            >
           </mat-form-field>
         </div>
         <hr>
@@ -21,6 +22,7 @@
               <mat-form-field appearance="fill" id="ingredient-field">
                 <mat-label>Ingredient Name</mat-label>
                 <input matInput
+
                        formControlName="name">
               </mat-form-field>
             </div>
@@ -44,7 +46,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="col-sm">
+            <div>
               <button
                 type="button"
                 class="btn btn-danger delete"
@@ -80,7 +82,7 @@
                 <textarea matInput formControlName="content"></textarea>
               </mat-form-field>
             </div>
-            <div class="col-sm">
+            <div>
               <button
                 type="button"
                 class="btn btn-danger delete"
@@ -97,11 +99,29 @@
           </div>
         </div>
         <hr>
-        <button
-          class="btn btn-primary"
-          type="submit"
-          [disabled]="!recipeAddForm.valid"
-        >Submit</button>
+        <div *ngIf="!editMode; then submit else save "></div>
+          <ng-template #submit>
+            <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="!recipeAddForm.valid"
+          >Submit</button></ng-template>
+        <ng-template #save>
+          <button
+            class="btn btn-primary opt-btn"
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="!recipeAddForm.valid"
+          >Save Recipe</button>
+          <button
+            class="btn btn-danger opt-btn"
+            type="button"
+            (click)="onDelete()"
+          >
+            Delete Recipe
+          </button>
+        </ng-template>
       </form>
     </div>
   </div>

@@ -88,7 +88,26 @@ export class RecipeAddFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.recipeAddForm.value);
-    this.db.addNewDoc(this.recipeAddForm.value);
-    this.recipeAddForm.reset();
+    this.db.addNewRecipe(this.recipeAddForm.value);
+    this.editMode = false;
+    this.recipeAddForm = new FormGroup({
+      title: new FormControl('', Validators.required),
+      ingredients: new FormArray([], Validators.required),
+      directions: new FormArray([], Validators.required),
+    });
+    this.recipeAddForm.markAsPristine();
+    this.recipeAddForm.markAsUntouched();
+  }
+
+  onDelete() {
+    this.db.deleteRecipe(this.editedRecipe.title);
+    this.editMode = false;
+    this.recipeAddForm = new FormGroup({
+      title: new FormControl('', Validators.required),
+      ingredients: new FormArray([], Validators.required),
+      directions: new FormArray([], Validators.required),
+    });
+    this.recipeAddForm.markAsPristine();
+    this.recipeAddForm.markAsUntouched();
   }
 }

@@ -23,8 +23,16 @@ export class FirestormService{
     this.shoppinglist = db.collection('/shopping-list').valueChanges();
   }
 
-  addNewDoc(recipe: Recipe){
-    this.recipeCol.doc(recipe.title).set(recipe).then(() => console.log('Document successfully written'));
+  addNewRecipe(recipe: Recipe){
+    this.recipeCol.doc(recipe.title).set(recipe).then(() => console.log('Recipe successfully written'));
+  }
+
+  deleteRecipe(title: string){
+    this.recipeCol.doc(title).delete().then(() => {
+      console.log('Recipe successfully deleted');
+    }).catch(error => {
+      console.error('Error removing document: ', error);
+    });
   }
 
   updateShoppingList(recipe: Recipe) {

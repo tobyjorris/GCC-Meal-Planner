@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Recipe} from '../../../recipe';
+import { Injectable } from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Recipe } from '../../../recipe';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class FirestormService{
   public shoppinglist: Observable<any[]>;
   public recipeCol: AngularFirestoreCollection<Recipe>;
   public shoppingCol: AngularFirestoreCollection<Recipe>;
+  startedEditing = new Subject<object>();
 
   constructor(private db: AngularFirestore) {
     const recipeCollection = db.collection<Recipe>('items');

@@ -1,7 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirestormService} from '../../../services/firestore-service/firebaseservice.service';
-import { Observable } from 'rxjs';
+import { Recipe } from '../../../../recipe';
+import {Ingredient} from '../../../../ingredient';
+import {Directions} from '../../../../directions';
 
 
 @Component({
@@ -12,24 +14,45 @@ import { Observable } from 'rxjs';
 
 export class RecipeAddFormComponent implements OnInit {
   recipeAddForm: FormGroup;
-  recipes: Observable<any[]>;
-  editMode: false;
+  editMode = false;
+  editedRecipe: Recipe;
 
-  constructor(private db: FirestormService ) {
+  constructor(private db: FirestormService) {
   }
 
   ngOnInit(): void {
-    let recipeName = '';
-
     this.recipeAddForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       ingredients: new FormArray([], Validators.required),
       directions: new FormArray([], Validators.required)
     });
+
+    this.db.startedEditing.subscribe(
+      (recipe: Recipe) => {
+        this.editMode = true;
+        this.editedRecipe = Object.assign({}, recipe);
+        this.recipeAddForm = new FormGroup({
+          title: new FormControl(this.editedRecipe.title, Validators.required),
+          ingredients: new FormArray(this.editedRecipe.ingredients.map((ingredient: Ingredient) => {
+          return new FormGroup({
+            name: new FormControl(ingredient.name, Validators.required),
+            quantity: new FormControl(ingredient.quantity, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+            measurement: new FormControl(ingredient.measurement, Validators.required)
+          });
+        }), Validators.required),
+          directions: new FormArray(this.editedRecipe.directions.map((direction: Directions) => {
+            return new FormGroup({
+              stepNum: new FormControl(direction.stepNum, Validators.required),
+              content: new FormControl(direction.content, Validators.required)
+            });
+          }), Validators.required)
+        });
+      }
+    );
   }
 
   onAddIngredient() {
-    (<FormArray> this.recipeAddForm.get('ingredients')).push(
+    (this.recipeAddForm.get('ingredients') as FormArray).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
         quantity: new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
@@ -39,11 +62,11 @@ export class RecipeAddFormComponent implements OnInit {
   }
 
   onDeleteIngredient(index: number) {
-    (<FormArray> this.recipeAddForm.get('ingredients')).removeAt(index);
+    (this.recipeAddForm.get('ingredients') as FormArray).removeAt(index);
   }
 
   onAddDirections() {
-    (<FormArray> this.recipeAddForm.get('directions')).push(
+    (this.recipeAddForm.get('directions') as FormArray).push(
       new FormGroup({
         stepNum: new FormControl(null, Validators.required),
         content: new FormControl(null, Validators.required)
@@ -52,7 +75,7 @@ export class RecipeAddFormComponent implements OnInit {
   }
 
   onDeleteDirections(index: number) {
-    (<FormArray> this.recipeAddForm.get('directions')).removeAt(index);
+    (this.recipeAddForm.get('directions') as FormArray).removeAt(index);
   }
 
   getIngredientsControls() {

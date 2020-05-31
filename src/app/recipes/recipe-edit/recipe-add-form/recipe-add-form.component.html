@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-12">
       <form [formGroup]="recipeAddForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="editMode">Currently Editing: {{editedRecipe.title}}</div>
         <div class="title-div">
           <mat-form-field appearance="fill" id="title-field">
             <mat-label>Enter Recipe Title</mat-label>

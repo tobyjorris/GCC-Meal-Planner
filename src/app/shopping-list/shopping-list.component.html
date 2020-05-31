@@ -2,7 +2,8 @@
 <div>
   <ul *ngFor="let item of shoppingList | async">
     <h3>{{item.title}}</h3>
-    <li *ngFor="let ingredient of item.ingredients">{{ingredient.quantity}}{{ingredient.name}}</li>
+    <li *ngFor="let ingredient of item.ingredients">{{ingredient.quantity}}
+      - {{ingredient.measurement}} {{ingredient.name}}</li>
   </ul>
 </div>
 

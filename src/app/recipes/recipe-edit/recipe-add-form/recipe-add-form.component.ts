@@ -55,7 +55,7 @@ export class RecipeAddFormComponent implements OnInit {
     (this.recipeAddForm.get('ingredients') as FormArray).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
-        quantity: new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+        quantity: new FormControl(null, [Validators.required, Validators.pattern(/^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/)]),
         measurement: new FormControl(null, Validators.required)
       })
     );

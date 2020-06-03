@@ -1,6 +1,6 @@
 <h3>Your Shopping List</h3>
-<div *ngFor="let list of shoppingList">
-  {{list.title}}
+<div *ngFor="let ingredient of ingredientsArray">
+  {{ingredient.quantity}} - {{ingredient.measurement}} {{ingredient.name}}
 </div>
 
 <button type="button" class="btn btn-info" (click)="onPrint()">Print Shopping List</button>

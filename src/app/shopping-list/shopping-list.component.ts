@@ -7,7 +7,7 @@ import {ShoppingListService} from '../services/localstorage-service.service';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit, OnChanges {
+export class ShoppingListComponent implements OnInit {
   shoppingList;
   ingredientsArray;
 
@@ -16,19 +16,24 @@ export class ShoppingListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.shoppingList = this.slService.getFromStorage();
-    this.ingredientsArray = this.shoppingList
-      .map(x => {
-        return x.ingredients;
-      });
-    console.log(this.ingredientsArray);
+    console.log(this.shoppingList);
+    if (this.shoppingList) {
+      this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
+    }
+    const sortedIngredients = {};
+    this.ingredientsArray.map(ingredient => {
+      if (sortedIngredients[ingredient.name]) {
+        sortedIngredients[ingredient.name] = sortedIngredients[ingredient.name] + Number(ingredient.quantity);
+      } else {
+        sortedIngredients[ingredient.name] = Number(ingredient.quantity);
+      }
+    });
+    console.log(sortedIngredients);
   }
 
   onPrint() {
     this.shoppingList = [];
     this.slService.clearShoppingList();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
   }
 
 }

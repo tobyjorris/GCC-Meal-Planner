@@ -47,9 +47,8 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   }
 
   addToShoppingList() {
-    this.shoppingList.push(this.recipeCopy);
-    this.slService.writeToStorage(this.shoppingList);
-    // this.db.updateShoppingList(this.recipeCopy);
+    // this.shoppingList.push(this.recipeCopy);
+    this.slService.writeToStorage(this.recipeCopy);
   }
 
 }

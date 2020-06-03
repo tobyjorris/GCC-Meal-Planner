@@ -10,13 +10,13 @@ import {ShoppingListService} from '../services/localstorage-service.service';
 export class ShoppingListComponent implements OnInit {
   shoppingList;
   ingredientsArray;
+  finalIngredientsArray = [];
 
   constructor( private slService: ShoppingListService) {
   }
 
   ngOnInit(): void {
     this.shoppingList = this.slService.getFromStorage();
-    console.log(this.shoppingList);
     if (this.shoppingList) {
       this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
     }
@@ -29,6 +29,19 @@ export class ShoppingListComponent implements OnInit {
       }
     });
     console.log(sortedIngredients);
+    this.ingredientsArray = Object.entries(sortedIngredients);
+    this.ingredientsArray.forEach(([name, quantity, measurement]) => {
+      const ingredientObj = {
+        name: '',
+        quantity: '',
+        measurement: '',
+      };
+      ingredientObj.name = name;
+      ingredientObj.quantity = quantity;
+      ingredientObj.measurement = measurement;
+      this.finalIngredientsArray.push(ingredientObj);
+    });
+    console.log(this.finalIngredientsArray);
   }
 
   onPrint() {

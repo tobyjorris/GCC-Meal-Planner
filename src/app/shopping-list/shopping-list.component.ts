@@ -19,39 +19,38 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList = this.slService.getFromStorage();
     if (this.shoppingList) {
       this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
-    }
-    const sortedIngredients = {};
-    this.ingredientsArray.map(ingredient => {
-      if (sortedIngredients[ingredient.name]) {
-        // tslint:disable-next-line:max-line-length
-        sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
-      } else {
-        sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
-      }
-    });
-    this.ingredientsArray = Object.entries(sortedIngredients);
-    this.ingredientsArray.forEach(([name, details]) => {
-      const ingredientObj = {
-        name: '',
-        quantity: '',
-        measurement: '',
-      };
-      ingredientObj.name = name;
-      Object.entries(details).forEach(([key, value]) => {
-        const tempObj = {
-          name,
-          quantity: value,
-          measurement: key,
-        };
-        this.finalIngredientsArray.push(tempObj);
+      const sortedIngredients = {};
+      this.ingredientsArray.map(ingredient => {
+        if (sortedIngredients[ingredient.name]) {
+          // tslint:disable-next-line:max-line-length
+          sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
+        } else {
+          sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
+        }
       });
-    });
-    console.log(this.finalIngredientsArray);
-    // [{name: Chicken, quantity: 2, measurement: pounds}, {name: Chicken, quantity: 2, measurement: pounds} ]
+      this.ingredientsArray = Object.entries(sortedIngredients);
+      this.ingredientsArray.forEach(([name, details]) => {
+        const ingredientObj = {
+          name: '',
+          quantity: '',
+          measurement: '',
+        };
+        ingredientObj.name = name;
+        Object.entries(details).forEach(([key, value]) => {
+          const tempObj = {
+            name,
+            quantity: value,
+            measurement: key,
+          };
+          this.finalIngredientsArray.push(tempObj);
+        });
+      });
+    }
   }
 
   onPrint() {
     this.shoppingList = [];
+    this.finalIngredientsArray = [];
     this.slService.clearShoppingList();
   }
 }

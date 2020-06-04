@@ -34,13 +34,4 @@ export class FirestormService{
       console.error('Error removing document: ', error);
     });
   }
-
-  updateShoppingList(recipe: Recipe) {
-    this.shoppingCol.doc(recipe.title).set(recipe).then(() => console.log('Document successfully written'));
-  }
-
-  clearShoppingList(){
-    console.log('shopping list has been cleared');
-  }
-
 }

@@ -25,6 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule} from '@angular/material/button';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent},
@@ -49,6 +52,7 @@ const appRoutes: Routes = [
     FilterPipe,
     RecipeEditComponent,
     RecipeAddFormComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 <div class="recipe-detail">
   <h1>{{recipeCopy.title}}</h1>
   <div>
-    <h4>Ingredients <span *ngIf="batchMultiDisplay > 1">(x{{this.batchMultiDisplay}})</span></h4>
+    <h4>Ingredients <span *ngIf="batchMultiDisplay && batchMultiDisplay != 1">(x{{this.batchMultiDisplay}})</span></h4>
     <ul>
       <li *ngFor="let ingredient of recipeCopy.ingredients">{{ingredient.quantity}}
         - {{ingredient.measurement}} {{ingredient.name}}</li>
@@ -29,7 +29,7 @@
   </div>
   <div>
     <button type="button" class="btn btn-outline-dark" (click)="addToShoppingList()">Add To Shopping List</button>
-    <button type="button" class="btn btn-outline-dark">Print</button>
+    <button type="button" class="btn btn-outline-dark" (click)="onPrint()">Print</button>
     <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
   </div>
 </div>

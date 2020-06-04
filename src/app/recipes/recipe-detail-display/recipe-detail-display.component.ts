@@ -2,6 +2,8 @@ import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angul
 import {Recipe} from '../../../recipe';
 import {FirestormService} from '../../services/firestore-service/firebaseservice.service';
 import {ShoppingListService} from '../../services/localstorage-service.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {DialogComponent} from '../../dialog/dialog.component';
 
 
 @Component({
@@ -16,17 +18,19 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   recipeCopy: Recipe;
   prevMulti = 1;
   batchMultiDisplay: number;
-  shoppingList = [];
 
-  constructor(private db: FirestormService, private slService: ShoppingListService) {
+  constructor(private db: FirestormService,
+              private slService: ShoppingListService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
+    this.recipeCopy.multi = 1;
   }
 
   ngOnChanges() {
     this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
-    this.batchMultiDisplay = 1;
+    this.batchMultiDisplay = null;
   }
 
   updateQuantity() {
@@ -35,8 +39,9 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
       for (const ingredient of this.recipeCopy.ingredients) {
         ingredient.quantity = (ingredient.quantity / this.prevMulti) * qtyChangeInput;
       }
-      this.batchMultiDisplay = qtyChangeInput;
       this.prevMulti = qtyChangeInput;
+      this.batchMultiDisplay = qtyChangeInput;
+      this.recipeCopy.multi = this.prevMulti;
     } else {
       if (isNaN(qtyChangeInput)) {
         alert('Please enter a number');
@@ -47,8 +52,14 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   }
 
   addToShoppingList() {
-    // this.shoppingList.push(this.recipeCopy);
+    this.prevMulti = 1;
+    this.batchMultiDisplay = null;
     this.slService.writeToStorage(this.recipeCopy);
+    this.dialog.open(DialogComponent);
+  }
+
+  onPrint() {
+    window.print();
   }
 
 }

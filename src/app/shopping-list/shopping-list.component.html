@@ -1,4 +1,12 @@
-<h3>Your Shopping List</h3>
+<h4>You are making the following recipes:</h4>
+<ul>
+  <li *ngFor="let recipe of shoppingList">
+    {{recipe.title}} (x
+    <span *ngIf="recipe.multi === 1; else multi">1)</span>
+    <ng-template #multi>{{recipe.multi}})</ng-template>
+  </li>
+</ul>
+<h3>Ingredients</h3>
 <div *ngFor="let ingredient of finalIngredientsArray">
   {{ingredient.quantity}} - {{ingredient.measurement}} {{ingredient.name}}
 </div>

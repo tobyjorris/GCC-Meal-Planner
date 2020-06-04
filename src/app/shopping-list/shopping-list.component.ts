@@ -23,30 +23,35 @@ export class ShoppingListComponent implements OnInit {
     const sortedIngredients = {};
     this.ingredientsArray.map(ingredient => {
       if (sortedIngredients[ingredient.name]) {
-        sortedIngredients[ingredient.name] = sortedIngredients[ingredient.name] + Number(ingredient.quantity);
+        // tslint:disable-next-line:max-line-length
+        sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
       } else {
-        sortedIngredients[ingredient.name] = Number(ingredient.quantity);
+        sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
       }
     });
-    console.log(sortedIngredients);
     this.ingredientsArray = Object.entries(sortedIngredients);
-    this.ingredientsArray.forEach(([name, quantity, measurement]) => {
+    this.ingredientsArray.forEach(([name, details]) => {
       const ingredientObj = {
         name: '',
         quantity: '',
         measurement: '',
       };
       ingredientObj.name = name;
-      ingredientObj.quantity = quantity;
-      ingredientObj.measurement = measurement;
-      this.finalIngredientsArray.push(ingredientObj);
+      Object.entries(details).forEach(([key, value]) => {
+        const tempObj = {
+          name,
+          quantity: value,
+          measurement: key,
+        };
+        this.finalIngredientsArray.push(tempObj);
+      });
     });
     console.log(this.finalIngredientsArray);
+    // [{name: Chicken, quantity: 2, measurement: pounds}, {name: Chicken, quantity: 2, measurement: pounds} ]
   }
 
   onPrint() {
     this.shoppingList = [];
     this.slService.clearShoppingList();
   }
-
 }

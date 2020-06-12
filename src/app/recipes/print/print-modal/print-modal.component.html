@@ -1,0 +1,28 @@
+<div class="recipe-detail">
+  <h1>{{data.title}}</h1>
+  <div>
+    <h4>Ingredients</h4>
+    <ul>
+      <li *ngFor="let ingredient of data.ingredients">{{ingredient.quantity | fractionize }}
+        - {{ingredient.measurement}} {{ingredient.name}}</li>
+    </ul>
+    <div class="quantity-form container">
+      <div class="row qty-change">
+        <!-- <select class="form-control form-control-sm col-sm-6" #quantityChange>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select> -->
+      </div>
+    </div>
+  </div>
+  <div>
+    <hr>
+    <app-instructions-list [recipe]="data"></app-instructions-list>
+    <div>
+      <h6>Notes To The Chef?</h6>
+      <p>Any special things of consideration could be listed here</p>
+    </div>
+  </div>
+</div>

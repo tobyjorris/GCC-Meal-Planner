@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ShoppingListService} from '../services/localstorage-service.service';
 import * as fraction from 'fraction.js';
 import Fraction from 'fraction.js/fraction';
+import {PrintModalComponent} from "../recipes/print/print-modal/print-modal.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ShoppingPrintModalComponent} from "./shopping-print-modal/shopping-print-modal.component";
 
 @Component({
   selector: 'app-shopping-list',
@@ -13,7 +16,7 @@ export class ShoppingListComponent implements OnInit {
   ingredientsArray;
   finalIngredientsArray = [];
 
-  constructor( private slService: ShoppingListService ) {
+  constructor( private slService: ShoppingListService, public dialog: MatDialog, ) {
   }
 
   ngOnInit(): void {
@@ -59,8 +62,9 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onPrint() {
-    this.shoppingList = [];
-    this.finalIngredientsArray = [];
-    this.slService.clearShoppingList();
+    // this.shoppingList = [];
+    // this.finalIngredientsArray = [];
+    // this.slService.clearShoppingList();
+    this.dialog.open(ShoppingPrintModalComponent, {data: [this.finalIngredientsArray, this.shoppingList]});
   }
 }

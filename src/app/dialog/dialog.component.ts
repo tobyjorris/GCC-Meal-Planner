@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Recipe} from '../../recipe';
 
 @Component({
   selector: 'app-dialog',
@@ -6,4 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Recipe) { }
 }

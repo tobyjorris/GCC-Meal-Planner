@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FirestormService} from '../../services/firestore-service/firebaseservice.service';
 import {Observable} from 'rxjs';
-import {Recipe} from "../../../recipe";
 
 @Component({
   selector: 'app-recipe-edit',

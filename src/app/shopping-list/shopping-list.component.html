@@ -1,4 +1,4 @@
-<h4>You are making the following recipes:</h4>
+<h2>You are making the following recipes:</h2>
 <ul>
   <li *ngFor="let recipe of shoppingList">
     {{recipe.title}} (x
@@ -6,9 +6,9 @@
     <ng-template #multi>{{recipe.multi}})</ng-template>
   </li>
 </ul>
-<h3>Ingredients</h3>
-<div *ngFor="let ingredient of finalIngredientsArray">
-  {{ingredient.quantity}} - {{ingredient.measurement}} {{ingredient.name}}
+<h4>Shopping List:</h4>
+<div *ngFor="let ingredient of finalIngredientsArray ">
+  {{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement}}
 </div>
 
 <button type="button" class="btn btn-info" (click)="onPrint()">Print Shopping List</button>

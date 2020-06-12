@@ -1,10 +1,10 @@
 <div class="recipe-detail">
   <h1>{{recipeCopy.title}}</h1>
   <div>
-    <h4>Ingredients <span *ngIf="batchMultiDisplay && batchMultiDisplay != 1">(x{{this.batchMultiDisplay}})</span></h4>
+    <h4>Ingredients <span *ngIf="multiBatchMode">(x{{this.batchMultiDisplay}})</span></h4>
     <ul>
-      <li *ngFor="let ingredient of recipeCopy.ingredients">{{ingredient.quantity}}
-        - {{ingredient.measurement}} {{ingredient.name}}</li>
+        <li *ngFor="let ingredient of recipeCopy.ingredients">{{ multiBatchMode ? ingredient.quantity :(ingredient.quantity | fractionize) }}
+          - {{ingredient.measurement}} {{ingredient.name}}</li>
     </ul>
     <div class="quantity-form container">
       <div class="row qty-change">
@@ -15,7 +15,8 @@
           <option>4</option>
         </select> -->
         <input type="text" class="form-control col-sm" placeholder="# Of Batches" #quantityChange>
-        <button class="btn btn-secondary col-sm input-button" (click)="updateQuantity()" (click)="quantityChange.value=''">Update</button>
+        <button class="btn btn-info col-sm input-button" (click)="updateQuantity()" (click)="quantityChange.value=''">Update</button>
+        <button class="btn btn-danger col-sm input-button" (click)="resetBatch()">Reset</button>
       </div>
     </div>
   </div>

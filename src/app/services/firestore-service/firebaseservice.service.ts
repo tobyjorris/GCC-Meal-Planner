@@ -13,6 +13,7 @@ export class FirestormService{
   public recipeCol: AngularFirestoreCollection<Recipe>;
   public shoppingCol: AngularFirestoreCollection<Recipe>;
   startedEditing = new Subject<object>();
+  recipeWasSelected = new Subject<object>();
 
   constructor(private db: AngularFirestore) {
     const recipeCollection = db.collection<Recipe>('items');

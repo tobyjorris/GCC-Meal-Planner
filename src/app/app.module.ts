@@ -28,6 +28,8 @@ import { MatInputModule } from '@angular/material/input';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
+import { FractionizeModule } from './fraction.pipe';
+import { PrintModalComponent } from './recipes/print/print-modal/print-modal.component';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent},
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     RecipeEditComponent,
     RecipeAddFormComponent,
     DialogComponent,
+    PrintModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    FractionizeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -36,7 +36,8 @@ export class RecipeAddFormComponent implements OnInit {
           ingredients: new FormArray(this.editedRecipe.ingredients.map((ingredient: Ingredient) => {
           return new FormGroup({
             name: new FormControl(ingredient.name, Validators.required),
-            quantity: new FormControl(ingredient.quantity, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+            // tslint:disable-next-line:max-line-length
+            quantity: new FormControl(ingredient.quantity, [Validators.required, Validators.pattern(/(?:[1-9][0-9]*|0)(?:\/[1-9][0-9]*)?/g)]),
             measurement: new FormControl(ingredient.measurement, Validators.required)
           });
         }), Validators.required),
@@ -55,7 +56,7 @@ export class RecipeAddFormComponent implements OnInit {
     (this.recipeAddForm.get('ingredients') as FormArray).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
-        quantity: new FormControl(null, [Validators.required, Validators.pattern(/^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/)]),
+        quantity: new FormControl(null, [Validators.required, Validators.pattern(/(?:[1-9][0-9]*|0)(?:\/[1-9][0-9]*)?/g)]),
         measurement: new FormControl(null, Validators.required)
       })
     );
@@ -87,8 +88,8 @@ export class RecipeAddFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.recipeAddForm.value);
-    this.db.addNewRecipe(this.recipeAddForm.value);
+    const submittedRecipe = this.recipeAddForm.value;
+    this.db.addNewRecipe(submittedRecipe);
     this.editMode = false;
     this.recipeAddForm = new FormGroup({
       title: new FormControl('', Validators.required),

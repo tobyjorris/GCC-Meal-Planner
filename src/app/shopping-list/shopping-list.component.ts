@@ -1,6 +1,7 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {FirestormService} from '../services/firestore-service/firebaseservice.service';
+import { Component, OnInit } from '@angular/core';
 import {ShoppingListService} from '../services/localstorage-service.service';
+import * as fraction from 'fraction.js';
+import Fraction from 'fraction.js/fraction';
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,7 +13,7 @@ export class ShoppingListComponent implements OnInit {
   ingredientsArray;
   finalIngredientsArray = [];
 
-  constructor( private slService: ShoppingListService) {
+  constructor( private slService: ShoppingListService ) {
   }
 
   ngOnInit(): void {
@@ -30,21 +31,30 @@ export class ShoppingListComponent implements OnInit {
       });
       this.ingredientsArray = Object.entries(sortedIngredients);
       this.ingredientsArray.forEach(([name, details]) => {
-        const ingredientObj = {
-          name: '',
-          quantity: '',
-          measurement: '',
-        };
-        ingredientObj.name = name;
         Object.entries(details).forEach(([key, value]) => {
           const tempObj = {
             name,
             quantity: value,
             measurement: key,
           };
+          // tempObj.quantity = new Fraction(tempObj.quantity as Fraction);
+          // tempObj.quantity = tempObj.quantity.toFraction(true);
           this.finalIngredientsArray.push(tempObj);
+          this.finalIngredientsArray.sort((a, b) => {
+            const bandA = a.name.toUpperCase();
+            const bandB = b.name.toUpperCase();
+
+            let comparison = 0;
+            if (bandA > bandB) {
+              comparison = 1;
+            } else if (bandA < bandB) {
+              comparison = -1;
+            }
+            return comparison;
+          });
         });
       });
+      console.log(this.finalIngredientsArray);
     }
   }
 

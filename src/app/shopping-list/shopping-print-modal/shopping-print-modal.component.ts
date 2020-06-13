@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {Recipe} from '../../../recipe';
+import {Ingredient} from '../../../ingredient';
 
 @Component({
   selector: 'app-shopping-print-modal',
@@ -9,7 +9,7 @@ import {Recipe} from '../../../recipe';
 })
 export class ShoppingPrintModalComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Recipe) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Ingredient) { }
 
   ngOnInit(): void {
     console.log(this.data);

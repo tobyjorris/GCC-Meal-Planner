@@ -1,4 +1,7 @@
-<p>shopping-print-modal works!</p>
-<ul>
-  <li *ngFor="let ingredient of data.ingredients">{{ingredient.quantity}}</li>
-</ul>
+<div class="container">
+  <p>shopping-print-modal works!</p>
+  <ul>
+    <li *ngFor="let ingredient of data">{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement}}</li>
+  </ul>
+</div>
+

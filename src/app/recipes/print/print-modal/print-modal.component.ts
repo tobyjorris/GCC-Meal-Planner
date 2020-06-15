@@ -14,4 +14,8 @@ export class PrintModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onPrint() {
+    window.print();
+  }
+
 }

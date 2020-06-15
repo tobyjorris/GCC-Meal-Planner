@@ -15,11 +15,29 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid black;
 }
 
-
 body {
   background-color: lightgray;
 }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media print {
+  body {
+    visibility: hidden;
+  }
+  .print-modal {
+    visibility: visible;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: visible;
+  }
+  .print-btn {
+    visibility: hidden;
+  }
+  @page {
+    margin: 2px 2px 2px 2px;
+  }
+}
 

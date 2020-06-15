@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 import { HeaderComponent } from './header/header.component';
-import { BackdropComponent } from './backdrop/backdrop.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDropdownBasic } from './shared/dropdown/dropdown-basic';
@@ -48,7 +47,6 @@ const appRoutes: Routes = [
     AppComponent,
     RecipeCardComponent,
     HeaderComponent,
-    BackdropComponent,
     ShoppingListComponent,
     NgbdDropdownBasic,
     InstructionsListComponent,

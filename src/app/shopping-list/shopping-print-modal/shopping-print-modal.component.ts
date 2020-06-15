@@ -15,4 +15,8 @@ export class ShoppingPrintModalComponent implements OnInit {
     console.log(this.data);
   }
 
+  onPrint() {
+    window.print();
+  }
+
 }

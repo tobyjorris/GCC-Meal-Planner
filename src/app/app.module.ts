@@ -16,10 +16,8 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
 import { RecipeAddFormComponent } from './recipes/recipe-edit/recipe-add-form/recipe-add-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -31,12 +29,19 @@ import { MatButtonModule} from '@angular/material/button';
 import { FractionizeModule } from './fraction.pipe';
 import { PrintModalComponent } from './recipes/print/print-modal/print-modal.component';
 import { ShoppingPrintModalComponent } from './shopping-list/shopping-print-modal/shopping-print-modal.component';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import { AuthGuard } from './services/auth-guard.service';
+
+
+const redirectUnauthorizedToLogIn = redirectUnauthorizedTo(['']);
 
 const appRoutes: Routes = [
-  {path: '', component: RecipesComponent},
-  {path: 'recipes', component: RecipesComponent},
-  {path: 'shopping-list', component: ShoppingListComponent},
-  {path: 'recipe-edit', component: RecipeEditComponent}
+  {path: '', component: LoginPageComponent },
+  {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
+  {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
+  {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -58,14 +63,15 @@ const appRoutes: Routes = [
     DialogComponent,
     PrintModalComponent,
     ShoppingPrintModalComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     Ng2SearchPipeModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
+    // AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -73,7 +79,15 @@ const appRoutes: Routes = [
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
-    FractionizeModule
+    FractionizeModule,
+    [NgxAuthFirebaseUIModule.forRoot({
+      apiKey: 'AIzaSyAUqGabdsgg7zM9pea1U7ITnXXj_cGJylM',
+      authDomain: 'test-12a40.firebaseapp.com',
+      databaseURL: 'https://test-12a40.firebaseio.com',
+      projectId: 'test-12a40',
+      storageBucket: 'test-12a40.appspot.com',
+      messagingSenderId: '466524758431',
+    })]
   ],
   providers: [],
   bootstrap: [AppComponent]

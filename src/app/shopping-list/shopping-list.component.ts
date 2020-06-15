@@ -54,7 +54,6 @@ export class ShoppingListComponent implements OnInit {
           });
         });
       });
-      console.log(this.finalIngredientsArray);
     }
   }
 

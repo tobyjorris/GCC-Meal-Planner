@@ -22,10 +22,10 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   constructor(private db: FirestormService,
               private slService: ShoppingListService,
               public dialog: MatDialog,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.recipe);
     this.recipeCopy.multi = 1;
     this.recipeCopy.ingredients.map(ingredient => {
      return {...ingredient, quantity: Number(ingredient.quantity)};
@@ -34,7 +34,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
-    this.quantityChangeRef.nativeElement.value = '';
+    // this.quantityChangeRef.nativeElement.value = ''; THIS LINE WAS GIVING ME TYPE ERROR: nativeElement undefined
     this.multiBatchMode = false;
   }
 

@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {Recipe} from '../../../recipe';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Recipe } from '../../../recipe';
 import { FirestormService } from '../../services/firestore-service/firebaseservice.service';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-list',

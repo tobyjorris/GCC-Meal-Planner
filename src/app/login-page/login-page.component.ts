@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -8,14 +9,14 @@ import * as firebase from 'firebase';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSuccess(event) {
+  onSuccess() {
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user.displayName);
+      this.router.navigateByUrl('/recipes').then(r => console.log(r));
     });
   }
 

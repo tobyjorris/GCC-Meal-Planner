@@ -6,18 +6,11 @@ import * as firebase from 'firebase';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, OnChanges {
-  isLoggedin: boolean;
+export class NavbarComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  ngOnChanges() {
-    if (firebase.auth().currentUser) {
-      this.isLoggedin = true;
-    }
   }
 
 }

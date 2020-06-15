@@ -1,9 +1,9 @@
-a {
+.list-group-item {
   color: black;
   margin: 5px 0 5px 0;
 }
 
-a:hover {
+div:hover {
   text-decoration: none;
   background-color: darkgreen;
   color: white;

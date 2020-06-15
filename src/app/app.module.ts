@@ -31,17 +31,16 @@ import { PrintModalComponent } from './recipes/print/print-modal/print-modal.com
 import { ShoppingPrintModalComponent } from './shopping-list/shopping-print-modal/shopping-print-modal.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 import { AuthGuard } from './services/auth-guard.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-
-const redirectUnauthorizedToLogIn = redirectUnauthorizedTo(['']);
 
 const appRoutes: Routes = [
   {path: '', component: LoginPageComponent },
-  {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
+  {path: 'recipes', component: RecipesComponent},
   {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
-  {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [AuthGuard]}
+  {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [AuthGuard]},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -64,6 +63,7 @@ const appRoutes: Routes = [
     PrintModalComponent,
     ShoppingPrintModalComponent,
     LoginPageComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

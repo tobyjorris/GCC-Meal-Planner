@@ -35,7 +35,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 
 const appRoutes: Routes = [
-  {path: '', component: LoginPageComponent },
+  {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
+  {path: 'profile', component: LoginPageComponent },
   {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
   {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
   {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [AuthGuard]},

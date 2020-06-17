@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (!firebase.auth().currentUser) {
-      this.router.navigateByUrl('/').then(r => console.log(r));
+      this.router.navigateByUrl('/profile').then(r => console.log(r));
       return false;
     } else {
       return true;

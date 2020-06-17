@@ -37,7 +37,7 @@ export class RecipeAddFormComponent implements OnInit {
           return new FormGroup({
             name: new FormControl(ingredient.name, Validators.required),
             // tslint:disable-next-line:max-line-length
-            quantity: new FormControl(ingredient.quantity, [Validators.required, Validators.pattern(/(?:[1-9][0-9]*|0)(?:\/[1-9][0-9]*)?/g)]),
+            quantity: new FormControl(ingredient.quantity, [Validators.required, Validators.pattern(/^[0-9]{0,2}.[0-9]{2}/)]),
             measurement: new FormControl(ingredient.measurement, Validators.required)
           });
         }), Validators.required),
@@ -56,7 +56,7 @@ export class RecipeAddFormComponent implements OnInit {
     (this.recipeAddForm.get('ingredients') as FormArray).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
-        quantity: new FormControl(null, [Validators.required, Validators.pattern(/(?:[1-9][0-9]*|0)(?:\/[1-9][0-9]*)?/g)]),
+        quantity: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]{0,2}.[0-9]{2}/)]),
         measurement: new FormControl(null, Validators.required)
       })
     );

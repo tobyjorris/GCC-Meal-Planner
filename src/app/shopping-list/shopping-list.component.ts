@@ -58,9 +58,9 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onPrint() {
-    // this.shoppingList = [];
-    // this.finalIngredientsArray = [];
-    // this.slService.clearShoppingList();
     this.dialog.open(ShoppingPrintModalComponent, {data: this.finalIngredientsArray});
+    this.shoppingList = [];
+    this.finalIngredientsArray = [];
+    this.slService.clearShoppingList();
   }
 }

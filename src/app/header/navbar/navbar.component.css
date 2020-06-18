@@ -5,10 +5,33 @@ img {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
 #navbar {
   padding-left: 0px;
+}
+
+.menu {
+  color: white;
+}
+
+.nav-link {
+ color: black;
+}
+
+mat-toolbar {
+  background: none;
+  display: flex;
+}
+
+.btn {
+  background: none;
+  text-decoration: none;
+  color: white;
+}
+
+.mat-menu-item {
 }
 
 

@@ -1,5 +1,5 @@
 import { Ingredient } from './ingredient';
-import {Directions} from './directions';
+import { Directions } from './directions';
 
 export interface Recipe {
   multi: number;

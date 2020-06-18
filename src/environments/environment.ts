@@ -11,6 +11,8 @@ export const environment = {
     projectId: 'test-12a40',
     storageBucket: 'test-12a40.appspot.com',
     messagingSenderId: '466524758431',
+    appId: '1:466524758431:web:68d24320ac15bc3b1bddaa',
+    measurementId: 'G-J8GEZBEHQD'
   }
 };
 

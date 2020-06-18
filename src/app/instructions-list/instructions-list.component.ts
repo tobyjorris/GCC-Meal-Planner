@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Recipe} from '../../recipe';
+import {Recipe} from '../interfaces/recipe';
 
 @Component({
   selector: 'app-instructions-list',

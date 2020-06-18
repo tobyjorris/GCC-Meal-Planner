@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {Ingredient} from '../../../ingredient';
+import {Ingredient} from '../../interfaces/ingredient';
 
 @Component({
   selector: 'app-shopping-print-modal',

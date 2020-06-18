@@ -1,17 +1,17 @@
 <div class="container container-fluid">
   <div class="row">
     <div class="col header">
-      <h2>Select A Recipe To Edit</h2>
+      <h2>Select An Ingredient To Edit</h2>
     </div>
   </div>
   <div class="row content-row">
     <div class="col-3 recipe-list">
       <ul>
-        <li *ngFor="let recipe of recipes | async, let i = index" (click)="onEditRecipe(recipe)">{{recipe.title}}</li>
+        <li *ngFor="let ingredient of ingredients | async, let i = index" (click)="onEditIngredient(ingredient)">{{ingredient.name}}</li>
       </ul>
     </div>
     <div class="col-9">
-      <app-recipe-add-form></app-recipe-add-form>
+      <app-ingredient-edit-form></app-ingredient-edit-form>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import {Component, ElementRef, Inject, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
-import { Recipe } from '../../../recipe';
-import { FirestormService } from '../../services/firestore-service/firebaseservice.service';
-import { ShoppingListService } from '../../services/localstorage-service.service';
+import { Recipe } from '../../interfaces/recipe';
+import { FirestormService } from '../../services/firestore/firebaseservice.service';
+import { ShoppingListService } from '../../services/local-storage/localstorage-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { PrintModalComponent } from '../print/print-modal/print-modal.component';

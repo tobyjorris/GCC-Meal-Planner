@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FirestormService} from '../../services/firestore-service/firebaseservice.service';
+import {FirestormService} from '../../services/firestore/firebaseservice.service';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -11,13 +11,13 @@ import {Observable} from 'rxjs';
 export class RecipeEditComponent implements OnInit {
   recipes: Observable<any[]>;
   constructor(private db: FirestormService) {
-    this.recipes = this.db.items;
+    this.recipes = this.db.recipes;
   }
 
   ngOnInit(): void {
   }
 
-  onEditItem(recipe) {
-    this.db.startedEditing.next(recipe);
+  onEditRecipe(recipe) {
+    this.db.startedEditingRecipe.next(recipe);
   }
 }

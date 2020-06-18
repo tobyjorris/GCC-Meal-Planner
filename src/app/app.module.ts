@@ -30,9 +30,13 @@ import { PrintModalComponent } from './recipes/print/print-modal/print-modal.com
 import { ShoppingPrintModalComponent } from './shopping-list/shopping-print-modal/shopping-print-modal.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+import { environment } from '../environments/environment';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { IngredientEditComponent } from './ingredients/ingredient-edit/ingredient-edit.component';
+import { IngredientEditFormComponent } from './ingredients/ingredient-edit-form/ingredient-edit-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
@@ -40,6 +44,7 @@ const appRoutes: Routes = [
   {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
   {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
   {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [AuthGuard]},
+  {path: 'ingredient-edit', component: IngredientEditComponent, canActivate: [AuthGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -63,14 +68,15 @@ const appRoutes: Routes = [
     ShoppingPrintModalComponent,
     LoginPageComponent,
     PageNotFoundComponent,
+    IngredientEditComponent,
+    IngredientEditFormComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     Ng2SearchPipeModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
-    // AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -79,14 +85,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatButtonModule,
     FractionizeModule,
-    [NgxAuthFirebaseUIModule.forRoot({
-      apiKey: 'AIzaSyAUqGabdsgg7zM9pea1U7ITnXXj_cGJylM',
-      authDomain: 'test-12a40.firebaseapp.com',
-      databaseURL: 'https://test-12a40.firebaseio.com',
-      projectId: 'test-12a40',
-      storageBucket: 'test-12a40.appspot.com',
-      messagingSenderId: '466524758431',
-    })]
+    [NgxAuthFirebaseUIModule.forRoot(environment.firebase)],
+    MatMenuModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

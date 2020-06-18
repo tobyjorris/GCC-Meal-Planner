@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingListService } from '../services/localstorage-service.service';
+import { ShoppingListService } from '../services/local-storage/localstorage-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingPrintModalComponent } from './shopping-print-modal/shopping-print-modal.component';
 

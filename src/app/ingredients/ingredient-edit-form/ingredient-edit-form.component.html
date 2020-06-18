@@ -1,0 +1,72 @@
+<div class="container recipe-add-form">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="ingredientAddForm">
+        <hr>
+        <!-- <div class="container ingredient-container" formArrayName="ingredients">
+          <div
+            class="row content-row"
+            *ngFor="let ingredientCtrl of getIngredientsControls(); let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col-sm ingredient-div">
+              <mat-form-field appearance="fill" id="ingredient-field">
+                <mat-label>Ingredient Name</mat-label>
+                <input matInput
+                       formControlName="name">
+              </mat-form-field>
+            </div>
+            <div class="col-sm quantity-div">
+              <mat-form-field appearance="fill" id="quantity-field">
+                <mat-label>Quantity</mat-label>
+                <input matInput
+                       formControlName="quantity">
+              </mat-form-field>
+            </div>
+
+          </div>
+        </div> -->
+        <div class="row">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill">
+            <mat-label>Department</mat-label>
+            <input matInput formControlName="department">
+          </mat-form-field>
+        </div>
+        <div class="row measurement-div">
+          <mat-form-field appearance="fill" id="measurement-field">
+            <mat-label>Unit</mat-label>
+            <mat-select formControlName="measurement">
+              <mat-option value="tsp">Tsp</mat-option>
+              <mat-option value="tbsp">Tbsp</mat-option>
+              <mat-option value="oz">Oz</mat-option>
+              <mat-option value="cups">Cups</mat-option>
+              <mat-option value="pounds">Pounds</mat-option>
+              <mat-option value="eaches">Eaches</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <br>
+        <hr>
+        <button
+          class="btn btn-success"
+          type="button"
+          (click)="onSubmit()"
+        >{{editMode ? 'Save' : 'Submit'}}</button>
+        <button
+          class="btn btn-danger opt-btn"
+          type="button"
+          (click)="onDelete()"
+          *ngIf="editMode"
+        >
+          Delete Ingredient
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

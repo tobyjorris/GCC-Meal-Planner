@@ -7,7 +7,6 @@ import * as firebase from 'firebase';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {

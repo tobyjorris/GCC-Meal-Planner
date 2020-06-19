@@ -1,0 +1,12 @@
+#measurement-field {
+  width: 125px;
+}
+
+.ingredient-add-form {
+  max-width: 100%;
+  justify-content: center;
+}
+
+form {
+  width: 950px;
+}

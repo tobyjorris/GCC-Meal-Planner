@@ -1,17 +1,15 @@
 <div class="container container-fluid">
   <div class="row">
-    <div class="col header">
+    <div class="header">
       <h2>Select An Ingredient To Edit</h2>
     </div>
   </div>
-  <div class="row content-row">
-    <div class="col-3 recipe-list">
+  <div class="row">
+      <app-ingredient-edit-form></app-ingredient-edit-form>
+  </div>
+    <div class="row recipe-list">
       <ul>
         <li *ngFor="let ingredient of ingredients | async, let i = index" (click)="onEditIngredient(ingredient)">{{ingredient.name}}</li>
       </ul>
     </div>
-    <div class="col-9">
-      <app-ingredient-edit-form></app-ingredient-edit-form>
-    </div>
-  </div>
 </div>

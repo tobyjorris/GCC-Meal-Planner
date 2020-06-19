@@ -4,9 +4,5 @@
 
 .ingredient-add-form {
   max-width: 100%;
-  justify-content: center;
-}
-
-form {
-  width: 950px;
+  margin: auto;
 }

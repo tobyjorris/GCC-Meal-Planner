@@ -4,12 +4,25 @@
       <h2>Select An Ingredient To Edit</h2>
     </div>
   </div>
+  <hr>
   <div class="row">
+    <div class="col">
       <app-ingredient-edit-form></app-ingredient-edit-form>
-  </div>
-    <div class="row recipe-list">
-      <ul>
-        <li *ngFor="let ingredient of ingredients | async, let i = index" (click)="onEditIngredient(ingredient)">{{ingredient.name}}</li>
-      </ul>
     </div>
+  </div>
+  <hr>
+  <div class="row ingredient-list">
+    <table matSort>
+      <tr>
+        <th>Name (click to edit)</th>
+        <th>Department</th>
+        <th>Measurement</th>
+      </tr>
+      <tr *ngFor="let ingredient of ingredients | async, let i = index" >
+        <td (click)="onEditIngredient(ingredient)" class="name-item">{{ingredient.name}}</td>
+        <td>{{ingredient.department}}</td>
+        <td>{{ingredient.measurement}}</td>
+      </tr>
+    </table>
+  </div>
 </div>

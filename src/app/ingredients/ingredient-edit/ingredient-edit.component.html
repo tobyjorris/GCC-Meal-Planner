@@ -12,13 +12,13 @@
   </div>
   <hr>
   <div class="row ingredient-list">
-    <table matSort>
+    <table matSort (matSortChange)="sortData($event)">
       <tr>
-        <th>Name (click to edit)</th>
-        <th>Department</th>
-        <th>Measurement</th>
+        <th mat-sort-header="name">Name (click to edit)</th>
+        <th mat-sort-header="department">Department</th>
+        <th mat-sort-header="measurement">Measurement</th>
       </tr>
-      <tr *ngFor="let ingredient of ingredients | async, let i = index" >
+      <tr *ngFor="let ingredient of sortedData" >
         <td (click)="onEditIngredient(ingredient)" class="name-item">{{ingredient.name}}</td>
         <td>{{ingredient.department}}</td>
         <td>{{ingredient.measurement}}</td>

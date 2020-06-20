@@ -1,5 +1,7 @@
 <div class="container shopping-list">
-  <h2>You are making the following recipes:</h2>
+  <h2>Shopping Cart</h2>
+  <hr>
+  <h5>Recipes in cart:</h5>
   <ul>
     <li *ngFor="let recipe of shoppingList">
       {{recipe.title}} (x
@@ -7,7 +9,7 @@
       <ng-template #multi>{{recipe.multi}})</ng-template>
     </li>
   </ul>
-  <h4>Shopping List:</h4>
+  <h4>Ingredient List:</h4>
   <div *ngFor="let ingredient of finalIngredientsArray ">
     {{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement}}
   </div>

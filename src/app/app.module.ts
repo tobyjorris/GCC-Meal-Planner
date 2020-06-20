@@ -37,12 +37,13 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { IngredientEditComponent } from './ingredients/ingredient-edit/ingredient-edit.component';
 import { IngredientEditFormComponent } from './ingredients/ingredient-edit-form/ingredient-edit-form.component';
+import {MatSortModule} from "@angular/material/sort";
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
   {path: 'profile', component: LoginPageComponent },
   {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
-  {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
+  {path: 'shopping-cart', component: ShoppingListComponent, canActivate: [AuthGuard]},
   {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [AuthGuard]},
   {path: 'ingredient-edit', component: IngredientEditComponent, canActivate: [AuthGuard]},
   {path: '**', component: PageNotFoundComponent}
@@ -87,7 +88,8 @@ const appRoutes: Routes = [
     FractionizeModule,
     [NgxAuthFirebaseUIModule.forRoot(environment.firebase)],
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

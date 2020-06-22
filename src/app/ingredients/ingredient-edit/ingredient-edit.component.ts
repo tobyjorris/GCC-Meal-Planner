@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./ingredient-edit.component.css'],
   providers: [FirestormService]
 })
+
 export class IngredientEditComponent {
   ingredients: Observable<any[]>;
   ingredientData;

@@ -9,5 +9,4 @@ import * as firebase from 'firebase';
 
 export class AppComponent {
   title = 'meal-planner';
-
 }

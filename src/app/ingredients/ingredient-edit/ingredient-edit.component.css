@@ -3,12 +3,16 @@ table {
 }
 
 Table, th, td {
-  border: 1px solid black;
+  border: 1px solid gray;
 }
 
 th, td {
   height: 40px;
   padding-left: 5px;
+}
+
+tr:nth-child(odd) {
+  background: rgba(235, 232, 217, .3);
 }
 
 hr {
@@ -26,8 +30,15 @@ hr {
   overflow: scroll;
 }
 
+.table-header {
+  position: sticky;
+}
+
+.table-contents {
+}
+
 .ingredient-list::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
 }
 
 .ingredient-list::-webkit-scrollbar-track {
@@ -38,4 +49,12 @@ hr {
   background-color: black;
   border-radius: 20px;
   border: 1px solid black;
+}
+
+.edit-form {
+  height: 60px;
+}
+
+mat-header-row {
+  position: sticky;
 }

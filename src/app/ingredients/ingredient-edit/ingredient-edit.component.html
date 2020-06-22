@@ -1,28 +1,48 @@
 <div class="container container-fluid">
   <div class="row">
     <div class="header">
-      <h2>Select An Ingredient To Edit</h2>
+      <h4>Select An Ingredient To Edit</h4>
     </div>
   </div>
   <hr>
   <div class="row">
-    <div class="col">
+    <div class="col edit-form">
       <app-ingredient-edit-form></app-ingredient-edit-form>
     </div>
   </div>
   <hr>
   <div class="row ingredient-list">
-    <table matSort (matSortChange)="sortData($event)">
-      <tr>
+    <!--<table matSort (matSortChange)="sortData($event)" >
+      <tr class="table-header">
         <th mat-sort-header="name">Name (click to edit)</th>
         <th mat-sort-header="department">Department</th>
         <th mat-sort-header="measurement">Measurement</th>
       </tr>
-      <tr *ngFor="let ingredient of sortedData" >
+      <tr *ngFor="let ingredient of sortedData" class="table-contents">
         <td (click)="onEditIngredient(ingredient)" class="name-item">{{ingredient.name}}</td>
         <td>{{ingredient.department}}</td>
         <td>{{ingredient.measurement}}</td>
       </tr>
+    </table> -->
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Chicken">
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let ingredient" (click)="onEditIngredient(ingredient)"> {{ingredient.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef> Department </th>
+        <td mat-cell *matCellDef="let ingredient"> {{ingredient.department}} </td>
+      </ng-container>
+      <ng-container matColumnDef="measurement">
+        <th mat-header-cell *matHeaderCellDef>  Measurement </th>
+        <td mat-cell *matCellDef="let ingredient"> {{ingredient.measurement}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
 </div>

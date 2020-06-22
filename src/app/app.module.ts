@@ -38,6 +38,7 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { IngredientEditComponent } from './ingredients/ingredient-edit/ingredient-edit.component';
 import { IngredientEditFormComponent } from './ingredients/ingredient-edit-form/ingredient-edit-form.component';
 import {MatSortModule} from "@angular/material/sort";
+import {MatTableModule} from "@angular/material/table";
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
@@ -72,25 +73,26 @@ const appRoutes: Routes = [
     IngredientEditComponent,
     IngredientEditFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    Ng2SearchPipeModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatButtonModule,
-    FractionizeModule,
-    [NgxAuthFirebaseUIModule.forRoot(environment.firebase)],
-    MatMenuModule,
-    MatToolbarModule,
-    MatSortModule
-  ],
+    imports: [
+        BrowserModule,
+        NgbModule,
+        Ng2SearchPipeModule,
+        FormsModule,
+        RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatButtonModule,
+        FractionizeModule,
+        [NgxAuthFirebaseUIModule.forRoot(environment.firebase)],
+        MatMenuModule,
+        MatToolbarModule,
+        MatSortModule,
+        MatTableModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

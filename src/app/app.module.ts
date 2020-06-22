@@ -37,8 +37,8 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { IngredientEditComponent } from './ingredients/ingredient-edit/ingredient-edit.component';
 import { IngredientEditFormComponent } from './ingredients/ingredient-edit-form/ingredient-edit-form.component';
-import {MatSortModule} from "@angular/material/sort";
-import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },

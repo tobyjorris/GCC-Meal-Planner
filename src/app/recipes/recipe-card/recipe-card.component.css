@@ -5,7 +5,7 @@
 
 div:hover {
   text-decoration: none;
-  background-color: darkgreen;
+  background-color: #8ebf77;
   color: white;
   transition: 0.3s;
 }

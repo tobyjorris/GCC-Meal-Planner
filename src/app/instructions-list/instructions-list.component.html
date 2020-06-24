@@ -1,4 +1,13 @@
-<h3>Directions</h3>
-<ol>
-  <li *ngFor="let direction of recipe.directions"> {{direction.content}}</li>
-</ol>
+<div class="container">
+  <h3>Directions</h3>
+  <p>Preparation Steps</p>
+  <ol  *ngFor="let direction of recipe.prepDirections">
+    <li> {{direction.content}}</li>
+  </ol>
+  <hr>
+  <p>Steps for Day of Cooking</p>
+  <ol *ngFor="let direction of recipe.cookDirections">
+    <li>{{direction.content}}</li>
+  </ol>
+</div>
+

@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirestormService} from '../../../services/firestore/firebaseservice.service';
 import { Recipe } from '../../../interfaces/recipe';
-import {Ingredient} from '../../../interfaces/ingredient';
-import {Directions} from '../../../interfaces/directions';
-
+import { Ingredient } from '../../../interfaces/ingredient';
+import { Directions } from '../../../interfaces/directions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-add-form',
@@ -16,16 +16,20 @@ export class RecipeAddFormComponent implements OnInit {
   recipeAddForm: FormGroup;
   editMode = false;
   editedRecipe: Recipe;
+  private ingredients: Observable<any[]>;
+  selectIngredients;
+  private data: Ingredient[];
 
   constructor(private db: FirestormService) {
+    this.ingredients = this.db.ingredients;
+    this.ingredients.subscribe(ingredients => {
+      this.data = ingredients as Ingredient[];
+      this.selectIngredients = this.data.slice();
+    });
   }
 
   ngOnInit(): void {
-    this.recipeAddForm = new FormGroup({
-      title: new FormControl(null, Validators.required),
-      ingredients: new FormArray([], Validators.required),
-      directions: new FormArray([], Validators.required)
-    });
+    this.initNewForm();
 
     this.db.startedEditingRecipe.subscribe(
       (recipe: Recipe) => {
@@ -33,6 +37,17 @@ export class RecipeAddFormComponent implements OnInit {
         this.editedRecipe = Object.assign({}, recipe);
         this.recipeAddForm = new FormGroup({
           title: new FormControl(this.editedRecipe.title, Validators.required),
+          proteinBase: new FormControl(this.editedRecipe.proteinBase, Validators.required),
+          cookingMethod: new FormControl(this.editedRecipe.cookingMethod, Validators.required),
+          credit: new FormControl(this.editedRecipe.credit, Validators.required),
+          cost: new FormControl(this.editedRecipe.cost, Validators.required),
+          chefNotes: new FormControl(this.editedRecipe.chefNotes, Validators.required),
+          accommodations: new FormArray(this.editedRecipe.accommodations.map((accommodation: {type: string, comment: string}) => {
+            return new FormGroup({
+              type: new FormControl(accommodation.type, Validators.required),
+              comment: new FormControl(accommodation.comment, Validators.required),
+            });
+          }), Validators.required),
           ingredients: new FormArray(this.editedRecipe.ingredients.map((ingredient: Ingredient) => {
           return new FormGroup({
             name: new FormControl(ingredient.name, Validators.required),
@@ -42,15 +57,40 @@ export class RecipeAddFormComponent implements OnInit {
             measurement: new FormControl(ingredient.measurement, Validators.required)
           });
         }), Validators.required),
-          directions: new FormArray(this.editedRecipe.directions.map((direction: Directions) => {
+          prepDirections: new FormArray(this.editedRecipe.prepDirections.map((direction: Directions) => {
             return new FormGroup({
-              stepNum: new FormControl(direction.stepNum, Validators.required),
+              content: new FormControl(direction.content, Validators.required)
+            });
+          }), Validators.required),
+          cookDirections: new FormArray(this.editedRecipe.cookDirections.map((direction: Directions) => {
+            return new FormGroup({
               content: new FormControl(direction.content, Validators.required)
             });
           }), Validators.required)
         });
       }
     );
+  }
+
+  initNewForm() {
+    this.recipeAddForm = new FormGroup({
+      title: new FormControl(null, Validators.required),
+      proteinBase: new FormControl(null, Validators.required),
+      accommodations: new FormArray([], Validators.required),
+      cookingMethod: new FormControl(null, Validators.required),
+      credit: new FormControl(null, Validators.required),
+      cost: new FormControl(null, Validators.required),
+      chefNotes: new FormControl(null, Validators.required),
+      ingredients: new FormArray([], Validators.required),
+      prepDirections: new FormArray([], Validators.required),
+      cookDirections: new FormArray([], Validators.required)
+    });
+    this.recipeAddForm.markAsPristine();
+    this.recipeAddForm.markAsUntouched();
+    this.onAddAccommodation();
+    this.onAddCookDirections();
+    this.onAddIngredient();
+    this.onAddPrepDirections();
   }
 
   onAddIngredient() {
@@ -68,49 +108,69 @@ export class RecipeAddFormComponent implements OnInit {
     (this.recipeAddForm.get('ingredients') as FormArray).removeAt(index);
   }
 
-  onAddDirections() {
-    (this.recipeAddForm.get('directions') as FormArray).push(
+  onAddPrepDirections() {
+    (this.recipeAddForm.get('prepDirections') as FormArray).push(
       new FormGroup({
-        stepNum: new FormControl(null, Validators.required),
         content: new FormControl(null, Validators.required)
       })
     );
   }
 
-  onDeleteDirections(index: number) {
-    (this.recipeAddForm.get('directions') as FormArray).removeAt(index);
+  onAddCookDirections() {
+    (this.recipeAddForm.get('cookDirections') as FormArray).push(
+      new FormGroup({
+        content: new FormControl(null, Validators.required)
+      })
+    );
+  }
+
+  onDeletePrepDirections(index: number) {
+    (this.recipeAddForm.get('prepDirections') as FormArray).removeAt(index);
+  }
+
+  onDeleteCookDirections(index: number) {
+    (this.recipeAddForm.get('cookDirections') as FormArray).removeAt(index);
+  }
+
+  onAddAccommodation() {
+    (this.recipeAddForm.get('accommodations') as FormArray).push(
+      new FormGroup({
+        type: new FormControl(null, Validators.required),
+        comment: new FormControl(null, [Validators.required]),
+      })
+    );
+  }
+
+  onDeleteAccommodation(index: number) {
+    (this.recipeAddForm.get('accommodations') as FormArray).removeAt(index);
+  }
+
+  getAccommodationsControls() {
+    return (this.recipeAddForm.get('accommodations') as FormArray).controls;
   }
 
   getIngredientsControls() {
     return (this.recipeAddForm.get('ingredients') as FormArray).controls;
   }
 
-  getDirectionsControls() {
-    return (this.recipeAddForm.get('directions') as FormArray).controls;
+  getPrepDirectionsControls() {
+    return (this.recipeAddForm.get('prepDirections') as FormArray).controls;
+  }
+
+  getCookDirectionsControls() {
+    return (this.recipeAddForm.get('cookDirections') as FormArray).controls;
   }
 
   onSubmit() {
     const submittedRecipe = this.recipeAddForm.value;
     this.db.addNewRecipe(submittedRecipe);
     this.editMode = false;
-    this.recipeAddForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      ingredients: new FormArray([], Validators.required),
-      directions: new FormArray([], Validators.required),
-    });
-    this.recipeAddForm.markAsPristine();
-    this.recipeAddForm.markAsUntouched();
+    this.initNewForm();
   }
 
   onDelete() {
     this.db.deleteRecipe(this.editedRecipe.title);
     this.editMode = false;
-    this.recipeAddForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      ingredients: new FormArray([], Validators.required),
-      directions: new FormArray([], Validators.required),
-    });
-    this.recipeAddForm.markAsPristine();
-    this.recipeAddForm.markAsUntouched();
+    this.initNewForm();
   }
 }

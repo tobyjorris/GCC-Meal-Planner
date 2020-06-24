@@ -1,9 +1,11 @@
 .container {
-  height: 525px;
+  height: 830px;
+  width: 1150px;
 }
 
 .content-row {
-  height: 525px;
+  height: 830px;
+  widht: 1150px
 }
 
 ul {
@@ -20,7 +22,7 @@ li {
 
 .recipe-list {
   overflow: scroll;
-  height: 525px;
+  height: 830px;
 }
 
 .recipe-list::-webkit-scrollbar {

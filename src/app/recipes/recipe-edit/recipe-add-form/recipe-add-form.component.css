@@ -1,17 +1,27 @@
 .recipe-add-form {
-  height: 525px;
+  height: 828px;
+  width: 1000px;
+}
+
+.mat-form-field {
+  width: inherit;
+}
+
+.recipe-body {
+  height: 775px;
   overflow: scroll;
+  padding-left: 0;
 }
 
-.recipe-add-form::-webkit-scrollbar {
-  width: 6px;
+.recipe-body::-webkit-scrollbar {
+  width: 3px;
 }
 
-.recipe-add-form::-webkit-scrollbar-track {
+.recipe-body::-webkit-scrollbar-track {
   background-color: white;
 }
 
-.recipe-add-form::-webkit-scrollbar-thumb {
+.recipe-body::-webkit-scrollbar-thumb {
   background-color: black;
   border-radius: 20px;
   border: 1px solid black;
@@ -19,11 +29,31 @@
 
 .delete {
   width: 40px;
-
 }
 
 .col-sm {
   padding: 0;
+}
+
+#price-field {
+  width: 90px;
+  padding-right: 10px;
+}
+
+.price-div {
+  width: 90px;
+}
+
+#method-field {
+  width: 160px;
+}
+
+.method-div {
+  width: 160px;
+}
+
+.details-row > div {
+  margin: 0 5px 0 20px !important;
 }
 
 #ingredient-field {
@@ -53,23 +83,42 @@
   max-width: 125px;
 }
 
-#stepNum-field {
+#c-stepNum-field {
   max-width: 100px;
   padding-right: 10px;
 }
 
-.stepNum-div {
+.c-stepNum-div {
   max-width: 100px;
 }
 
-
-#direction-field {
+#c-direction-field {
   width: 500px;
   height: 90px;
   padding-right: 5px;
 }
 
-.direction-div {
+.c-direction-div {
+  width: 500px;
+  height: 90px;
+}
+
+#p-stepNum-field {
+  max-width: 100px;
+  padding-right: 10px;
+}
+
+.p-stepNum-div {
+  max-width: 100px;
+}
+
+#p-direction-field {
+  width: 500px;
+  height: 90px;
+  padding-right: 5px;
+}
+
+.p-direction-div {
   width: 500px;
   height: 90px;
 }
@@ -80,7 +129,7 @@ button:disabled {
 }
 
 #title-field {
-  width: 654px;
+  width: 100%;
   padding-bottom: 0;
   margin-bottom: 0;
 }
@@ -90,6 +139,24 @@ button:disabled {
   padding-bottom: 0;
 }
 
+#type-field {
+  width: 225px;
+  padding-right: 5px;
+  margin-left: 15px;
+}
+
+.type-div {
+  width: 225px !important;
+}
+
+#chefNotes-field {
+  padding-right: 5px;
+  margin-left: 15px;
+}
+
+.chefNotes-div {
+}
+
 hr {
   margin: 10px 0 10px 0;
 }
@@ -97,5 +164,30 @@ hr {
 button {
   margin: 2px;
 }
+
+.details {
+  border-radius: 5px;
+  border: thin solid #000000;
+  margin: 5px;
+}
+
+.ingredients {
+  border-radius: 5px;
+  border: thin solid #000000;
+  margin: 5px;
+}
+
+.directions {
+  border-radius: 5px;
+  border: thin solid #000000;
+  margin: 5px;
+}
+
+textarea {
+  height: 45px;
+}
+
+
+
 
 

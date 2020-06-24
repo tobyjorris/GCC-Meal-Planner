@@ -8,10 +8,9 @@ a {
 }
 
 .recipe-list {
-  max-height: 500px;
+  max-height: 930px;
   overflow: scroll;
 }
-
 
 .recipe-list::-webkit-scrollbar {
   width: 6px;
@@ -28,8 +27,8 @@ a {
 }
 
 hr {
-  margin-top: 0px;
-  padding-top: 0px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .input-group {

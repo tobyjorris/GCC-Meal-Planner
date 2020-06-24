@@ -42,6 +42,7 @@ export class RecipeAddFormComponent implements OnInit {
           credit: new FormControl(this.editedRecipe.credit, Validators.required),
           cost: new FormControl(this.editedRecipe.cost, Validators.required),
           chefNotes: new FormControl(this.editedRecipe.chefNotes, Validators.required),
+          freezerLabel: new FormControl(this.editedRecipe.freezerLabel, Validators.required),
           accommodations: new FormArray(this.editedRecipe.accommodations.map((accommodation: {type: string, comment: string}) => {
             return new FormGroup({
               type: new FormControl(accommodation.type, Validators.required),
@@ -81,6 +82,7 @@ export class RecipeAddFormComponent implements OnInit {
       credit: new FormControl(null, Validators.required),
       cost: new FormControl(null, Validators.required),
       chefNotes: new FormControl(null, Validators.required),
+      freezerLabel: new FormControl(null, Validators.required),
       ingredients: new FormArray([], Validators.required),
       prepDirections: new FormArray([], Validators.required),
       cookDirections: new FormArray([], Validators.required)

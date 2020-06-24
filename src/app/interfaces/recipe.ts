@@ -13,5 +13,6 @@ export interface Recipe {
   prepDirections: Directions[];
   cookDirections: Directions[];
   chefNotes: string;
+  freezerLabel: string;
   ingredients: Ingredient[];
 }

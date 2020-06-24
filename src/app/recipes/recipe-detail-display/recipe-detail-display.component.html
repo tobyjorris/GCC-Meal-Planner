@@ -1,7 +1,24 @@
 <div class="recipe-detail">
-  <h1>{{recipeCopy.title}}</h1>
+  <h1>{{recipeCopy.title}}<span *ngIf="multiBatchMode"> (x{{this.batchMultiDisplay}})</span></h1>
   <div>
-    <h4>Ingredients <span *ngIf="multiBatchMode">(x{{this.batchMultiDisplay}})</span></h4>
+    <div class="details-section">
+      <h4>Details</h4>
+      <p>{{recipeCopy.proteinBase}} - {{recipeCopy.cookingMethod}} - ${{(recipeCopy.cost * recipeCopy.multi).toFixed(2)}} - {{recipeCopy.credit}}</p>
+      <div class="row">
+        <div *ngFor="let accommodations of recipeCopy.accommodations">
+        <div class="col">
+          <img *ngIf="accommodations.type === 'Dairy'" src="../../../assets/img/dairy.jpg">
+        </div>
+        <div class="col">
+          <img *ngIf="accommodations.type === 'Paleo'" src="../../../assets/img/paleo.png">
+        </div>
+        <div class="col">
+          <img *ngIf="accommodations.type === 'Gluten'" src="../../../assets/img/gluten-free.jpg">
+        </div>
+      </div>
+      </div>
+    </div>
+    <h4>Ingredients</h4>
     <ul>
         <li *ngFor="let ingredient of recipeCopy.ingredients">{{ multiBatchMode ? ingredient.quantity :(ingredient.quantity | fractionize) }}
           - {{ingredient.measurement}} {{ingredient.name}}</li>
@@ -24,8 +41,8 @@
     <hr>
     <app-instructions-list [recipe]="recipe"></app-instructions-list>
     <div>
-      <h6>Notes To The Chef?</h6>
-      <p>Any special things of consideration could be listed here</p>
+      <h6>Notes To The Chef</h6>
+      <p>{{recipeCopy.chefNotes}}</p>
     </div>
   </div>
   <div>

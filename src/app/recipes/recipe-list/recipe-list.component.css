@@ -8,7 +8,7 @@ a {
 }
 
 .recipe-list {
-  max-height: 930px;
+  max-height: 830px;
   overflow: scroll;
 }
 

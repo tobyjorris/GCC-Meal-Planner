@@ -39,22 +39,24 @@ export class RecipeAddFormComponent implements OnInit {
           title: new FormControl(this.editedRecipe.title, Validators.required),
           proteinBase: new FormControl(this.editedRecipe.proteinBase, Validators.required),
           cookingMethod: new FormControl(this.editedRecipe.cookingMethod, Validators.required),
-          credit: new FormControl(this.editedRecipe.credit, Validators.required),
+          credit: new FormControl(this.editedRecipe.credit),
           cost: new FormControl(this.editedRecipe.cost, Validators.required),
-          chefNotes: new FormControl(this.editedRecipe.chefNotes, Validators.required),
+          chefNotes: new FormControl(this.editedRecipe.chefNotes),
           freezerLabel: new FormControl(this.editedRecipe.freezerLabel, Validators.required),
           accommodations: new FormArray(this.editedRecipe.accommodations.map((accommodation: {type: string, comment: string}) => {
             return new FormGroup({
-              type: new FormControl(accommodation.type, Validators.required),
-              comment: new FormControl(accommodation.comment, Validators.required),
+              type: new FormControl(accommodation.type),
+              comment: new FormControl(accommodation.comment),
             });
           }), Validators.required),
           ingredients: new FormArray(this.editedRecipe.ingredients.map((ingredient: Ingredient) => {
           return new FormGroup({
             name: new FormControl(ingredient.name, Validators.required),
             // tslint:disable-next-line:max-line-length
-            quantity: new FormControl(ingredient.quantity, [Validators.required]),
-            // Validators.pattern(/^[0-9]{0,2}.[0-9]{2}/)]
+            quantity: new FormControl(ingredient.quantity, [
+              Validators.required,
+              Validators.pattern(/^[0-9]{0,2}.[0-9]{0,2}/)
+            ]),
             measurement: new FormControl(ingredient.measurement, Validators.required)
           });
         }), Validators.required),
@@ -77,11 +79,11 @@ export class RecipeAddFormComponent implements OnInit {
     this.recipeAddForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       proteinBase: new FormControl(null, Validators.required),
-      accommodations: new FormArray([], Validators.required),
+      accommodations: new FormArray([]),
       cookingMethod: new FormControl(null, Validators.required),
       credit: new FormControl(null, Validators.required),
       cost: new FormControl(null, Validators.required),
-      chefNotes: new FormControl(null, Validators.required),
+      chefNotes: new FormControl(null),
       freezerLabel: new FormControl(null, Validators.required),
       ingredients: new FormArray([], Validators.required),
       prepDirections: new FormArray([], Validators.required),
@@ -90,7 +92,6 @@ export class RecipeAddFormComponent implements OnInit {
     this.recipeAddForm.markAsPristine();
     this.recipeAddForm.markAsUntouched();
     this.onAddAccommodation();
-    this.onAddCookDirections();
     this.onAddIngredient();
     this.onAddPrepDirections();
   }
@@ -99,8 +100,8 @@ export class RecipeAddFormComponent implements OnInit {
     (this.recipeAddForm.get('ingredients') as FormArray).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
-        quantity: new FormControl(null, [Validators.required]),
-        // Validators.pattern(/^[0-9]{0,2}.[0-9]{2}/)]
+        quantity: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]{0,2}.[0-9]{2}/)]),
+        // Validators.pattern(/^[0-9]{0,2}.[0-9]{0,2}/)]
         measurement: new FormControl(null, Validators.required)
       })
     );
@@ -137,8 +138,8 @@ export class RecipeAddFormComponent implements OnInit {
   onAddAccommodation() {
     (this.recipeAddForm.get('accommodations') as FormArray).push(
       new FormGroup({
-        type: new FormControl(null, Validators.required),
-        comment: new FormControl(null, [Validators.required]),
+        type: new FormControl(null),
+        comment: new FormControl(null),
       })
     );
   }

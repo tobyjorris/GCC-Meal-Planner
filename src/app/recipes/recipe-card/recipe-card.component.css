@@ -3,16 +3,39 @@
   margin: 5px 0 5px 0;
 }
 
-div:hover {
+.list-group-item:hover {
   text-decoration: none;
   background-color: #8ebf77;
   color: white;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
+.list-group-item:hover span {
+  display: block;
+  height: 25px;
+  width: 25px;
 
-div {
-  justify-content: center;
+  -moz-border-radius: 30px; /* or 50% */
+  border-radius: 30px; /* or 50% */
+
+  background-color: gray;
+  color: white;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.accommodations > span {
+  display: block;
+  height: 25px;
+  width: 25px;
+  line-height: 25px;
+
+  -moz-border-radius: 30px; /* or 50% */
+  border-radius: 30px; /* or 50% */
+
+  background-color: #8ebf77;
+  color: white;
+  text-align: center;
 }
 
 

@@ -2,9 +2,11 @@
   <h1>{{recipeCopy.title}}<span *ngIf="multiBatchMode"> (x{{this.batchMultiDisplay}})</span></h1>
   <div>
     <div class="details-section">
-      <h4>Details</h4>
-      <p>{{recipeCopy.proteinBase}} - {{recipeCopy.cookingMethod}} - ${{(recipeCopy.cost * recipeCopy.multi).toFixed(2)}} - {{recipeCopy.credit}}</p>
-      <div class="row">
+      <p><strong>Protein Base:</strong> {{recipeCopy.proteinBase}} //
+        <strong>Method:</strong> {{recipeCopy.cookingMethod}} //
+        <strong>${{(recipeCopy.cost)}}</strong> //
+        <strong>Recipe Source:</strong> {{recipeCopy.credit}}</p>
+      <div class="row" *ngIf="recipeCopy.accommodations">
         <div *ngFor="let accommodations of recipeCopy.accommodations">
         <div class="col">
           <img *ngIf="accommodations.type === 'Dairy'" src="../../../assets/img/dairy.jpg">

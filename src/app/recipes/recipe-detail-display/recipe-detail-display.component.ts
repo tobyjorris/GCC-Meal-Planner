@@ -25,7 +25,6 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.recipe);
     this.recipeCopy.multi = 1;
     this.recipeCopy.ingredients.map(ingredient => {
      return {...ingredient, quantity: Number(ingredient.quantity)};
@@ -44,7 +43,6 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
       return Math.round(value * multiplier) / multiplier;
     }
     const qtyChangeInput = this.quantityChangeRef.nativeElement.value;
-    console.log(qtyChangeInput);
     this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
     if (qtyChangeInput > 1) {
       for (const ingredient of this.recipeCopy.ingredients) {
@@ -54,7 +52,6 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
       this.batchMultiDisplay = qtyChangeInput;
       this.recipeCopy.multi = qtyChangeInput;
     } else if (qtyChangeInput === '1') {
-      console.log('you entered 1');
       this.multiBatchMode = false;
       this.recipeCopy.multi = 1;
     } else if (isNaN(qtyChangeInput)) {
@@ -69,8 +66,10 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   }
 
   addToShoppingList() {
+    this.multiBatchMode = false;
     this.batchMultiDisplay = null;
     this.slService.writeToStorage(this.recipeCopy);
+    console.log('Recipe added to shopping list:', this.recipeCopy);
     this.dialog.open(DialogComponent, {data: this.recipeCopy});
   }
 

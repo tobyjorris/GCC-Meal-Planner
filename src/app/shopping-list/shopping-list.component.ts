@@ -23,12 +23,17 @@ export class ShoppingListComponent implements OnInit {
       const sortedIngredients = {};
       this.ingredientsArray.map(ingredient => {
         if (sortedIngredients[ingredient.name]) {
-          // tslint:disable-next-line:max-line-length
-          sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
+          if (sortedIngredients[ingredient.name][ingredient.measurement] === ingredient.measurement) {
+            // tslint:disable-next-line:max-line-length
+            sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
+          } else {
+            sortedIngredients[ingredient.name][ingredient.measurement] = Number(ingredient.quantity);
+          }
         } else {
           sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
         }
       });
+      console.log('this.sortedIngredients', sortedIngredients); // *THIS IS WHERE THE PROBLEM IS*
       this.ingredientsArray = Object.entries(sortedIngredients);
       this.ingredientsArray.forEach(([name, details]) => {
         Object.entries(details).forEach(([key, value]) => {
@@ -37,8 +42,6 @@ export class ShoppingListComponent implements OnInit {
             quantity: value,
             measurement: key,
           };
-          // tempObj.quantity = new Fraction(tempObj.quantity as Fraction);
-          // tempObj.quantity = tempObj.quantity.toFraction(true);
           this.finalIngredientsArray.push(tempObj);
           this.finalIngredientsArray.sort((a, b) => {
             const bandA = a.name.toUpperCase();

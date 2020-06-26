@@ -28,14 +28,8 @@ export class ShoppingListComponent implements OnInit {
       const sortedIngredients = {};
       convertedArray.map(ingredient => {
         if (sortedIngredients[ingredient.name]) {
-          sortedIngredients[ingredient.name] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
-          // if (sortedIngredients[ingredient.name][ingredient.measurement] === ingredient.measurement) {
-          //   // tslint:disable-next-line:max-line-length
           // tslint:disable-next-line:max-line-length
-          //   sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
-          // } else {
-          //   sortedIngredients[ingredient.name][ingredient.measurement] = Number(ingredient.quantity);
-          // }
+          sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
         } else {
           sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
         }

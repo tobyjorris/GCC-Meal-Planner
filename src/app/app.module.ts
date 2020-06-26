@@ -39,7 +39,7 @@ import { IngredientEditComponent } from './ingredients/ingredient-edit/ingredien
 import { IngredientEditFormComponent } from './ingredients/ingredient-edit-form/ingredient-edit-form.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
@@ -93,7 +93,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatSortModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

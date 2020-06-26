@@ -13,6 +13,7 @@
   <div *ngFor="let ingredient of finalIngredientsArray ">
     {{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement}}
   </div>
+  <button type="button" class="btn btn-info" (click)="onConvert()">Convert Units Test</button>
   <button type="button" class="btn btn-info" (click)="onPrint()">Print Shopping List</button>
 </div>
 

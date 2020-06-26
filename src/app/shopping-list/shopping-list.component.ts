@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../services/local-storage/localstorage-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingPrintModalComponent } from './shopping-print-modal/shopping-print-modal.component';
+import {ConversionService} from '../services/conversion/conversion.service';
+
 
 @Component({
   selector: 'app-shopping-list',
@@ -13,27 +15,33 @@ export class ShoppingListComponent implements OnInit {
   ingredientsArray;
   finalIngredientsArray = [];
 
-  constructor( private slService: ShoppingListService, public dialog: MatDialog, ) {
+  constructor( private slService: ShoppingListService, public dialog: MatDialog, private convertService: ConversionService) {
   }
 
   ngOnInit(): void {
     this.shoppingList = this.slService.getFromStorage();
     if (this.shoppingList) {
       this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
+      const convertedArray = [];
+      this.ingredientsArray.map(ingredient => convertedArray.push(this.convertService.convert(ingredient)));
+      console.log(convertedArray);
       const sortedIngredients = {};
-      this.ingredientsArray.map(ingredient => {
+      convertedArray.map(ingredient => {
         if (sortedIngredients[ingredient.name]) {
-          if (sortedIngredients[ingredient.name][ingredient.measurement] === ingredient.measurement) {
-            // tslint:disable-next-line:max-line-length
-            sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
-          } else {
-            sortedIngredients[ingredient.name][ingredient.measurement] = Number(ingredient.quantity);
-          }
+          sortedIngredients[ingredient.name] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
+          // if (sortedIngredients[ingredient.name][ingredient.measurement] === ingredient.measurement) {
+          //   // tslint:disable-next-line:max-line-length
+          // tslint:disable-next-line:max-line-length
+          //   sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
+          // } else {
+          //   sortedIngredients[ingredient.name][ingredient.measurement] = Number(ingredient.quantity);
+          // }
         } else {
           sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
         }
       });
-      console.log('this.sortedIngredients', sortedIngredients); // *THIS IS WHERE THE PROBLEM IS*
+      console.log('this.sortedIngredients', sortedIngredients);
+      // this.ingredientsArray = Object.entries(sortedIngredients);
       this.ingredientsArray = Object.entries(sortedIngredients);
       this.ingredientsArray.forEach(([name, details]) => {
         Object.entries(details).forEach(([key, value]) => {
@@ -46,7 +54,6 @@ export class ShoppingListComponent implements OnInit {
           this.finalIngredientsArray.sort((a, b) => {
             const bandA = a.name.toUpperCase();
             const bandB = b.name.toUpperCase();
-
             let comparison = 0;
             if (bandA > bandB) {
               comparison = 1;
@@ -65,5 +72,16 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList = [];
     this.finalIngredientsArray = [];
     this.slService.clearShoppingList();
+  }
+
+  onConvert() {
+    // console.log(convertUnits(3).from('fl-oz').to('cup'));
+    // console.log(convertUnits().from('tsp').possibilities());
+    const testObj = {
+      name: 'Black Beans',
+      quantity: 2,
+      measurement: 'Tbs'
+    };
+    console.log(this.convertService.convert(testObj));
   }
 }

@@ -40,3 +40,25 @@ hr {
   border-color: #28a745;
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
+
+span {
+  display: block;
+  height: 15px;
+  width: 15px;
+  line-height: 15px;
+
+  -moz-border-radius: 20px; /* or 50% */
+  border-radius: 20px; /* or 50% */
+
+  background-color: #8ebf77;
+  color: white;
+  text-align: center;
+}
+
+.legend {
+  font-size: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}

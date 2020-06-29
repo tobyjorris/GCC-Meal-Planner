@@ -15,9 +15,9 @@
         <h4>Ingredient List:</h4>
         <div class="container ingredient-select">
           <div class="row" *ngFor="let ingredient of finalIngredientsArray ">
-            <div class="col mat-radio-group">
-              <label>{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</label>
-              <mat-radio-group>
+            <div class="col mat-radio-item">
+              <label>{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}  |</label>
+              <mat-radio-group class="mat-radio-group">
                 <mat-radio-button labelPosition="before" value="costco">Costco</mat-radio-button>
                 <mat-radio-button labelPosition="before" value="grocery">Grocery</mat-radio-button>
                 <mat-radio-button labelPosition="before" value="have">Already Have</mat-radio-button>

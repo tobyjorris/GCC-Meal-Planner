@@ -6,16 +6,10 @@
         <strong>Method:</strong> {{recipeCopy.cookingMethod}} //
         <strong>${{(recipeCopy.cost)}}</strong> //
         <strong>Recipe Source:</strong> {{recipeCopy.credit}}</p>
-      <div class="row" *ngIf="recipeCopy.accommodations">
+      <div class="row accommodations-div" *ngIf="recipeCopy.accommodations">
         <div *ngFor="let accommodations of recipeCopy.accommodations">
         <div class="col">
-          <img *ngIf="accommodations.type === 'Dairy'" src="../../../assets/img/dairy.jpg">
-        </div>
-        <div class="col">
-          <img *ngIf="accommodations.type === 'Paleo'" src="../../../assets/img/paleo.png">
-        </div>
-        <div class="col">
-          <img *ngIf="accommodations.type === 'Gluten'" src="../../../assets/img/gluten-free.jpg">
+          <p><strong>Accommodations: </strong>{{accommodations.type}}</p>
         </div>
       </div>
       </div>

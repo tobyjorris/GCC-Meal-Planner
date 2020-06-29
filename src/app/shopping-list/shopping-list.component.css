@@ -16,3 +16,18 @@
   border-radius: 20px;
   border: 1px solid black;
 }
+
+.mat-radio-group {
+  font-size: 15px;
+  font-style: italic;
+  padding-left: 5px;
+}
+
+.shopping-source-div {
+  display: flex;
+}
+
+.shopping-source-div > span {
+  align-content: end;
+}
+

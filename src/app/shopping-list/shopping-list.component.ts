@@ -22,11 +22,11 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList = this.slService.getFromStorage();
     if (this.shoppingList) {
       this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
-      const convertedArray = [];
-      this.ingredientsArray.map(ingredient => convertedArray.push(this.convertService.convert(ingredient)));
-      console.log(convertedArray);
+      const convertedIngredientsArray = [];
+      this.ingredientsArray.map(ingredient => convertedIngredientsArray.push(this.convertService.convert(ingredient)));
+      console.log(convertedIngredientsArray);
       const sortedIngredients = {};
-      convertedArray.map(ingredient => {
+      convertedIngredientsArray.map(ingredient => {
         if (sortedIngredients[ingredient.name]) {
           // tslint:disable-next-line:max-line-length
           sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
@@ -34,8 +34,7 @@ export class ShoppingListComponent implements OnInit {
           sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
         }
       });
-      console.log('this.sortedIngredients', sortedIngredients);
-      // this.ingredientsArray = Object.entries(sortedIngredients);
+      console.log(sortedIngredients);
       this.ingredientsArray = Object.entries(sortedIngredients);
       this.ingredientsArray.forEach(([name, details]) => {
         Object.entries(details).forEach(([key, value]) => {
@@ -66,16 +65,5 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList = [];
     this.finalIngredientsArray = [];
     this.slService.clearShoppingList();
-  }
-
-  onConvert() {
-    // console.log(convertUnits(3).from('fl-oz').to('cup'));
-    // console.log(convertUnits().from('tsp').possibilities());
-    const testObj = {
-      name: 'Black Beans',
-      quantity: 2,
-      measurement: 'Tbs'
-    };
-    console.log(this.convertService.convert(testObj));
   }
 }

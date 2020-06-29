@@ -14,7 +14,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeAddFormComponent } from './recipes/recipe-edit/recipe-add-form/recipe-add-form.component';
@@ -25,7 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
-import { FractionizeModule } from './fraction.pipe';
+import { FractionizeModule } from './pipes/fraction.pipe';
 import { PrintModalComponent } from './recipes/print/print-modal/print-modal.component';
 import { ShoppingPrintModalComponent } from './shopping-list/shopping-print-modal/shopping-print-modal.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
@@ -37,9 +37,11 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { IngredientEditComponent } from './ingredients/ingredient-edit/ingredient-edit.component';
 import { IngredientEditFormComponent } from './ingredients/ingredient-edit-form/ingredient-edit-form.component';
-import {MatSortModule} from '@angular/material/sort';
-import {MatTableModule} from '@angular/material/table';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { UnitDisplayPipe } from './pipes/unit-display.pipe';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
@@ -73,28 +75,30 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     IngredientEditComponent,
     IngredientEditFormComponent,
+    UnitDisplayPipe,
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    Ng2SearchPipeModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatButtonModule,
-    FractionizeModule,
-    [NgxAuthFirebaseUIModule.forRoot(environment.firebase)],
-    MatMenuModule,
-    MatToolbarModule,
-    MatSortModule,
-    MatTableModule,
-    MatCheckboxModule,
-  ],
+    imports: [
+        BrowserModule,
+        NgbModule,
+        Ng2SearchPipeModule,
+        FormsModule,
+        RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatButtonModule,
+        FractionizeModule,
+        [NgxAuthFirebaseUIModule.forRoot(environment.firebase)],
+        MatMenuModule,
+        MatToolbarModule,
+        MatSortModule,
+        MatTableModule,
+        MatCheckboxModule,
+        MatRadioModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

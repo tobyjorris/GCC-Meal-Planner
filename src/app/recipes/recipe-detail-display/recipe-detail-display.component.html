@@ -22,8 +22,8 @@
     </div>
     <h4>Ingredients</h4>
     <ul>
-        <li *ngFor="let ingredient of recipeCopy.ingredients">{{ multiBatchMode ? ingredient.quantity :(ingredient.quantity | fractionize) }}
-          - {{ingredient.measurement}} {{ingredient.name}}</li>
+        <li *ngFor="let ingredient of recipeCopy.ingredients ">{{ multiBatchMode ? ingredient.quantity :(ingredient.quantity | fractionize) }}
+          - {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
     </ul>
     <div class="quantity-form container">
       <div class="row qty-change">

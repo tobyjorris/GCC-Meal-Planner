@@ -1,19 +1,48 @@
 <div class="container shopping-list">
   <h2>Shopping Cart</h2>
   <hr>
-  <h5>Recipes in cart:</h5>
-  <ul>
-    <li *ngFor="let recipe of shoppingList">
-      {{recipe.title}} (x
-      <span *ngIf="recipe.multi === 1; else multi">1)</span>
-      <ng-template #multi>{{recipe.multi}})</ng-template>
-    </li>
-  </ul>
-  <h4>Ingredient List:</h4>
-  <div *ngFor="let ingredient of finalIngredientsArray ">
-    {{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement}}
+  <div class="container">
+    <div class="row">
+      <div class="col-7">
+        <h5>Recipes in cart:</h5>
+        <ul>
+          <li *ngFor="let recipe of shoppingList">
+            {{recipe.title}} (x
+            <span *ngIf="!recipe.multi; else multi">1)</span>
+            <ng-template #multi>{{recipe.multi}})</ng-template>
+          </li>
+        </ul>
+        <h4>Ingredient List:</h4>
+        <div class="container ingredient-select">
+          <div class="row" *ngFor="let ingredient of finalIngredientsArray ">
+            <div class="col mat-radio-group">
+              <label>{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</label>
+              <mat-radio-group>
+                <mat-radio-button labelPosition="before" value="costco">Costco</mat-radio-button>
+                <mat-radio-button labelPosition="before" value="grocery">Grocery</mat-radio-button>
+                <mat-radio-button labelPosition="before" value="have">Already Have</mat-radio-button>
+                <mat-radio-button labelPosition="before" value="stock">Stockpile</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-info" (click)="onPrint()">Print Shopping List</button>
+      </div>
+      <div class="col-5">
+        <div class="row shopping-source-div">
+          <h1>Costco</h1><span>&#9660;</span>
+        </div>
+        <div class="row">
+          <h1>Grocery Store</h1><span>&#9660;</span>
+        </div>
+        <div class="row">
+          <h1>Already Have</h1><span>&#9660;</span>
+        </div>
+        <div class="row">
+          <h1>Stockpile</h1><span>&#9660;</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <button type="button" class="btn btn-info" (click)="onConvert()">Convert Units Test</button>
-  <button type="button" class="btn btn-info" (click)="onPrint()">Print Shopping List</button>
 </div>
 

@@ -6,9 +6,9 @@
         <strong>Method:</strong> {{recipeCopy.cookingMethod}} //
         <strong>${{(recipeCopy.cost)}}</strong> //
         <strong>Recipe Source:</strong> {{recipeCopy.credit}}</p>
-      <div class="row accommodations-div" *ngIf="recipeCopy.accommodations">
+      <div class="row accommodations-div" >
         <div *ngFor="let accommodations of recipeCopy.accommodations">
-        <div class="col">
+        <div class="col" *ngIf="accommodations.type">
           <p><strong>Accommodations: </strong>{{accommodations.type}}</p>
         </div>
       </div>

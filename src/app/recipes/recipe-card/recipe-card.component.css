@@ -38,5 +38,11 @@
   text-align: center;
 }
 
+h6 {
+  margin: 0;
+  height: 25px;
+  align-content: end;
+}
+
 
 

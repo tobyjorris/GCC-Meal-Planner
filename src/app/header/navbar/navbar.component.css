@@ -10,6 +10,7 @@ a {
 
 #navbar {
   padding-left: 0px;
+  margin-top: 10px;
 }
 
 .menu {
@@ -20,21 +21,34 @@ a {
  color: black;
 }
 
+.mat-menu-item {
+  height: 50%;
+  outline: none;
+  font-size: 15px;
+}
+
 mat-toolbar {
   background: none;
   display: flex;
   margin-left: 0;
   padding-left: 0;
+  font-family: Roboto;
 }
 
 .btn {
   background: none;
   text-decoration: none;
   color: white;
+  font-size: 1.5rem;
+  bottom: 0;
 }
 
-.mat-menu-item {
+.mat-button {
+  font-family: Roboto;
+  font-size: 1.5rem;
 }
+
+
 
 
 

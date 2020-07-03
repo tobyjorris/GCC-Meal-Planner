@@ -21,35 +21,36 @@
   </div>
 </div>
 <hr>
+<div class="legend row justify-content-center">
+  <div class="col">
+    <div class="row">
+      <span>P</span>
+      = Paleo
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <span>DF</span>
+      = Dairy Free
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <span>GF</span>
+      = Gluten Free
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <span>V</span>
+      = Vegetarian
+    </div>
+  </div>
+</div>
 <div class="container recipe-list">
   <div class="row">
   <div class="col-12">
-    <div class="legend row justify-content-center">
-      <div class="col">
-        <div class="row">
-          <span>P</span>
-          = Paleo
-        </div>
-      </div>
-      <div class="col">
-        <div class="row">
-        <span>DF</span>
-        = Dairy Free
-        </div>
-      </div>
-      <div class="col">
-        <div class="row">
-        <span>GF</span>
-        = Gluten Free
-        </div>
-      </div>
-      <div class="col">
-        <div class="row">
-        <span>V</span>
-        = Vegetarian
-        </div>
-      </div>
-    </div>
+
     <app-recipe-card
       class="recCard"
       *ngFor="let recipe of recipes | async | filter: searchText"

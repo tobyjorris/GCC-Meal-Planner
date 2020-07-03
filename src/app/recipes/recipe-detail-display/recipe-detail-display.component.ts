@@ -33,6 +33,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
+    console.log(this.recipeCopy);
     // this.quantityChangeRef.nativeElement.value = ''; THIS LINE WAS GIVING ME TYPE ERROR: nativeElement undefined
     this.multiBatchMode = false;
   }

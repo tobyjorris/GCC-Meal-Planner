@@ -23,6 +23,8 @@ a {
 mat-toolbar {
   background: none;
   display: flex;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .btn {

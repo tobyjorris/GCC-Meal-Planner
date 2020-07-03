@@ -7,6 +7,7 @@ import {Ingredient} from '../../interfaces/ingredient';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FirestormService{
   public recipes: Observable<any[]>;
   public ingredients: Observable<any[]>;

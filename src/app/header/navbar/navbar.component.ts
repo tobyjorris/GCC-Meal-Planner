@@ -1,5 +1,6 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
+import { AuthServiceService } from '../../services/authService/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,14 @@ import * as firebase from 'firebase';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor() { }
+  loggedIn;
+
+  constructor(public auth: AuthServiceService) {
+  }
 
   ngOnInit(): void {
+    this.loggedIn = this.auth.checkLogin();
+    console.log('Navbar on Init', this.loggedIn);
   }
 
 }

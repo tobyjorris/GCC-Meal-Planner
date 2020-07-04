@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthServiceService {
-  public loggedIn = new Subject<boolean>();
+  private loggedIn = new Subject<any>();
+  loggedInStatus;
 
   constructor() {
-  }
-
-  checkLogin() {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged( user => {
       if (user) {
-        console.log('auth-service ran a check & its TRUE');
-        return true;
+        this.loggedIn.next(true);
       } else {
-        console.log('auth-service ran a check & its FALSE');
-        return false;
+        this.loggedIn.next(false);
       }
     });
+  }
+
+  checkLogin(): Observable<any> {
+    return this.loggedIn.asObservable();
   }
 
 

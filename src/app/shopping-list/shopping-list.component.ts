@@ -66,4 +66,9 @@ export class ShoppingListComponent implements OnInit {
     this.finalIngredientsArray = [];
     this.slService.clearShoppingList();
   }
+
+  onDistributeIngredients() {
+    // logic for compiling will live here, construct ANOTHER object {grocery: source}
+    // another service to send that object to the actual lists
+  }
 }

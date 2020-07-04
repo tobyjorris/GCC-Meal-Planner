@@ -13,19 +13,22 @@
           </li>
         </ul>
         <h4>Ingredient List:</h4>
-        <div class="container ingredient-select">
-          <div class="row" *ngFor="let ingredient of finalIngredientsArray ">
-            <div class="col mat-radio-item">
-              <label>{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}  |</label>
-              <mat-radio-group class="mat-radio-group">
-                <mat-radio-button labelPosition="before" value="costco">Costco</mat-radio-button>
-                <mat-radio-button labelPosition="before" value="grocery">Grocery</mat-radio-button>
-                <mat-radio-button labelPosition="before" value="have">Already Have</mat-radio-button>
-                <mat-radio-button labelPosition="before" value="stock">Stockpile</mat-radio-button>
-              </mat-radio-group>
+        <form action="">
+          <div class="container ingredient-select">
+            <div class="row mat-radio-row" *ngFor="let ingredient of finalIngredientsArray">
+              <div class="col mat-radio-item">
+                <mat-radio-group class="mat-radio-group">
+                  <label>{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}  |</label>
+                  <mat-radio-button labelPosition="before" value="costco">Costco</mat-radio-button>
+                  <mat-radio-button labelPosition="before" value="grocery">Grocery</mat-radio-button>
+                  <mat-radio-button labelPosition="before" value="have">Already Have</mat-radio-button>
+                  <mat-radio-button labelPosition="before" value="stock">Stockpile</mat-radio-button>
+                </mat-radio-group>
+              </div>
             </div>
+            <button type="submit">Touch my stink hole</button>
           </div>
-        </div>
+        </form>
         <button type="button" class="btn btn-info" (click)="onPrint()">Print Shopping List</button>
       </div>
       <div class="col-5">

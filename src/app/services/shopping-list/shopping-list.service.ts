@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
+  distributedIngredient = new Subject<any>();
+  returnedDistributedIngredient = new Subject<any>();
 
   constructor() { }
 
@@ -23,6 +26,20 @@ export class ShoppingListService {
 
   clearShoppingList() {
     window.localStorage.clear();
+  }
+
+  sendToDistribution(ingredient, source) {
+    const distributedIngredient = {
+      name: ingredient.name,
+      quantity: ingredient.quantity,
+      measurement: ingredient.measurement,
+      source,
+    };
+    this.distributedIngredient.next(distributedIngredient);
+  }
+
+  undoDistribution(ingredient) {
+    this.returnedDistributedIngredient.next(ingredient);
   }
 
 }

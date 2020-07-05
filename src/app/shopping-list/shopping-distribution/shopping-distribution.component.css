@@ -1,0 +1,18 @@
+.distribution-container {
+  width: 450px;
+}
+
+.shopping-source {
+  border: 1px black !important;
+  outline: black;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+

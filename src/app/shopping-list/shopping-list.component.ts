@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingListService } from '../services/local-storage/localstorage-service.service';
+import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingPrintModalComponent } from './shopping-print-modal/shopping-print-modal.component';
 import {ConversionService} from '../services/conversion/conversion.service';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ShoppingListComponent implements OnInit {
   shoppingList;
   ingredientsArray;
   finalIngredientsArray = [];
+  ingredientDistributionForm: FormGroup;
 
   constructor( private slService: ShoppingListService, public dialog: MatDialog, private convertService: ConversionService) {
   }
@@ -24,7 +26,6 @@ export class ShoppingListComponent implements OnInit {
       this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
       const convertedIngredientsArray = [];
       this.ingredientsArray.map(ingredient => convertedIngredientsArray.push(this.convertService.convert(ingredient)));
-      console.log(convertedIngredientsArray);
       const sortedIngredients = {};
       convertedIngredientsArray.map(ingredient => {
         if (sortedIngredients[ingredient.name]) {
@@ -34,7 +35,6 @@ export class ShoppingListComponent implements OnInit {
           sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
         }
       });
-      console.log(sortedIngredients);
       this.ingredientsArray = Object.entries(sortedIngredients);
       this.ingredientsArray.forEach(([name, details]) => {
         Object.entries(details).forEach(([key, value]) => {
@@ -58,6 +58,19 @@ export class ShoppingListComponent implements OnInit {
         });
       });
     }
+
+    this.ingredientDistributionForm = new FormGroup({
+      distributionForm: new FormArray([])
+    });
+    (this.ingredientDistributionForm.get('distributionForm') as FormArray).push(
+      new FormGroup({
+        source: new FormControl(null),
+      })
+    );
+
+    this.slService.returnedDistributedIngredient.subscribe(ingredient => {
+       this.finalIngredientsArray.push(ingredient);
+    });
   }
 
   onPrint() {
@@ -67,8 +80,19 @@ export class ShoppingListComponent implements OnInit {
     this.slService.clearShoppingList();
   }
 
-  onDistributeIngredients() {
+  onSubmit() {
     // logic for compiling will live here, construct ANOTHER object {grocery: source}
     // another service to send that object to the actual lists
+    const formValue = this.ingredientDistributionForm.value;
+    console.log(formValue);
+  }
+
+  onDistribute(ingredient, source: string, i: number) {
+    this.slService.sendToDistribution(ingredient, source);
+    this.finalIngredientsArray.splice(i, 1);
+  }
+
+  getDistributionControls() {
+    return (this.ingredientDistributionForm.get('distributionForm') as FormArray).controls;
   }
 }

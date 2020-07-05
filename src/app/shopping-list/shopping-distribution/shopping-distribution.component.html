@@ -1,0 +1,88 @@
+<!--<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <div class="row shopping-source-div">
+        <h1>Costco<span>&#9660;</span></h1>
+      </div>
+      <div class="row">
+
+      </div>
+      <div class="row">
+        <h1>Grocery Store<span>&#9660;</span></h1>
+        <ul>
+          <li *ngFor="let ingredient of groceryIngredients">{{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}</li>
+        </ul>
+      </div>
+      <div class="row">
+        <h1>Already Have<span>&#9660;</span></h1>
+        <ul>
+          <li *ngFor="let ingredient of haveIngredients">{{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}</li>
+        </ul>
+      </div>
+      <div class="row">
+        <h1>Stockpile<span>&#9660;</span></h1>
+        <ul>
+          <li *ngFor="let ingredient of stockpileIngredients">{{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>-->
+<div class="container distribution-container">
+  <div class="container shopping-source" >
+    <div class="row">
+      <div class="col">
+        <h1 (click)="toggleCostcoList()">Costco</h1>
+      </div>
+    </div>
+    <div class="row" [ngClass]="costcoToggleStatus ? 'visible' : 'hidden'">
+      <ul>
+        <li *ngFor="let ingredient of costcoIngredients, let i = index" (click)="onClick(ingredient, i, 'costco')">
+          {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container shopping-source">
+    <div class="row">
+      <div class="col">
+        <h1 (click)="toggleGroceryList()">Grocery Store</h1>
+      </div>
+    </div>
+    <div class="row" [ngClass]="groceryToggleStatus ? 'visible' : 'hidden'">
+      <ul>
+        <li *ngFor="let ingredient of groceryIngredients, let i = index" (click)="onClick(ingredient, i, 'grocery')">
+          {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container shopping-source">
+    <div class="row">
+      <div class="col">
+        <h1 (click)="toggleHaveList()">Already Have</h1>
+      </div>
+    </div>
+    <div class="row" [ngClass]="haveToggleStatus ? 'visible' : 'hidden'">
+      <ul>
+        <li *ngFor="let ingredient of haveIngredients, let i = index" (click)="onClick(ingredient, i, 'have')">
+          {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container shopping-source">
+    <div class="row">
+      <div class="col">
+        <h1 (click)="toggleStockpileList()">Stockpile</h1>
+      </div>
+    </div>
+    <div class="row" [ngClass]="stockpileToggleStatus ? 'visible' : 'hidden'">
+      <ul>
+        <li *ngFor="let ingredient of stockpileIngredients, let i = index" (click)="onClick(ingredient, i, 'stockpile')">
+          {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

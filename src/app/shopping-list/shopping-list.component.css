@@ -17,6 +17,18 @@
   border: 1px solid black;
 }
 
+.shopping-opt {
+  border: 1px solid black;
+}
+
+.ingredient-row {
+  padding: 3px 0 3px 0;
+}
+
+.shopping-opt:hover {
+  background: lightgreen;
+}
+
 .mat-radio-group {
   font-size: 15px;
   font-style: italic;
@@ -46,4 +58,6 @@ label {
 .shopping-source-div > span {
   align-content: end;
 }
+
+
 

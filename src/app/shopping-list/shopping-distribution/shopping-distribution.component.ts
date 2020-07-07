@@ -11,10 +11,10 @@ export class ShoppingDistributionComponent implements OnInit {
   groceryIngredients = [];
   haveIngredients = [];
   stockpileIngredients = [];
-  costcoToggleStatus = true;
-  groceryToggleStatus = true;
-  haveToggleStatus = true;
-  stockpileToggleStatus = true;
+  costcoToggleStatus = false;
+  groceryToggleStatus = false;
+  haveToggleStatus = false;
+  stockpileToggleStatus = false;
 
   constructor(private slService: ShoppingListService) { }
 

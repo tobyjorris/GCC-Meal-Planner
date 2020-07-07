@@ -61,4 +61,8 @@ export class ShoppingDistributionComponent implements OnInit {
     this.stockpileToggleStatus = !this.stockpileToggleStatus;
   }
 
+  shoppingPrint() {
+    alert('printing shopping list');
+  }
+
 }

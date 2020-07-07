@@ -32,7 +32,7 @@
   <div class="container shopping-source" >
     <div class="row">
       <div class="col">
-        <h1 (click)="toggleCostcoList()">Costco</h1>
+        <h1 (click)="toggleCostcoList()">Costco<span [ngClass]="costcoToggleStatus ? 'caret-up' : 'caret-down'"></span></h1>
       </div>
     </div>
     <div class="row" [ngClass]="costcoToggleStatus ? 'visible' : 'hidden'">
@@ -41,12 +41,13 @@
           {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
         </li>
       </ul>
+      <button class="btn btn-info" (click)="shoppingPrint()">Print Costco List</button>
     </div>
   </div>
   <div class="container shopping-source">
     <div class="row">
       <div class="col">
-        <h1 (click)="toggleGroceryList()">Grocery Store</h1>
+        <h1 (click)="toggleGroceryList()">Grocery Store<span [ngClass]="groceryToggleStatus ? 'caret-up' : 'caret-down'"></span></h1>
       </div>
     </div>
     <div class="row" [ngClass]="groceryToggleStatus ? 'visible' : 'hidden'">
@@ -55,12 +56,13 @@
           {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
         </li>
       </ul>
+      <button class="btn btn-info" (click)="shoppingPrint()">Print Grocery Store List</button>
     </div>
   </div>
   <div class="container shopping-source">
     <div class="row">
       <div class="col">
-        <h1 (click)="toggleHaveList()">Already Have</h1>
+        <h1 (click)="toggleHaveList()">Already Have<span [ngClass]="haveToggleStatus ? 'caret-up' : 'caret-down'"></span></h1>
       </div>
     </div>
     <div class="row" [ngClass]="haveToggleStatus ? 'visible' : 'hidden'">
@@ -69,12 +71,13 @@
           {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
         </li>
       </ul>
+      <button class="btn btn-info" (click)="shoppingPrint()">Print Already Have List</button>
     </div>
   </div>
   <div class="container shopping-source">
     <div class="row">
       <div class="col">
-        <h1 (click)="toggleStockpileList()">Stockpile</h1>
+        <h1 (click)="toggleStockpileList()">Stockpile<span [ngClass]="stockpileToggleStatus ? 'caret-up' : 'caret-down'"></span></h1>
       </div>
     </div>
     <div class="row" [ngClass]="stockpileToggleStatus ? 'visible' : 'hidden'">
@@ -83,6 +86,7 @@
           {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
         </li>
       </ul>
+      <button class="btn btn-info" (click)="shoppingPrint()">Print Stockpile List</button>
     </div>
   </div>
 </div>

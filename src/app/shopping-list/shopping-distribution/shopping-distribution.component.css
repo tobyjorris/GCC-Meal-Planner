@@ -9,10 +9,31 @@
 
 .visible {
   display: block;
+  border: 1px solid lightgrey;
 }
 
 .hidden {
   display: none;
+}
+
+button {
+  margin: 0 0 5px 20px;
+}
+
+.caret-down {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 10px solid transparent;
+  border-top-color: black;
+}
+
+.caret-up {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 10px solid transparent;
+  border-bottom-color: black;
 }
 
 

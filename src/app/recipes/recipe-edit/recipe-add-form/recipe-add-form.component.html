@@ -13,8 +13,8 @@
         </div>
         <div class="container recipe-body">
           <div class="container ingredients">
-            <h2>Ingredients</h2>
-            <div class="container ingredient-container" formArrayName="ingredients">
+            <h2 (click)="toggleIngredients()">Ingredients</h2>
+            <div class="container ingredient-container" [ngClass]="ingredientsToggle ? 'visible' : 'hidden'"  formArrayName="ingredients">
               <div
                 class="row content-row"
                 *ngFor="let ingredientCtrl of getIngredientsControls(); let i = index"
@@ -68,7 +68,8 @@
             </div>
           </div>
           <div class="container directions">
-            <h2>Directions</h2>
+            <h2 (click)="toggleDirections()">Directions</h2>
+            <div [ngClass]="directionsToggle ? 'visible' : 'hidden'">
             <p>Meal Preparation Steps</p>
             <div class="col" formArrayName="prepDirections">
               <div
@@ -127,108 +128,111 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>
           <div class="container details">
-            <h2>Recipe Details</h2>
-            <div class="row details-row">
-              <div class="protein-div col-xs-3">
-                <mat-form-field appearance="outline" id="protein-field">
-                  <mat-label>Protein Base</mat-label>
-                  <mat-select formControlName="proteinBase">
-                    <mat-option value="Beef">Beef</mat-option>
-                    <mat-option value="Chicken">Chicken</mat-option>
-                    <mat-option value="Pork">Pork</mat-option>
-                    <mat-option value="Turkey">Turkey</mat-option>
-                    <mat-option value="Vegetarian">Vegetarian</mat-option>
-                  </mat-select>
-                </mat-form-field>
+            <h2 (click)="toggleDetails()">Recipe Details</h2>
+            <div [ngClass]="detailsToggle ? 'visible' : 'hidden'">
+              <div class="row details-row">
+                <div class="protein-div col-xs-3">
+                  <mat-form-field appearance="outline" id="protein-field">
+                    <mat-label>Protein Base</mat-label>
+                    <mat-select formControlName="proteinBase">
+                      <mat-option value="Beef">Beef</mat-option>
+                      <mat-option value="Chicken">Chicken</mat-option>
+                      <mat-option value="Pork">Pork</mat-option>
+                      <mat-option value="Turkey">Turkey</mat-option>
+                      <mat-option value="Vegetarian">Vegetarian</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="method-div col-xs-3">
+                  <mat-form-field appearance="outline" id="method-field">
+                    <mat-label>Cooking Method</mat-label>
+                    <mat-select formControlName="cookingMethod">
+                      <mat-option value="Baked">Baked</mat-option>
+                      <mat-option value="Crock Pot/Instant Pot">Crock Pot/Instant Pot</mat-option>
+                      <mat-option value="Grilled">Grilled</mat-option>
+                      <mat-option value="Warm & Serve">Warm & Serve</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="credit-div col-xs-3">
+                  <mat-form-field appearance="outline" id="credit-field">
+                    <mat-label>Recipe Source</mat-label>
+                    <input matInput
+                           formControlName="credit"
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="price-div col-xs-3">
+                  <mat-form-field appearance="outline" id="price-field">
+                    <mat-label>Est. $</mat-label>
+                    <input matInput
+                           formControlName="cost"
+                    >
+                  </mat-form-field>
+                </div>
               </div>
-              <div class="method-div col-xs-3">
-                <mat-form-field appearance="outline" id="method-field">
-                  <mat-label>Cooking Method</mat-label>
-                  <mat-select formControlName="cookingMethod">
-                    <mat-option value="Baked">Baked</mat-option>
-                    <mat-option value="Crock Pot/Instant Pot">Crock Pot/Instant Pot</mat-option>
-                    <mat-option value="Grilled">Grilled</mat-option>
-                    <mat-option value="Warm & Serve">Warm & Serve</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="credit-div col-xs-3">
-                <mat-form-field appearance="outline" id="credit-field">
-                  <mat-label>Recipe Source</mat-label>
-                  <input matInput
-                         formControlName="credit"
+              <div class="row accommodation-row">
+                <div class="container accommodation-container" formArrayName="accommodations">
+                  <div
+                    class="row content-row"
+                    *ngFor="let accommodationControl of getAccommodationsControls(); let e = index"
+                    [formGroupName]="e"
                   >
-                </mat-form-field>
-              </div>
-              <div class="price-div col-xs-3">
-                <mat-form-field appearance="outline" id="price-field">
-                  <mat-label>Est. $</mat-label>
-                  <input matInput
-                         formControlName="cost"
-                  >
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row accommodation-row">
-              <div class="container accommodation-container" formArrayName="accommodations">
-                <div
-                  class="row content-row"
-                  *ngFor="let accommodationControl of getAccommodationsControls(); let e = index"
-                  [formGroupName]="e"
-                >
-                  <div class="col-sm type-div">
-                    <mat-form-field appearance="fill" id="type-field">
-                      <mat-label>Type of Accommodation</mat-label>
-                      <mat-select formControlName="type">
-                        <mat-option value="Paleo">Easily Paleo</mat-option>
-                        <mat-option value="Dairy">Dairy Free</mat-option>
-                        <mat-option value="Gluten">Gluten Free</mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                    <div class="col-sm type-div">
+                      <mat-form-field appearance="fill" id="type-field">
+                        <mat-label>Type of Accommodation</mat-label>
+                        <mat-select formControlName="type">
+                          <mat-option value="Paleo">Easily Paleo</mat-option>
+                          <mat-option value="Dairy">Dairy Free</mat-option>
+                          <mat-option value="Gluten">Gluten Free</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm comments-div">
+                      <mat-form-field appearance="outline" id="comments-field">
+                        <mat-label>Comments</mat-label>
+                        <textarea matInput formControlName="comment"></textarea>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-danger delete"
+                        (click)="onDeleteAccommodation(e)">X</button>
+                    </div>
                   </div>
-                  <div class="col-sm comments-div">
-                    <mat-form-field appearance="outline" id="comments-field">
-                      <mat-label>Comments</mat-label>
-                      <textarea matInput formControlName="comment"></textarea>
-                    </mat-form-field>
-                  </div>
-                  <div>
-                    <button
-                      type="button"
-                      class="btn btn-danger delete"
-                      (click)="onDeleteAccommodation(e)">X</button>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <button
-                      type="button"
-                      class="btn btn-info add-btn"
-                      (click)="onAddAccommodation()">Add Accommodation</button>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <button
+                        type="button"
+                        class="btn btn-info add-btn"
+                        (click)="onAddAccommodation()">Add Accommodation</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div>
-                <div class="row chefNotes">
-                  <div class="col-xs-12 chefNotes-div">
-                    <mat-form-field appearance="outline" id="chefNotes-field">
-                      <mat-label>Notes to the chef</mat-label>
-                      <textarea matInput formControlName="chefNotes"></textarea>
-                    </mat-form-field>
+              <div class="row">
+                <div>
+                  <div class="row chefNotes">
+                    <div class="col-xs-12 chefNotes-div">
+                      <mat-form-field appearance="outline" id="chefNotes-field">
+                        <mat-label>Notes to the chef</mat-label>
+                        <textarea matInput formControlName="chefNotes"></textarea>
+                      </mat-form-field>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div class="row freezerLabel">
-                  <div class="col-xs-12 freezerLabel-div">
-                    <mat-form-field appearance="outline" id="freezerLabel-field">
-                      <mat-label>Freezer Label</mat-label>
-                      <textarea matInput formControlName="freezerLabel"></textarea>
-                    </mat-form-field>
+                <div>
+                  <div class="row freezerLabel">
+                    <div class="col-xs-12 freezerLabel-div">
+                      <mat-form-field appearance="outline" id="freezerLabel-field">
+                        <mat-label>Freezer Label</mat-label>
+                        <textarea matInput formControlName="freezerLabel"></textarea>
+                      </mat-form-field>
+                    </div>
                   </div>
                 </div>
               </div>

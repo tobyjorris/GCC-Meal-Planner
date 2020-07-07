@@ -36,7 +36,7 @@
         </form> -->
         <div class="container">
           <div class="row ingredient-row" *ngFor="let ingredient of finalIngredientsArray, let i=index">
-            <div class="col-4">{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</div>
+            <div class="col-4"><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</div>
             <div class="col-2 shopping-opt" (click)="onDistribute(ingredient, 'costco', i)">Costco</div>
             <div class="col-2 shopping-opt" (click)="onDistribute(ingredient, 'grocery', i)">Grocery</div>
             <div class="col-2 shopping-opt" (click)="onDistribute(ingredient, 'have', i)">Have</div>

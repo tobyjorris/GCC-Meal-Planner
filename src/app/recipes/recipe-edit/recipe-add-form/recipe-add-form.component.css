@@ -195,6 +195,14 @@ textarea {
   width: 485px;
 }
 
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 
 
 

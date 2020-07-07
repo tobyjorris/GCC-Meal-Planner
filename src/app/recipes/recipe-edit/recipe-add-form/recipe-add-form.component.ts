@@ -19,6 +19,9 @@ export class RecipeAddFormComponent implements OnInit {
   private ingredients: Observable<any[]>;
   selectIngredients;
   private data: Ingredient[];
+  ingredientsToggle = true;
+  detailsToggle = true;
+  directionsToggle = true;
 
   constructor(private db: FirestormService) {
     this.ingredients = this.db.ingredients;
@@ -168,6 +171,9 @@ export class RecipeAddFormComponent implements OnInit {
     this.db.addNewRecipe(submittedRecipe);
     this.editMode = false;
     this.initNewForm();
+    this.ingredientsToggle = true;
+    this.directionsToggle = true;
+    this.detailsToggle = true;
   }
 
   onDelete() {
@@ -175,4 +181,17 @@ export class RecipeAddFormComponent implements OnInit {
     this.editMode = false;
     this.initNewForm();
   }
+
+  toggleDetails() {
+    this.detailsToggle = !this.detailsToggle;
+  }
+
+  toggleIngredients() {
+    this.ingredientsToggle = !this.ingredientsToggle;
+  }
+
+  toggleDirections() {
+    this.directionsToggle = !this.directionsToggle;
+  }
+
 }

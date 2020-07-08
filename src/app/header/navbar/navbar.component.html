@@ -7,7 +7,7 @@
           <button class="btn"><a routerLink="/recipes">View Recipes</a></button>
         </div>
         <div class="menu" *ngIf="loggedIn">
-          <button mat-button [matMenuTriggerFor]="manageMenu">Manage</button>
+          <button class="menubutton" mat-button [matMenuTriggerFor]="manageMenu">Manage</button>
           <mat-menu #manageMenu='matMenu'>
             <button mat-menu-item><a class="nav-link" routerLink="/recipe-edit">Manage Recipes</a></button>
             <button mat-menu-item><a class="nav-link" routerLink="/ingredient-edit">Manage Ingredients</a></button>
@@ -18,9 +18,12 @@
         </div>
       </div>
     </div>
-    <div class="float-sm-right">
-      <span fxFlex></span>
-      <ngx-auth-firebaseui-avatar></ngx-auth-firebaseui-avatar>
+    <div class="menu float-sm-right" *ngIf="loggedIn">
+      <button class="menubutton" mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
+      <mat-menu #profileMenu='matMenu'>
+        <button mat-menu-item><a class="nav-link" routerLink="/profile">View Profile</a></button>
+        <button mat-menu-item><a class="nav-link" routerLink="/ingredient-edit">Log Out</a></button>
+      </mat-menu>
     </div>
   </div>
 </mat-toolbar>

@@ -1,6 +1,6 @@
 img {
-  height: 25px;
-  width: 75px;
+  height: 35px;
+  width: 105px;
 }
 
 a {
@@ -8,10 +8,6 @@ a {
   text-decoration: none;
 }
 
-#navbar {
-  padding-left: 0px;
-  margin-top: 10px;
-}
 
 .menu {
   color: white;
@@ -33,6 +29,7 @@ mat-toolbar {
   margin-left: 0;
   padding-left: 0;
   font-family: Roboto;
+  font-weight: bold;
 }
 
 .btn {
@@ -43,9 +40,14 @@ mat-toolbar {
   bottom: 0;
 }
 
-.mat-button {
+button {
   font-family: Roboto;
   font-size: 1.5rem;
+}
+
+.menubutton {
+  padding-top: 7px;
+  font-weight: lighter;
 }
 
 

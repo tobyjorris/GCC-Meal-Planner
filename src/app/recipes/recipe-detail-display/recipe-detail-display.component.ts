@@ -5,6 +5,7 @@ import { ShoppingListService } from '../../services/shopping-list/shopping-list.
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { PrintModalComponent } from '../print/print-modal/print-modal.component';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-recipe-detail-display',
@@ -18,6 +19,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   recipeCopy: Recipe;
   batchMultiDisplay: number;
   multiBatchMode = false;
+  quantitySelect: FormGroup;
 
   constructor(private db: FirestormService,
               private slService: ShoppingListService,
@@ -29,12 +31,15 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
     this.recipeCopy.ingredients.map(ingredient => {
      return {...ingredient, quantity: Number(ingredient.quantity)};
     });
+
+    this.quantitySelect = new FormGroup({
+      quantity: new FormControl([1])
+    });
   }
 
   ngOnChanges() {
     this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
-    console.log(this.recipeCopy);
-    // this.quantityChangeRef.nativeElement.value = ''; THIS LINE WAS GIVING ME TYPE ERROR: nativeElement undefined
+    this.recipeCopy.multi = 1;
     this.multiBatchMode = false;
   }
 
@@ -43,34 +48,33 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
       const multiplier = Math.pow(10, precision || 0);
       return Math.round(value * multiplier) / multiplier;
     }
-    const qtyChangeInput = this.quantityChangeRef.nativeElement.value;
+    const qtySelectForm = this.quantitySelect.value;
+    const batchMulti = Number(qtySelectForm.quantity);
     this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
-    if (qtyChangeInput > 1) {
+    if (batchMulti > 1) {
       for (const ingredient of this.recipeCopy.ingredients) {
-        ingredient.quantity = round((ingredient.quantity * qtyChangeInput), 1);
+        ingredient.quantity = round((ingredient.quantity * batchMulti), 1);
       }
       this.multiBatchMode = true;
-      this.batchMultiDisplay = qtyChangeInput;
-      this.recipeCopy.multi = qtyChangeInput;
-    } else if (qtyChangeInput === '1') {
+      this.batchMultiDisplay = batchMulti;
+      this.recipeCopy.multi = batchMulti;
+    } else if (batchMulti === 1) {
       this.multiBatchMode = false;
       this.recipeCopy.multi = 1;
-    } else if (isNaN(qtyChangeInput)) {
-        alert('Please enter a number');
-    } else if (qtyChangeInput < 1) {
-        alert('Please enter a number greater than 1');
     }
   }
 
   resetBatch() {
     this.ngOnChanges();
+    this.quantitySelect = new FormGroup({
+      quantity: new FormControl([])
+    });
   }
 
   addToShoppingList() {
     this.multiBatchMode = false;
     this.batchMultiDisplay = null;
     this.slService.writeToStorage(this.recipeCopy);
-    console.log('Recipe added to shopping list:', this.recipeCopy);
     this.dialog.open(DialogComponent, {data: this.recipeCopy});
   }
 

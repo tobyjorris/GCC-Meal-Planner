@@ -9,9 +9,11 @@ export class UnitDisplayPipe implements PipeTransform {
     if (unit === 'cup') {
       return 'cups';
     } else if (unit === 'lb') {
-      return 'pounds';
+      return 'lbs';
     } else if (unit === 'fl-oz') {
       return 'oz';
+    } else if (unit === 'Tbs') {
+      return 'tbsp';
     } else {
       return unit;
     }

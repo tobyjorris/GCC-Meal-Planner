@@ -9,7 +9,7 @@
 
 .visible {
   display: block;
-  border: 1px solid lightgrey;
+  background: lightgrey;
 }
 
 .hidden {

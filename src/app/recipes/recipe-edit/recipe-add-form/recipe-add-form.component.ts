@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestormService} from '../../../services/firestore/firebaseservice.service';
+import { FirestormService} from '../../../services/firestore/firestore.service';
 import { Recipe } from '../../../interfaces/recipe';
 import { Ingredient } from '../../../interfaces/ingredient';
 import { Directions } from '../../../interfaces/directions';
@@ -19,9 +19,9 @@ export class RecipeAddFormComponent implements OnInit {
   private ingredients: Observable<any[]>;
   selectIngredients;
   private data: Ingredient[];
-  ingredientsToggle = true;
-  detailsToggle = true;
-  directionsToggle = true;
+  ingredientsToggleStatus = true;
+  detailsToggleStatus = true;
+  directionsToggleStatus = true;
 
   constructor(private db: FirestormService) {
     this.ingredients = this.db.ingredients;
@@ -96,6 +96,7 @@ export class RecipeAddFormComponent implements OnInit {
     this.onAddAccommodation();
     this.onAddIngredient();
     this.onAddPrepDirections();
+    this.onAddCookDirections();
   }
 
   onAddIngredient() {
@@ -171,9 +172,9 @@ export class RecipeAddFormComponent implements OnInit {
     this.db.addNewRecipe(submittedRecipe);
     this.editMode = false;
     this.initNewForm();
-    this.ingredientsToggle = true;
-    this.directionsToggle = true;
-    this.detailsToggle = true;
+    this.ingredientsToggleStatus = true;
+    this.directionsToggleStatus = true;
+    this.detailsToggleStatus = true;
   }
 
   onDelete() {
@@ -183,15 +184,15 @@ export class RecipeAddFormComponent implements OnInit {
   }
 
   toggleDetails() {
-    this.detailsToggle = !this.detailsToggle;
+    this.detailsToggleStatus = !this.detailsToggleStatus;
   }
 
   toggleIngredients() {
-    this.ingredientsToggle = !this.ingredientsToggle;
+    this.ingredientsToggleStatus = !this.ingredientsToggleStatus;
   }
 
   toggleDirections() {
-    this.directionsToggle = !this.directionsToggle;
+    this.directionsToggleStatus = !this.directionsToggleStatus;
   }
 
 }

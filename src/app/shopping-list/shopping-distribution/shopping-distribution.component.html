@@ -38,10 +38,33 @@
       </div>
     </div>
     <div class="row" [ngClass]="costcoToggleStatus ? 'visible' : 'hidden'">
+      <h4>Dairy</h4>
       <ul>
-        <li *ngFor="let ingredient of costcoIngredients, let i = index" (click)="onClick(ingredient, i, 'costco')">
-          {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
-        </li>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index" >
+          <li *ngIf="ingredient.department === 'Dairy'" (click)="onClick(ingredient, i, 'costco')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
+      </ul>
+      <h4>Meat</h4>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Meat'" (click)="onClick(ingredient, i, 'costco')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
+      </ul>
+      <h4>Produce</h4>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Produce'" (click)="onClick(ingredient, i, 'costco')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
+      </ul>
+      <h4>Dry Goods</h4>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index" >
+          <li *ngIf="ingredient.department === 'Dry Goods'" (click)="onClick(ingredient, i, 'costco')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
       </ul>
       <button class="btn btn-info" (click)="shoppingPrint()">Print Costco List</button>
     </div>
@@ -55,10 +78,33 @@
       </div>
     </div>
     <div class="row" [ngClass]="groceryToggleStatus ? 'visible' : 'hidden'">
+      <h4>Dairy</h4>
       <ul>
-        <li *ngFor="let ingredient of groceryIngredients, let i = index" (click)="onClick(ingredient, i, 'grocery')">
-          {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}
-        </li>
+        <ng-container *ngFor="let ingredient of groceryIngredients, let i = index" >
+          <li *ngIf="ingredient.department === 'Dairy'" (click)="onClick(ingredient, i, 'grocery')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
+      </ul>
+      <h4>Meat</h4>
+      <ul>
+        <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Meat'" (click)="onClick(ingredient, i, 'grocery')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
+      </ul>
+      <h4>Produce</h4>
+      <ul>
+        <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Produce'" (click)="onClick(ingredient, i, 'grocery')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
+      </ul>
+      <h4>Dry Goods</h4>
+      <ul>
+        <ng-container *ngFor="let ingredient of groceryIngredients, let i = index" >
+          <li *ngIf="ingredient.department === 'Dry Goods'" (click)="onClick(ingredient, i, 'grocery')">
+            {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}} {{ingredient.department}}</li>
+        </ng-container>
       </ul>
       <button class="btn btn-info" (click)="shoppingPrint()">Print Grocery Store List</button>
     </div>

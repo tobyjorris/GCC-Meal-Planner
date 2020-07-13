@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FirestormService} from '../../services/firestore/firebaseservice.service';
+import {FirestormService} from '../../services/firestore/firestore.service';
 import {Observable} from 'rxjs';
 
 @Component({

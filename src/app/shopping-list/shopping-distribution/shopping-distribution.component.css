@@ -9,7 +9,6 @@
 
 .visible {
   display: block;
-  background: lightgrey;
 }
 
 .hidden {
@@ -26,6 +25,8 @@ button {
   display: inline-block;
   border: 10px solid transparent;
   border-top-color: black;
+  margin-top: 4px;
+  margin-left: 8px;
 }
 
 .caret-up {
@@ -34,6 +35,8 @@ button {
   display: inline-block;
   border: 10px solid transparent;
   border-bottom-color: black;
+  margin-bottom: 4px;
+  margin-left: 8px;
 }
 
 .ingredient-counter {

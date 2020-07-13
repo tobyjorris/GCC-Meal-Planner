@@ -43,6 +43,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { UnitDisplayPipe } from './pipes/unit-display.pipe';
 import { ShoppingDistributionComponent } from './shopping-list/shopping-distribution/shopping-distribution.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
     IngredientEditFormComponent,
     UnitDisplayPipe,
     ShoppingDistributionComponent,
+    LoadingSpinnerComponent,
   ],
     imports: [
         BrowserModule,

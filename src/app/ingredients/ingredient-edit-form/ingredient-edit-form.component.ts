@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestormService } from '../../services/firestore/firebaseservice.service';
+import { FirestormService } from '../../services/firestore/firestore.service';
 import { Ingredient} from '../../interfaces/ingredient';
 
 @Component({

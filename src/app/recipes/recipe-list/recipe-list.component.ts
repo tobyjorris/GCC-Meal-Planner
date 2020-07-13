@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
-import { FirestormService } from '../../services/firestore/firebaseservice.service';
+import { FirestormService } from '../../services/firestore/firestore.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,7 +14,11 @@ export class RecipeListComponent implements OnInit {
   term: string;
   searchText: string;
   constructor(private db: FirestormService ) {
+    // setTimeout(() => {
+    //   this.recipes = this.db.recipes;
+    // }, 800);
     this.recipes = this.db.recipes;
+
   }
 
   ngOnInit(): void {

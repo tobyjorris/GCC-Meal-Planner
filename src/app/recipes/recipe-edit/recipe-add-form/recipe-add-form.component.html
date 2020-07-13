@@ -13,8 +13,8 @@
         </div>
         <div class="container recipe-body">
           <div class="container ingredients">
-            <h2 (click)="toggleIngredients()">Ingredients</h2>
-            <div class="container ingredient-container" [ngClass]="ingredientsToggle ? 'visible' : 'hidden'"  formArrayName="ingredients">
+            <h2 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h2>
+            <div class="container ingredient-container" [ngClass]="ingredientsToggleStatus ? 'visible' : 'hidden'"  formArrayName="ingredients">
               <div
                 class="row content-row"
                 *ngFor="let ingredientCtrl of getIngredientsControls(); let i = index"
@@ -68,8 +68,8 @@
             </div>
           </div>
           <div class="container directions">
-            <h2 (click)="toggleDirections()">Directions</h2>
-            <div [ngClass]="directionsToggle ? 'visible' : 'hidden'">
+            <h2 (click)="toggleDirections()">Directions<span [ngClass]="directionsToggleStatus? 'caret-up' : 'caret-down'"></span></h2>
+            <div [ngClass]="directionsToggleStatus ? 'visible' : 'hidden'">
             <p>Meal Preparation Steps</p>
             <div class="col" formArrayName="prepDirections">
               <div
@@ -79,7 +79,7 @@
               >
                 <div class="col-xs-11 p-direction-div">
                   <mat-form-field appearance="outline" id="p-direction-field">
-                    <mat-label>Enter Direction</mat-label>
+                    <mat-label>Enter Prep Direction</mat-label>
                     <textarea matInput formControlName="content"></textarea>
                   </mat-form-field>
                 </div>
@@ -108,7 +108,7 @@
               >
                 <div class="col-xs-11 c-direction-div">
                   <mat-form-field appearance="outline" id="c-direction-field">
-                    <mat-label>Enter Direction</mat-label>
+                    <mat-label>Enter Cooking Direction</mat-label>
                     <textarea matInput formControlName="content"></textarea>
                   </mat-form-field>
                 </div>
@@ -131,8 +131,8 @@
             </div>
           </div>
           <div class="container details">
-            <h2 (click)="toggleDetails()">Recipe Details</h2>
-            <div [ngClass]="detailsToggle ? 'visible' : 'hidden'">
+            <h2 (click)="toggleDetails()">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h2>
+            <div [ngClass]="detailsToggleStatus ? 'visible' : 'hidden'">
               <div class="row details-row">
                 <div class="protein-div col-xs-3">
                   <mat-form-field appearance="outline" id="protein-field">

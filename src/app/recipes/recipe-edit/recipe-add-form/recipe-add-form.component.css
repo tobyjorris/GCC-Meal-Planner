@@ -203,6 +203,26 @@ textarea {
   display: none;
 }
 
+.caret-down {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 10px solid transparent;
+  border-top-color: black;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+
+.caret-up {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 10px solid transparent;
+  border-bottom-color: black;
+  margin-bottom: 4px;
+  margin-left: 8px;
+}
+
 
 
 

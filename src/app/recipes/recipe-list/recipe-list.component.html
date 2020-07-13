@@ -50,13 +50,17 @@
 <div class="container recipe-list">
   <div class="row">
   <div class="col-12">
-
-    <app-recipe-card
-      class="recCard"
-      *ngFor="let recipe of recipes | async | filter: searchText"
-      [recipe]="recipe"
-      (recipeSelected)="onRecipeSelected(recipe)"
-    ></app-recipe-card>
+    <div *ngIf="!recipes else recipeList" class="d-flex justify-content-center">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <ng-template #recipeList>
+      <app-recipe-card
+        class="recCard"
+        *ngFor="let recipe of recipes | async | filter: searchText"
+        [recipe]="recipe"
+        (recipeSelected)="onRecipeSelected(recipe)"
+      ></app-recipe-card>
+    </ng-template>
   </div>
   </div>
 </div>

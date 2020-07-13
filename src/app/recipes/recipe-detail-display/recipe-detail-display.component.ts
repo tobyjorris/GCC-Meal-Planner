@@ -1,6 +1,6 @@
 import {Component, ElementRef, Inject, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
-import { FirestormService } from '../../services/firestore/firebaseservice.service';
+import { FirestormService } from '../../services/firestore/firestore.service';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../dialog/dialog.component';

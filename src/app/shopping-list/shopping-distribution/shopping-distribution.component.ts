@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
+import { FirestormService } from '../../services/firestore/firestore.service';
+import {Observable} from "rxjs";
+import {Ingredient} from "../../interfaces/ingredient";
+import {flatMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-shopping-distribution',
@@ -15,21 +19,35 @@ export class ShoppingDistributionComponent implements OnInit {
   groceryToggleStatus = false;
   haveToggleStatus = false;
   stockpileToggleStatus = false;
+  ingredients: Observable<any[]>;
+  ingredientData;
+  data: Ingredient[];
 
-  constructor(private slService: ShoppingListService) { }
-
-  ngOnInit(): void {
-    this.slService.distributedIngredient.subscribe(ingredient => {
-      if (ingredient.source === 'costco') {
-        this.costcoIngredients.push(ingredient);
-      } else if (ingredient.source === 'grocery') {
-        this.groceryIngredients.push(ingredient);
-      } else if (ingredient.source === 'have') {
-        this.haveIngredients.push(ingredient);
-      } else if (ingredient.source === 'stockpile') {
-        this.stockpileIngredients.push(ingredient);
+  constructor(private slService: ShoppingListService, private db: FirestormService) {
+    this.ingredients = this.db.ingredients;
+    this.ingredients.subscribe(ingredients => {
+      this.data = ingredients as Ingredient[];
+      this.ingredientData = this.data.slice();
+    });
+    this.slService.distributedIngredient.subscribe(distIngredient => {
+      this.ingredientData.find(ing => {
+        if (ing.name === distIngredient.name) {
+          distIngredient.department = ing.department;
+        }
+      });
+      if (distIngredient.source === 'costco') {
+        this.costcoIngredients.push(distIngredient);
+      } else if (distIngredient.source === 'grocery') {
+        this.groceryIngredients.push(distIngredient);
+      } else if (distIngredient.source === 'have') {
+        this.haveIngredients.push(distIngredient);
+      } else if (distIngredient.source === 'stockpile') {
+        this.stockpileIngredients.push(distIngredient);
       }
     });
+  }
+
+  ngOnInit(): void {
   }
 
   onClick(ingredient, i: number, source: string) {

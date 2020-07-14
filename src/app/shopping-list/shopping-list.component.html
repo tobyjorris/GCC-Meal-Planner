@@ -1,7 +1,7 @@
-<div class="container shopping-list">
+<div class="container-fluid shopping-list">
   <h2>Shopping Cart</h2>
   <hr>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-7">
         <h5>Recipes in cart:</h5>
@@ -13,27 +13,6 @@
           </li>
         </ul>
         <h4>Ingredient List:</h4>
-        <!-- <form [formGroup]="ingredientDistributionForm" (ngSubmit)="onSubmit()">
-          <div *ngFor="let ingredient of finalIngredientsArray">
-            <div class="container ingredient-select">
-              <div class="row mat-radio-row">
-                <div><p>{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} |  </p></div>
-                <div class="col mat-radio-item" formArrayName="distributionForm">
-                  <div *ngFor="let distributionControl of getDistributionControls(); let i = index"
-                       [formGroupName]="i">
-                    <mat-radio-group class="mat-radio-group" name="source" formControlName="source">
-                      <mat-radio-button labelPosition="before" value="costco">Costco</mat-radio-button>
-                      <mat-radio-button labelPosition="before" value="grocery" >Grocery</mat-radio-button>
-                      <mat-radio-button labelPosition="before" value="have" >Already Have</mat-radio-button>
-                      <mat-radio-button labelPosition="before" value="stock" >Stockpile</mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button type="submit">Distribute Ingredients</button>
-        </form> -->
         <div class="container">
           <div class="row ingredient-row" *ngFor="let ingredient of finalIngredientsArray, let i=index">
             <div class="col-4"><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</div>

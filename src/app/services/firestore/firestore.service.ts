@@ -3,7 +3,6 @@ import { Observable, Subject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Recipe } from '../../interfaces/recipe';
 import {Ingredient} from '../../interfaces/ingredient';
-import Item = firebase.analytics.Item;
 
 @Injectable({
   providedIn: 'root'

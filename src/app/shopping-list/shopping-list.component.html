@@ -3,7 +3,7 @@
   <hr>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-7">
+      <div class="col-6">
         <h5>Recipes in cart:</h5>
         <ul>
           <li *ngFor="let recipe of shoppingList">
@@ -13,13 +13,17 @@
           </li>
         </ul>
         <h4>Ingredient List:</h4>
-        <div class="container">
-          <div class="row ingredient-row" *ngFor="let ingredient of finalIngredientsArray, let i=index">
-            <div class="col-4"><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</div>
-            <div class="col-2 shopping-opt" (click)="onDistribute(ingredient, 'costco', i)">Costco</div>
-            <div class="col-2 shopping-opt" (click)="onDistribute(ingredient, 'grocery', i)">Grocery</div>
-            <div class="col-2 shopping-opt" (click)="onDistribute(ingredient, 'have', i)">Have</div>
-            <div class="col-2 shopping-opt" (click)="onDistribute(ingredient, 'stockpile', i)">Stockpile</div>
+        <div class="container-fluid">
+          <div class="row ingredient-row d-flex" *ngFor="let ingredient of finalIngredientsArray, let i=index">
+            <div class="col-4 ing-details"><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</div>
+            <div class="col shopping-dist-opts">
+              <div class="row">
+                <div class="shopping-opt" (click)="onDistribute(ingredient, 'costco', i)">Costco</div>
+                <div class="shopping-opt" (click)="onDistribute(ingredient, 'grocery', i)">Grocery</div>
+                <div class="shopping-opt" (click)="onDistribute(ingredient, 'have', i)">Have</div>
+                <div class="shopping-opt" (click)="onDistribute(ingredient, 'stockpile', i)">Stockpile</div>
+              </div>
+            </div>
           </div>
         </div>
         <button type="button" class="btn btn-info" (click)="onPrint()">Print Shopping List</button>

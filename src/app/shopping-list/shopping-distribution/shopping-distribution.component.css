@@ -43,4 +43,21 @@ button {
   font-size: 30px;
 }
 
+h5 {
+  margin-bottom: 2px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 10px;
+  margin-bottom: 2px;
+}
+
+
+i {
+  font-size: 22px;
+}
+
+
+
 

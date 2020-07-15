@@ -22,6 +22,8 @@
 
 .shopping-opt {
   border: 1px solid black;
+  width: 80px !important;
+  text-align: center;
 }
 
 .ingredient-row {

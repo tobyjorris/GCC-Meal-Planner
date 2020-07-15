@@ -44,6 +44,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UnitDisplayPipe } from './pipes/unit-display.pipe';
 import { ShoppingDistributionComponent } from './shopping-list/shopping-distribution/shopping-distribution.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
@@ -102,6 +103,7 @@ const appRoutes: Routes = [
         MatTableModule,
         MatCheckboxModule,
         MatRadioModule,
+        MatTabsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

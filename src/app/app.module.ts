@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import * as firebase from 'firebase';
 import { AppComponent } from './app.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 import { HeaderComponent } from './header/header.component';
@@ -29,7 +30,7 @@ import { FractionizeModule } from './pipes/fraction.pipe';
 import { PrintModalComponent } from './recipes/print/print-modal/print-modal.component';
 import { ShoppingPrintModalComponent } from './shopping-list/shopping-print-modal/shopping-print-modal.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginPageComponent } from './user/login-page/login-page.component';
 import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { environment } from '../environments/environment';
@@ -44,17 +45,22 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UnitDisplayPipe } from './pipes/unit-display.pipe';
 import { ShoppingDistributionComponent } from './shopping-list/shopping-distribution/shopping-distribution.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import {MatTabsModule} from "@angular/material/tabs";
+import { MatTabsModule } from '@angular/material/tabs';
+import { LoggedInGuard } from 'ngx-auth-firebaseui';
+import { ProfilePageComponent } from './user/profile-page/profile-page.component';
 
 const appRoutes: Routes = [
-  {path: '', component: RecipesComponent, canActivate: [AuthGuard] },
-  {path: 'profile', component: LoginPageComponent },
-  {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
-  {path: 'shopping-cart', component: ShoppingListComponent, canActivate: [AuthGuard]},
-  {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [AuthGuard]},
-  {path: 'ingredient-edit', component: IngredientEditComponent, canActivate: [AuthGuard]},
+  {path: '', component: RecipesComponent, canActivate: [LoggedInGuard] },
+  {path: 'profile', component: ProfilePageComponent, canActivate: [LoggedInGuard]},
+  {path: 'log-in', component: LoginPageComponent },
+  {path: 'recipes', component: RecipesComponent, canActivate: [LoggedInGuard]},
+  {path: 'shopping-cart', component: ShoppingListComponent, canActivate: [LoggedInGuard]},
+  {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [LoggedInGuard]},
+  {path: 'ingredient-edit', component: IngredientEditComponent, canActivate: [LoggedInGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
+
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
@@ -81,6 +87,7 @@ const appRoutes: Routes = [
     UnitDisplayPipe,
     ShoppingDistributionComponent,
     LoadingSpinnerComponent,
+    ProfilePageComponent,
   ],
     imports: [
         BrowserModule,
@@ -96,7 +103,26 @@ const appRoutes: Routes = [
         MatDialogModule,
         MatButtonModule,
         FractionizeModule,
-        [NgxAuthFirebaseUIModule.forRoot(environment.firebase)],
+        NgxAuthFirebaseUIModule.forRoot(
+          environment.firebase,
+          () => 'meal-planner-factory',
+          {
+            enableFirestoreSync: true, // enable/disable autosync users with firestore
+            toastMessageOnAuthSuccess: false, // whether to open/show a snackbar message on auth success - default : true
+            toastMessageOnAuthError: false, // whether to open/show a snackbar message on auth error - default : true
+            authGuardFallbackURL: '/log-in', // url for unauthenticated users - to use in combination with canActivate feature on a route
+            authGuardLoggedInURL: '/recipes', // url for authenticated users - to use in combination with canActivate feature on a route
+            passwordMaxLength: 60, // `min/max` input parameters in components should be within this range.
+            passwordMinLength: 8, // Password length min/max in forms independently of each componenet min/max.
+            // Same as password but for the name
+            nameMaxLength: 50,
+            nameMinLength: 2,
+            // If set, sign-in/up form is not available until email has been verified.
+            // Plus protected routes are still protected even though user is connected.
+            guardProtectedRoutesUntilEmailIsVerified: false,
+            enableEmailVerification: true, // default: true
+          }
+        ),
         MatMenuModule,
         MatToolbarModule,
         MatSortModule,

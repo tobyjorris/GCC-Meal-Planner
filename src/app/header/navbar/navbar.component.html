@@ -22,7 +22,7 @@
       <button class="menubutton" mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
       <mat-menu #profileMenu='matMenu'>
         <button mat-menu-item><a class="nav-link" routerLink="/profile">View Profile</a></button>
-        <button mat-menu-item><a class="nav-link" routerLink="/ingredient-edit">Log Out</a></button>
+        <button mat-menu-item (click)="signOut()">Sign Out</button>
       </mat-menu>
     </div>
   </div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { FirestormService } from '../../services/firestore/firestore.service';
-import {Observable} from "rxjs";
-import {Ingredient} from "../../interfaces/ingredient";
-import {flatMap} from "rxjs/operators";
+import {Observable} from 'rxjs';
+import {Ingredient} from '../../interfaces/ingredient';
+import {flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-shopping-distribution',
@@ -19,20 +19,24 @@ export class ShoppingDistributionComponent implements OnInit {
   groceryToggleStatus = false;
   haveToggleStatus = false;
   stockpileToggleStatus = false;
-  ingredients: Observable<any[]>;
-  ingredientData;
+  ingredientsRef: Observable<any[]>;
+  ingredientRefData: any[];
   data: Ingredient[];
+  distributedIngredientsArray = [];
 
   constructor(private slService: ShoppingListService, private db: FirestormService) {
-    this.ingredients = this.db.ingredients;
-    this.ingredients.subscribe(ingredients => {
+    this.ingredientsRef = this.db.ingredients;
+    this.ingredientsRef.subscribe(ingredients => {
       this.data = ingredients as Ingredient[];
-      this.ingredientData = this.data.slice();
+      this.ingredientRefData = this.data.slice();
     });
+
+    console.log('ingredientRef in constructor', this.ingredientRefData);
+
     this.slService.distributedIngredient.subscribe(distIngredient => {
-      this.ingredientData.find(ing => {
-        if (ing.name === distIngredient.name) {
-          distIngredient.department = ing.department;
+      this.ingredientRefData.find(ingRef => {
+        if (ingRef.name === distIngredient.name) {
+          distIngredient.department = ingRef.department;
         }
       });
       if (distIngredient.source === 'costco') {
@@ -48,9 +52,11 @@ export class ShoppingDistributionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.distributedIngredientsArray = this.slService.distGetFromStorage();
+    console.log('distArray', this.distributedIngredientsArray);
   }
 
-  onClick(ingredient, i: number, source: string) {
+  onDistIngredientSelect(ingredient, i: number, source: string) {
     if (source === 'costco') {
       this.costcoIngredients.splice(i, 1);
     } else if (source === 'grocery') {
@@ -80,7 +86,7 @@ export class ShoppingDistributionComponent implements OnInit {
   }
 
   shoppingPrint() {
-    alert('printing shopping list');
+    this.slService.distClearStorage();
   }
 
 }

@@ -1,117 +1,119 @@
 <mat-tab-group>
   <mat-tab label="Costco ({{costcoIngredients.length}})">
-    <h5>Produce</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Produce'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
-      </ng-container>
-    </ul>
-    <h5>Canned Goods</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index" >
-        <li *ngIf="ingredient.department === 'Canned'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
-      </ng-container>
-    </ul>
-    <h5>Dairy</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index" >
-        <li *ngIf="ingredient.department === 'Dairy'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
-      </ng-container>
-    </ul>
-    <h5>Meat</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Meat'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
-      </ng-container>
-    </ul>
-    <h5>Frozen</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Frozen'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
-      </ng-container>
-    </ul>
-    <h5>Dry Goods</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index" >
-        <li *ngIf="ingredient.department === 'Dried'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
-      </ng-container>
-    </ul>
-    <h5>Baked Goods</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Baked'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
-      </ng-container>
-    </ul>
-    <h5>Miscellaneous</h5>
-    <ul>
-      <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Misc'" (click)="onClick(ingredient, i, 'costco')">
-          <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
-      </ng-container>
-    </ul>
-    <button class="btn btn-info" (click)="shoppingPrint()">Print Costco List</button>
+    <div class="container-fluid">
+      <h5 *ngIf="costcoIngredients.toString().includes('Produce')">Produce</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Produce'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <h5>Canned Goods</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Canned'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
+        </ng-container>
+      </ul>
+      <h5>Dairy</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index" >
+          <li *ngIf="ingredient.department === 'Dairy'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
+        </ng-container>
+      </ul>
+      <h5>Meat</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Meat'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <h5>Frozen</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Frozen'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <h5>Dry Goods</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index" >
+          <li *ngIf="ingredient.department === 'Dried'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <h5>Baked Goods</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Baked'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <h5>Miscellaneous</h5>
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li *ngIf="ingredient.department === 'Misc'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
+            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <button class="btn btn-info" (click)="shoppingPrint()">Print Costco List</button>
+    </div>
   </mat-tab>
   <mat-tab label="Grocery Store ({{groceryIngredients.length}})">
     <h5>Produce</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Produce'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Produce'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
       </ng-container>
     </ul>
     <h5>Canned Goods</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index" >
-        <li *ngIf="ingredient.department === 'Canned'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Canned'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
       </ng-container>
     </ul>
     <h5>Dairy</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index" >
-        <li *ngIf="ingredient.department === 'Dairy'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Dairy'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
       </ng-container>
     </ul>
     <h5>Meat</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Meat'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Meat'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
       </ng-container>
     </ul>
     <h5>Frozen</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Frozen'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Frozen'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
       </ng-container>
     </ul>
     <h5>Dry Goods</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index" >
-        <li *ngIf="ingredient.department === 'Dried'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Dried'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
       </ng-container>
     </ul>
     <h5>Baked Goods</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Baked'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Baked'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
       </ng-container>
     </ul>
     <h5>Miscellaneous</h5>
     <ul>
       <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
-        <li *ngIf="ingredient.department === 'Misc'" (click)="onClick(ingredient, i, 'grocery')">
+        <li *ngIf="ingredient.department === 'Misc'" (click)="onDistIngredientSelect(ingredient, i, 'grocery')">
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
       </ng-container>
     </ul>
@@ -119,7 +121,7 @@
   </mat-tab>
   <mat-tab label="Already Have ({{haveIngredients.length}})">
     <ul>
-      <li *ngFor="let ingredient of haveIngredients, let i = index" (click)="onClick(ingredient, i, 'have')">
+      <li *ngFor="let ingredient of haveIngredients, let i = index" (click)="onDistIngredientSelect(ingredient, i, 'have')">
         <strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}
       </li>
     </ul>
@@ -127,7 +129,7 @@
   </mat-tab>
   <mat-tab label="Stockpile ({{stockpileIngredients.length}})">
     <ul>
-      <li *ngFor="let ingredient of stockpileIngredients, let i = index" (click)="onClick(ingredient, i, 'stockpile')">
+      <li *ngFor="let ingredient of stockpileIngredients, let i = index" (click)="onDistIngredientSelect(ingredient, i, 'stockpile')">
         <strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}
       </li>
     </ul>

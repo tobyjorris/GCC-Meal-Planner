@@ -25,7 +25,7 @@ export class ShoppingListService {
   }
 
   clearShoppingList() {
-    window.localStorage.clear();
+    window.localStorage.removeItem('shopping-list');
   }
 
   sendToDistribution(ingredient, source) {
@@ -36,10 +36,29 @@ export class ShoppingListService {
       source,
     };
     this.distributedIngredient.next(distributedIngredient);
+    this.distWriteToStorage(ingredient);
   }
 
   undoDistribution(ingredient) {
     this.returnedDistributedIngredient.next(ingredient);
+  }
+
+  distWriteToStorage(ingredient) {
+    const existingDistList = JSON.parse(window.localStorage.getItem('dist-list'));
+    if (existingDistList !== null) {
+      existingDistList.push(ingredient);
+      window.localStorage.setItem('dist-list', JSON.stringify(existingDistList));
+    } else {
+      window.localStorage.setItem('dist-list', JSON.stringify([ingredient]));
+    }
+  }
+
+  distGetFromStorage() {
+    return JSON.parse(window.localStorage.getItem('dist-list'));
+  }
+
+  distClearStorage() {
+    window.localStorage.removeItem('dist-list');
   }
 
 }

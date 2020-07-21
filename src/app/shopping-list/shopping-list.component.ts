@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingPrintModalComponent } from './shopping-print-modal/shopping-print-modal.component';
-import {ConversionService} from '../services/conversion/conversion.service';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-
+import { ConversionService } from '../services/conversion/conversion.service';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-list',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Recipe } from '../../interfaces/recipe';
 import {Ingredient} from '../../interfaces/ingredient';
@@ -19,6 +19,7 @@ export class FirestormService{
   recipeWasSelected = new Subject<object>();
   startedEditingIngredient = new Subject<object>();
   ingredientWasSelected = new Subject<object>();
+  public printedRecipe: Subject<object> = new BehaviorSubject<object>(null);
 
   constructor(private db: AngularFirestore) {
     const recipeCollection = db.collection<Recipe>('recipes');
@@ -62,5 +63,9 @@ export class FirestormService{
     }).catch(error => {
       console.error('Error removing document: ', error);
     });
+  }
+
+  fetchRecipe(name: string) {
+    return this.recipeCol.doc(name);
   }
 }

@@ -1,11 +1,11 @@
-import {Component, ElementRef, Inject, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { FirestormService } from '../../services/firestore/firestore.service';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../dialog/dialog.component';
-import { PrintModalComponent } from '../print/print-modal/print-modal.component';
-import {FormControl, FormGroup} from "@angular/forms";
+import { FormControl, FormGroup } from '@angular/forms';
+import { PrintService } from '../../services/print.service';
 
 @Component({
   selector: 'app-recipe-detail-display',
@@ -24,6 +24,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   constructor(private db: FirestormService,
               private slService: ShoppingListService,
               public dialog: MatDialog,
+              private printService: PrintService
   ) { }
 
   ngOnInit(): void {
@@ -79,7 +80,8 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   }
 
   onPrint() {
-    this.dialog.open(PrintModalComponent, {data: this.recipeCopy});
+    this.printService.printDocument('recipe-print', this.recipeCopy.title);
+    this.db.printedRecipe.next(this.recipeCopy);
   }
 
 }

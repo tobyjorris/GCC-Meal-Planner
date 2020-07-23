@@ -27,11 +27,9 @@ import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
 import { FractionizeModule } from './pipes/fraction.pipe';
-import { PrintModalComponent } from './recipes/print/print-modal/print-modal.component';
 import { ShoppingPrintModalComponent } from './shopping-list/shopping-print-modal/shopping-print-modal.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginPageComponent } from './user/login-page/login-page.component';
-import { AuthGuard } from './services/auth-guard/auth-guard.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { environment } from '../environments/environment';
 import { MatMenuModule} from '@angular/material/menu';
@@ -48,6 +46,9 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { MatTabsModule } from '@angular/material/tabs';
 import { LoggedInGuard } from 'ngx-auth-firebaseui';
 import { ProfilePageComponent } from './user/profile-page/profile-page.component';
+import { PrintLayoutComponent } from './print/print-layout/print-layout.component';
+import { PrintRecipeComponent } from './print/print-recipe/print-recipe.component';
+import { PrintListComponent } from './print/print-list/print-list.component';
 
 const appRoutes: Routes = [
   {path: '', component: RecipesComponent, canActivate: [LoggedInGuard] },
@@ -57,7 +58,15 @@ const appRoutes: Routes = [
   {path: 'shopping-cart', component: ShoppingListComponent, canActivate: [LoggedInGuard]},
   {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [LoggedInGuard]},
   {path: 'ingredient-edit', component: IngredientEditComponent, canActivate: [LoggedInGuard]},
-  {path: '**', component: PageNotFoundComponent}
+  {path: '**', component: PageNotFoundComponent},
+  { path: 'print',
+    outlet: 'print',
+    component: PrintLayoutComponent,
+    children: [
+      {path: 'recipe-print/:recipeIds', component: PrintRecipeComponent},
+      {path: 'shopping-print', component: PrintListComponent}
+    ]
+  }
 ];
 
 firebase.initializeApp(environment.firebase);
@@ -78,7 +87,6 @@ firebase.initializeApp(environment.firebase);
     RecipeEditComponent,
     RecipeAddFormComponent,
     DialogComponent,
-    PrintModalComponent,
     ShoppingPrintModalComponent,
     LoginPageComponent,
     PageNotFoundComponent,
@@ -88,6 +96,9 @@ firebase.initializeApp(environment.firebase);
     ShoppingDistributionComponent,
     LoadingSpinnerComponent,
     ProfilePageComponent,
+    PrintLayoutComponent,
+    PrintRecipeComponent,
+    PrintListComponent,
   ],
     imports: [
         BrowserModule,

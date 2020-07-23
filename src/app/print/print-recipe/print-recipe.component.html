@@ -1,0 +1,34 @@
+<div class="recipe">
+  <div class="recipe-detail">
+    <h1>{{recipe.title}} (x{{recipe.multi}})</h1>
+    <div>
+      <div class="details-section">
+        <p><strong>Protein Base:</strong> {{recipe.proteinBase}} //
+          <strong>Method:</strong> {{recipe.cookingMethod}} //
+          <strong>${{(recipe.cost * recipe.multi)}}</strong> //
+          <strong>Recipe Source:</strong> {{recipe.credit}}</p>
+        <div class="row accommodations-div">
+          <div *ngFor="let accommodations of recipe.accommodations">
+            <div class="col" *ngIf="accommodations.type">
+              <p><strong>Accommodations: </strong>{{accommodations.type}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4>Ingredients</h4>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients ">
+          {{ingredient.quantity | fractionize}} {{ingredient.measurement | unitDisplay}} {{ingredient.name}}</li>
+      </ul>
+    </div>
+    <div>
+      <hr>
+      <app-instructions-list [recipe]="recipe"></app-instructions-list>
+      <div>
+        <h6>Notes To The Chef</h6>
+        <p>{{recipe.chefNotes}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

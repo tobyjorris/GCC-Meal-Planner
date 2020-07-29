@@ -1,1 +1,6 @@
-<p>print-list works!</p>
+<h1 *ngIf="listTitle">{{listTitle}} Shopping List</h1>
+<ul>
+  <li *ngFor="let ingredient of printedList">
+    {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+  </li>
+</ul>

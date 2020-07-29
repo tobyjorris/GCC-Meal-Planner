@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ShoppingPrintModalComponent } from './shopping-print-modal/shopping-print-modal.component';
 import { ConversionService } from '../services/conversion/conversion.service';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
@@ -72,12 +71,6 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
-  onPrint() {
-    this.dialog.open(ShoppingPrintModalComponent, {data: this.finalIngredientsArray});
-    this.shoppingList = [];
-    this.finalIngredientsArray = [];
-    this.slService.clearShoppingList();
-  }
 
   onSubmit() {
     // logic for compiling will live here, construct ANOTHER object {grocery: source}

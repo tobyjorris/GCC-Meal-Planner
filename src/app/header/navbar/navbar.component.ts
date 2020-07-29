@@ -8,12 +8,14 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
   loggedIn;
 
   constructor(public auth: AuthServiceService, public afAuth: AngularFireAuth, private router: Router) {
     this.auth.checkLogin().subscribe(loggedInValue => {
       this.loggedIn = loggedInValue;
+      console.log('this.loggedIn', this.loggedIn);
     });
   }
 

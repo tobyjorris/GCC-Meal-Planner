@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { PrintService } from '../../services/print.service';
-import { FirestormService } from '../../services/firestore/firestore.service';
-import { Recipe } from '../../interfaces/recipe';
-import * as firebase from 'firebase';
-import {isCombinedNodeFlagSet} from "tslint";
 
 @Component({
   selector: 'app-print-recipe',
@@ -13,19 +9,20 @@ import {isCombinedNodeFlagSet} from "tslint";
 })
 export class PrintRecipeComponent implements OnInit {
   recipeId: string;
-  // printedRecipe: firebase.firestore.DocumentData;
-  recipeDetails: Promise<any>[];
   recipe;
 
-  constructor(route: ActivatedRoute, private printService: PrintService, private db: FirestormService) {
+  constructor(route: ActivatedRoute, private printService: PrintService, private router: Router) {
     this.recipeId = route.snapshot.params.recipeIds;
   }
 
   ngOnInit() {
     console.log('init Print-Recipe');
-    this.db.printedRecipe.subscribe(data => {
+    this.printService.printedRecipe.subscribe(data => {
       this.recipe = data;
-      this.printService.onDataReady();
+    });
+    setTimeout(() => {
+      window.print();
+      this.router.navigate([{ outlets: { print: null }}]);
     });
     // *** Tutorial Way ***
     // this.recipeDetails = this.recipeIds.map(id => this.getInvoiceDetails(id));

@@ -19,7 +19,6 @@ export class FirestormService{
   recipeWasSelected = new Subject<object>();
   startedEditingIngredient = new Subject<object>();
   ingredientWasSelected = new Subject<object>();
-  public printedRecipe: Subject<object> = new BehaviorSubject<object>(null);
 
   constructor(private db: AngularFirestore) {
     const recipeCollection = db.collection<Recipe>('recipes');

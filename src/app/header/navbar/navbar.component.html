@@ -6,7 +6,7 @@
         <div>
           <button class="btn"><a routerLink="/recipes">View Recipes</a></button>
         </div>
-        <div class="menu" *ngIf="loggedIn">
+        <div class="menu">
           <button class="menubutton" mat-button [matMenuTriggerFor]="manageMenu">Manage</button>
           <mat-menu #manageMenu='matMenu'>
             <button mat-menu-item><a class="nav-link" routerLink="/recipe-edit">Manage Recipes</a></button>
@@ -18,11 +18,11 @@
         </div>
       </div>
     </div>
-    <div class="menu float-sm-right" *ngIf="loggedIn">
+    <div class="menu float-sm-right">
       <button class="menubutton" mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
       <mat-menu #profileMenu='matMenu'>
         <button mat-menu-item><a class="nav-link" routerLink="/profile">View Profile</a></button>
-        <button mat-menu-item (click)="signOut()">Sign Out</button>
+        <button mat-menu-item (click)="signOut()"></button>
       </mat-menu>
     </div>
   </div>

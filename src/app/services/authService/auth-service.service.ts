@@ -8,7 +8,6 @@ import {Observable, Subject} from 'rxjs';
 
 export class AuthServiceService {
   private loggedIn = new Subject<any>();
-  loggedInStatus;
 
   constructor() {
     firebase.auth().onAuthStateChanged( user => {

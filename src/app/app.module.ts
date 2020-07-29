@@ -27,7 +27,6 @@ import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
 import { FractionizeModule } from './pipes/fraction.pipe';
-import { ShoppingPrintModalComponent } from './shopping-list/shopping-print-modal/shopping-print-modal.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginPageComponent } from './user/login-page/login-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -64,7 +63,7 @@ const appRoutes: Routes = [
     component: PrintLayoutComponent,
     children: [
       {path: 'recipe-print/:recipeIds', component: PrintRecipeComponent},
-      {path: 'shopping-print', component: PrintListComponent}
+      {path: 'shopping-print/:shoppingIds', component: PrintListComponent}
     ]
   }
 ];
@@ -87,7 +86,6 @@ firebase.initializeApp(environment.firebase);
     RecipeEditComponent,
     RecipeAddFormComponent,
     DialogComponent,
-    ShoppingPrintModalComponent,
     LoginPageComponent,
     PageNotFoundComponent,
     IngredientEditComponent,

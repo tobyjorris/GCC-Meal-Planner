@@ -57,7 +57,7 @@
             <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
         </ng-container>
       </ul>
-      <button class="btn btn-info" (click)="shoppingPrint()">Print Costco List</button>
+      <button class="btn btn-info" (click)="costcoPrint()">Print Costco List</button>
     </div>
   </mat-tab>
   <mat-tab label="Grocery Store ({{groceryIngredients.length}})">
@@ -117,7 +117,7 @@
           <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
       </ng-container>
     </ul>
-    <button class="btn btn-info" (click)="shoppingPrint()">Print Grocery List</button>
+    <button class="btn btn-info" (click)="groceryPrint()">Print Grocery List</button>
   </mat-tab>
   <mat-tab label="Already Have ({{haveIngredients.length}})">
     <ul>
@@ -125,7 +125,7 @@
         <strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}
       </li>
     </ul>
-    <button class="btn btn-info" (click)="shoppingPrint()">Print Already Have List</button>
+    <button class="btn btn-info" (click)="havePrint()">Print Already Have List</button>
   </mat-tab>
   <mat-tab label="Stockpile ({{stockpileIngredients.length}})">
     <ul>
@@ -133,7 +133,7 @@
         <strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}
       </li>
     </ul>
-    <button class="btn btn-info" (click)="shoppingPrint()">Print Stockpile List</button>
+    <button class="btn btn-info" (click)="stockpilePrint()">Print Stockpile List</button>
   </mat-tab>
 </mat-tab-group>
 

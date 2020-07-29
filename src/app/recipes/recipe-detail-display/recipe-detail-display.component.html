@@ -43,7 +43,7 @@
   <div>
     <hr>
     <app-instructions-list [recipe]="recipe"></app-instructions-list>
-    <div>
+    <div *ngIf="recipeCopy.chefNotes">
       <h6>Notes To The Chef</h6>
       <p>{{recipeCopy.chefNotes}}</p>
     </div>

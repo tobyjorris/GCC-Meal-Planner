@@ -81,7 +81,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
 
   onPrint() {
     this.printService.printDocument('recipe-print', this.recipeCopy.title);
-    this.db.printedRecipe.next(this.recipeCopy);
+    this.printService.printedRecipe.next(this.recipeCopy);
   }
 
 }

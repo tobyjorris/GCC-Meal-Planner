@@ -4,6 +4,7 @@ import { FirestormService } from '../../services/firestore/firestore.service';
 import {Observable} from 'rxjs';
 import {Ingredient} from '../../interfaces/ingredient';
 import {flatMap} from 'rxjs/operators';
+import {PrintService} from '../../services/print.service';
 
 @Component({
   selector: 'app-shopping-distribution',
@@ -24,14 +25,15 @@ export class ShoppingDistributionComponent implements OnInit {
   data: Ingredient[];
   distributedIngredientsArray = [];
 
-  constructor(private slService: ShoppingListService, private db: FirestormService) {
+  constructor(private slService: ShoppingListService,
+              private db: FirestormService,
+              private printService: PrintService
+  ) {
     this.ingredientsRef = this.db.ingredients;
     this.ingredientsRef.subscribe(ingredients => {
       this.data = ingredients as Ingredient[];
       this.ingredientRefData = this.data.slice();
     });
-
-    console.log('ingredientRef in constructor', this.ingredientRefData);
 
     this.slService.distributedIngredient.subscribe(distIngredient => {
       this.ingredientRefData.find(ingRef => {
@@ -53,7 +55,6 @@ export class ShoppingDistributionComponent implements OnInit {
 
   ngOnInit(): void {
     this.distributedIngredientsArray = this.slService.distGetFromStorage();
-    console.log('distArray', this.distributedIngredientsArray);
   }
 
   onDistIngredientSelect(ingredient, i: number, source: string) {
@@ -85,8 +86,26 @@ export class ShoppingDistributionComponent implements OnInit {
     this.stockpileToggleStatus = !this.stockpileToggleStatus;
   }
 
-  shoppingPrint() {
-    this.slService.distClearStorage();
+  costcoPrint() {
+    this.printService.printDocument('shopping-print', 'Costco List');
+    this.printService.printedList.next(this.costcoIngredients);
+  }
+
+  groceryPrint() {
+    this.printService.printedList.next(this.groceryIngredients);
+    this.printService.printDocument('shopping-print', 'Grocery List');
+  }
+
+  havePrint() {
+    this.printService.printedList.next(this.haveIngredients);
+    this.printService.printDocument('shopping-print', 'Already Have List');
+  }
+
+  stockpilePrint() {
+    this.printService.printedList.next(this.stockpileIngredients);
+    this.printService.printDocument('shopping-print', 'Stockpile List');
   }
 
 }
+
+

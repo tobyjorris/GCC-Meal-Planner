@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <div class="container pl-0 ml-0">
+  <div class="container-fluid pl-0 ml-0">
     <div class="navigation float-left ml-0 pl-0">
       <div class="row">
         <img src="../../../assets/img/grafted-logo_3.png" alt="grafted-logo">
@@ -22,7 +22,7 @@
       <button class="menubutton" mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
       <mat-menu #profileMenu='matMenu'>
         <button mat-menu-item><a class="nav-link" routerLink="/profile">View Profile</a></button>
-        <button mat-menu-item (click)="signOut()"></button>
+        <button mat-menu-item (click)="signOut()">Sign Out</button>
       </mat-menu>
     </div>
   </div>

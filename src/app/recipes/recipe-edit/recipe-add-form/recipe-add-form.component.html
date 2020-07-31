@@ -11,8 +11,8 @@
             >
           </mat-form-field>
         </div>
-        <div class="container recipe-body">
-          <div class="container ingredients">
+        <div class="container-fluid recipe-body">
+          <div class="container-fluid ingredients">
             <h2 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h2>
             <div class="container ingredient-container" [ngClass]="ingredientsToggleStatus ? 'visible' : 'hidden'"  formArrayName="ingredients">
               <div
@@ -21,7 +21,7 @@
                 [formGroupName]="i"
               >
                 <div class="col-sm ingredient-div">
-                  <mat-form-field appearance="fill" id="ingredient-field">
+                  <mat-form-field appearance="outline" id="ingredient-field">
                     <mat-label>Ingredient Name</mat-label>
                     <mat-select formControlName="name">
                       <mat-option *ngFor="let ingredientOpt of selectIngredients"
@@ -31,14 +31,14 @@
                   </mat-form-field>
                 </div>
                 <div class="col-sm quantity-div">
-                  <mat-form-field appearance="fill" id="quantity-field">
+                  <mat-form-field appearance="outline" id="quantity-field">
                     <mat-label>Quantity</mat-label>
                     <input matInput
                            formControlName="quantity">
                   </mat-form-field>
                 </div>
                 <div class="col-sm measurement-div">
-                  <mat-form-field appearance="fill" id="measurement-field">
+                  <mat-form-field appearance="outline" id="measurement-field">
                     <mat-label>Unit</mat-label>
                     <mat-select formControlName="measurement">
                       <mat-option value="tsp">Tsp</mat-option>
@@ -67,7 +67,7 @@
               </div>
             </div>
           </div>
-          <div class="container directions">
+          <div class="container-fluid directions">
             <h2 (click)="toggleDirections()">Directions<span [ngClass]="directionsToggleStatus? 'caret-up' : 'caret-down'"></span></h2>
             <div [ngClass]="directionsToggleStatus ? 'visible' : 'hidden'">
             <p>Meal Preparation Steps</p>
@@ -130,11 +130,15 @@
             </div>
             </div>
           </div>
-          <div class="container details">
-            <h2 (click)="toggleDetails()">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h2>
-            <div [ngClass]="detailsToggleStatus ? 'visible' : 'hidden'">
-              <div class="row details-row">
-                <div class="protein-div col-xs-3">
+          <div class="container-fluid details">
+            <div class="row header">
+              <div class="col-xs-12">
+                <h2 (click)="toggleDetails()">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h2>
+              </div>
+            </div>
+            <div class="toggle container-fluid" [ngClass]="detailsToggleStatus ? 'visible' : 'hidden'">
+              <div class="row rec-details">
+                <div class="protein-div col">
                   <mat-form-field appearance="outline" id="protein-field">
                     <mat-label>Protein Base</mat-label>
                     <mat-select formControlName="proteinBase">
@@ -146,7 +150,7 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
-                <div class="method-div col-xs-3">
+                <div class="method-div col">
                   <mat-form-field appearance="outline" id="method-field">
                     <mat-label>Cooking Method</mat-label>
                     <mat-select formControlName="cookingMethod">
@@ -157,7 +161,7 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
-                <div class="credit-div col-xs-3">
+                <div class="credit-div col">
                   <mat-form-field appearance="outline" id="credit-field">
                     <mat-label>Recipe Source</mat-label>
                     <input matInput
@@ -165,7 +169,7 @@
                     >
                   </mat-form-field>
                 </div>
-                <div class="price-div col-xs-3">
+                <div class="price-div col">
                   <mat-form-field appearance="outline" id="price-field">
                     <mat-label>Est. $</mat-label>
                     <input matInput
@@ -174,15 +178,29 @@
                   </mat-form-field>
                 </div>
               </div>
-              <div class="row accommodation-row">
-                <div class="container accommodation-container" formArrayName="accommodations">
+              <div class="row notes">
+                <div class="col chefNotes-div">
+                  <mat-form-field appearance="outline" id="chefNotes-field">
+                    <mat-label>Notes to the chef</mat-label>
+                    <textarea matInput formControlName="chefNotes"></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="col freezerLabel-div">
+                  <mat-form-field appearance="outline" id="freezerLabel-field">
+                    <mat-label>Freezer Label</mat-label>
+                    <textarea matInput formControlName="freezerLabel"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row accommodation">
+                <div class="container-fluid accommodation-container" formArrayName="accommodations">
                   <div
                     class="row content-row"
                     *ngFor="let accommodationControl of getAccommodationsControls(); let e = index"
                     [formGroupName]="e"
                   >
-                    <div class="col-sm type-div">
-                      <mat-form-field appearance="fill" id="type-field">
+                    <div class="col type-div">
+                      <mat-form-field appearance="outline" id="type-field">
                         <mat-label>Type of Accommodation</mat-label>
                         <mat-select formControlName="type">
                           <mat-option value="Paleo">Easily Paleo</mat-option>
@@ -191,7 +209,7 @@
                         </mat-select>
                       </mat-form-field>
                     </div>
-                    <div class="col-sm comments-div">
+                    <div class="col comments-div">
                       <mat-form-field appearance="outline" id="comments-field">
                         <mat-label>Comments</mat-label>
                         <textarea matInput formControlName="comment"></textarea>
@@ -214,31 +232,8 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div>
-                  <div class="row chefNotes">
-                    <div class="col-xs-12 chefNotes-div">
-                      <mat-form-field appearance="outline" id="chefNotes-field">
-                        <mat-label>Notes to the chef</mat-label>
-                        <textarea matInput formControlName="chefNotes"></textarea>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="row freezerLabel">
-                    <div class="col-xs-12 freezerLabel-div">
-                      <mat-form-field appearance="outline" id="freezerLabel-field">
-                        <mat-label>Freezer Label</mat-label>
-                        <textarea matInput formControlName="freezerLabel"></textarea>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-          <hr>
           <button
             class="btn btn-success"
             type="button"

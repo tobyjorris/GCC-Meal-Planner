@@ -1,11 +1,11 @@
 <mat-tab-group>
   <mat-tab label="Costco ({{costcoIngredients.length}})">
     <div class="container-fluid">
-      <h5 *ngIf="costcoIngredients.toString().includes('Produce')">Produce</h5>
+      <h5>Produce</h5>
       <ul>
         <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
-          <li *ngIf="ingredient.department === 'Produce'" (click)="onDistIngredientSelect(ingredient, i, 'costco')">
-            <i class="far fa-square"></i><strong>{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+          <li *ngIf="ingredient.department === 'Produce'" >
+            <i class="far fa-square"></i><strong (click)="onDistIngredientSelect(ingredient, i, 'costco')">{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
         </ng-container>
       </ul>
       <h5>Canned Goods</h5>

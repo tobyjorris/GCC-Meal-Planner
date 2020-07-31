@@ -35,27 +35,6 @@
   padding: 0;
 }
 
-#price-field {
-  width: 90px;
-  padding-right: 10px;
-}
-
-.price-div {
-  width: 90px;
-}
-
-#method-field {
-  width: 160px;
-}
-
-.method-div {
-  width: 160px;
-}
-
-.details-row > div {
-  margin: 0 5px 0 20px !important;
-}
-
 #ingredient-field {
   width: 378px;
   padding-right: 10px;
@@ -139,24 +118,6 @@ button:disabled {
   padding-bottom: 0;
 }
 
-#type-field {
-  width: 225px;
-  padding-right: 5px;
-  margin-left: 15px;
-}
-
-.type-div {
-  width: 225px !important;
-}
-
-#chefNotes-field {
-  padding-right: 5px;
-  margin-left: 15px;
-}
-
-.chefNotes-div {
-}
-
 hr {
   margin: 10px 0 10px 0;
 }
@@ -168,19 +129,24 @@ button {
 .details {
   border-radius: 5px;
   border: thin solid #000000;
-  margin: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .ingredients {
   border-radius: 5px;
   border: thin solid #000000;
-  margin: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 15px;
 }
 
 .directions {
   border-radius: 5px;
   border: thin solid #000000;
-  margin: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 15px;
 }
 
 textarea {
@@ -221,6 +187,18 @@ textarea {
   border-bottom-color: black;
   margin-bottom: 4px;
   margin-left: 8px;
+}
+
+h2:hover {
+  text-decoration: underline black;
+}
+
+.header {
+  padding: 10px 0 0 15px;
+}
+
+.toggle {
+  padding-left: 0;
 }
 
 

@@ -1,5 +1,5 @@
 .jumbotron {
-  height: 220px;
+  height: 180px;
   background-image: url("../../assets/img/image.jpg");
   color: white;
   padding-bottom: 0;
@@ -10,7 +10,7 @@
 
 #header {
   max-width: 1450px;
-  height: 220px;
+  height: 180px;
 }
 
 p {

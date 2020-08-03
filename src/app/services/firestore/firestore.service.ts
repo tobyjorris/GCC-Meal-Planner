@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Recipe } from '../../interfaces/recipe';
 import {Ingredient} from '../../interfaces/ingredient';
+import {AngularFireAuth} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +12,22 @@ import {Ingredient} from '../../interfaces/ingredient';
 export class FirestormService{
   public recipes: Observable<any[]>;
   public ingredients: Observable<any[]>;
-  public shoppinglist: Observable<any[]>;
   public recipeCol: AngularFirestoreCollection<Recipe>;
-  public shoppingCol: AngularFirestoreCollection<Recipe>;
   public ingredientCol: AngularFirestoreCollection<Ingredient>;
+  public distShoppingListCol: AngularFirestoreCollection<Ingredient>;
   startedEditingRecipe = new Subject<object>();
   recipeWasSelected = new Subject<object>();
   startedEditingIngredient = new Subject<object>();
   ingredientWasSelected = new Subject<object>();
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private auth: AngularFireAuth) {
     const recipeCollection = db.collection<Recipe>('recipes');
-    const shoppingCollection = db.collection<Recipe>('shopping-list');
     const ingredientCollection = db.collection<Ingredient>('ingredients');
+    const distShoppingListCollection = db.collection<Ingredient>('dist-shopping-list');
     this.recipeCol = recipeCollection;
-    this.shoppingCol = shoppingCollection;
     this.ingredientCol = ingredientCollection;
+    this.distShoppingListCol = distShoppingListCollection;
     this.recipes = db.collection('/recipes').valueChanges();
-    this.shoppinglist = db.collection('/shopping-list').valueChanges();
     this.ingredients = db.collection('/ingredients').valueChanges();
   }
 
@@ -67,4 +66,15 @@ export class FirestormService{
   fetchRecipe(name: string) {
     return this.recipeCol.doc(name);
   }
+
+  sendToDist(ingredient) {
+    this.auth.user.subscribe(user => {
+      this.distShoppingListCol.doc(user.uid).set(ingredient).then(() => {
+        console.log('dist ingredient success');
+      }).catch(error => {
+        console.log(error);
+      });
+    });
+  }
+
 }

@@ -24,6 +24,7 @@
   border: 1px solid black;
   width: 80px !important;
   text-align: center;
+  margin-right: 2px;
 }
 
 .ingredient-row {

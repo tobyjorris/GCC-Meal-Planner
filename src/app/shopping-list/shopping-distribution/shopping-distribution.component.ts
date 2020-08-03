@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { FirestormService } from '../../services/firestore/firestore.service';
-import {Observable} from 'rxjs';
-import {Ingredient} from '../../interfaces/ingredient';
-import {flatMap} from 'rxjs/operators';
-import {PrintService} from '../../services/print.service';
+import { Observable } from 'rxjs';
+import { Ingredient } from '../../interfaces/ingredient';
+import { PrintService } from '../../services/print.service';
 
 @Component({
   selector: 'app-shopping-distribution',

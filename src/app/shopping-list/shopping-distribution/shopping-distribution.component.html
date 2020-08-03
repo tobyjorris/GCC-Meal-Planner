@@ -1,5 +1,5 @@
 <mat-tab-group>
-  <mat-tab label="Costco ({{costcoIngredients.length}})">
+  <!--<mat-tab label="Costco ({{costcoIngredients.length}})">
     <div class="container-fluid">
       <h5>Produce</h5>
       <ul>
@@ -134,6 +134,50 @@
       </li>
     </ul>
     <button class="btn btn-info" (click)="stockpilePrint()">Print Stockpile List</button>
+  </mat-tab> -->
+  <mat-tab label="Costco ({{costcoIngredients.length}})">
+    <div class="container-fluid">
+      <ul>
+        <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
+          <li>
+            <i class="far fa-square"></i><strong (click)="onDistIngredientSelect(ingredient, i, 'costco')">{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <button *ngIf="costcoIngredients.length >= 1" class="btn btn-info" (click)="costcoPrint()">Print Costco List</button>
+    </div>
+  </mat-tab>
+  <mat-tab label="Grocery Store ({{groceryIngredients.length}})">
+    <div class="container-fluid">
+      <ul>
+        <ng-container *ngFor="let ingredient of groceryIngredients, let i = index">
+          <li>
+            <i class="far fa-square"></i><strong (click)="onDistIngredientSelect(ingredient, i, 'grocery')">{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <button *ngIf="groceryIngredients.length >= 1" class="btn btn-info" (click)="groceryPrint()">Print Grocery List</button>
+    </div>
+  </mat-tab>
+  <mat-tab label="Already Have ({{haveIngredients.length}})">
+    <div class="container-fluid">
+      <ul>
+        <ng-container *ngFor="let ingredient of haveIngredients, let i = index">
+          <li>
+            <i class="far fa-square"></i><strong (click)="onDistIngredientSelect(ingredient, i, 'have')">{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <button *ngIf="haveIngredients.length >= 1" class="btn btn-info" (click)="havePrint()">Print Already Have List</button>
+    </div>
+  </mat-tab>
+  <mat-tab label="Stockpile ({{stockpileIngredients.length}})">
+    <div class="container-fluid">
+      <ul>
+        <ng-container *ngFor="let ingredient of stockpileIngredients, let i = index">
+          <li>
+            <i class="far fa-square"></i><strong (click)="onDistIngredientSelect(ingredient, i, 'stockpile')">{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+        </ng-container>
+      </ul>
+      <button *ngIf="stockpileIngredients.length >= 1" class="btn btn-info" (click)="stockpilePrint()">Print Stockpile List</button>
+    </div>
   </mat-tab>
 </mat-tab-group>
 

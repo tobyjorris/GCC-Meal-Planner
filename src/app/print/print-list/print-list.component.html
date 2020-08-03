@@ -1,6 +1,79 @@
-<h1 *ngIf="listTitle">{{listTitle}} Shopping List</h1>
-<ul>
-  <li *ngFor="let ingredient of printedList">
-    {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
-  </li>
-</ul>
+<h1 *ngIf="default, else shopping">{{listTitle}}</h1>
+<ng-template #shopping>
+  <h1>{{listTitle}} Shopping List</h1>
+</ng-template>
+<hr>
+<div *ngIf="produce.length >= 1">
+  <h3>Produce</h3>
+  <ul>
+    <li *ngFor="let ingredient of produce">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="canned.length >= 1">
+  <h3>Canned Goods</h3>
+  <ul>
+    <li *ngFor="let ingredient of canned">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="frozen.length >= 1">
+  <h3>Frozen</h3>
+  <ul>
+    <li *ngFor="let ingredient of frozen">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="dairy.length >= 1">
+  <h3>Dairy</h3>
+  <ul>
+    <li *ngFor="let ingredient of dairy">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="meat.length >= 1">
+  <h3>Meat</h3>
+  <ul>
+    <li *ngFor="let ingredient of meat">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="baked.length >= 1">
+  <h3>Baked Goods</h3>
+  <ul>
+    <li *ngFor="let ingredient of baked">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="dried.length >= 1">
+  <h3>Dried Goods</h3>
+  <ul>
+    <li *ngFor="let ingredient of dried">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="misc.length >= 1">
+  <h3>Miscellaneous</h3>
+  <ul>
+    <li *ngFor="let ingredient of misc">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="default">
+  <h3>Default List</h3>
+  <ul>
+    <li *ngFor="let ingredient of default">
+      {{ingredient.quantity}} {{ingredient.measurement}} {{ingredient.name}}
+    </li>
+  </ul>
+</div>
+
+

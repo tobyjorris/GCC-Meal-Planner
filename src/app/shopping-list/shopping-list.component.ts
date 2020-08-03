@@ -71,10 +71,7 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
-
   onSubmit() {
-    // logic for compiling will live here, construct ANOTHER object {grocery: source}
-    // another service to send that object to the actual lists
     const formValue = this.ingredientDistributionForm.value;
     console.log(formValue);
   }
@@ -86,5 +83,9 @@ export class ShoppingListComponent implements OnInit {
 
   getDistributionControls() {
     return (this.ingredientDistributionForm.get('distributionForm') as FormArray).controls;
+  }
+
+  onClearShoppingList() {
+    this.slService.clearShoppingList();
   }
 }

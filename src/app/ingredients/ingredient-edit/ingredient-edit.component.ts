@@ -17,7 +17,7 @@ export class IngredientEditComponent {
   ingredientData;
   data: Ingredient[];
   dataSource;
-  displayedColumns: string[] = ['name', 'department', 'measurement'];
+  displayedColumns: string[] = ['name', 'department'];
 
   constructor(private db: FirestormService) {
     this.ingredients = this.db.ingredients;

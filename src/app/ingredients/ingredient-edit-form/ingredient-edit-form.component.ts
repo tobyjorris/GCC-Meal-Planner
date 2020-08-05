@@ -21,7 +21,6 @@ export class IngredientEditFormComponent implements OnInit {
     this.ingredientAddForm = new FormGroup({
       name: new FormControl([], Validators.required),
       department: new FormControl([], Validators.required),
-      measurement: new FormControl([], Validators.required),
     });
 
     this.db.startedEditingIngredient.subscribe(
@@ -31,7 +30,6 @@ export class IngredientEditFormComponent implements OnInit {
         this.ingredientAddForm = new FormGroup({
           name: new FormControl(this.editedIngredient.name, Validators.required),
           department: new FormControl(this.editedIngredient.department, Validators.required),
-          measurement: new FormControl(this.editedIngredient.measurement, Validators.required),
         });
       }
     );
@@ -49,7 +47,6 @@ export class IngredientEditFormComponent implements OnInit {
     this.ingredientAddForm = new FormGroup({
       name: new FormControl([], Validators.required),
       department: new FormControl([], Validators.required),
-      measurement: new FormControl([], Validators.required),
     });
     this.ingredientAddForm.markAsPristine();
     this.ingredientAddForm.markAsUntouched();
@@ -61,7 +58,6 @@ export class IngredientEditFormComponent implements OnInit {
     this.ingredientAddForm = new FormGroup({
       name: new FormControl([], Validators.required),
       department: new FormControl([], Validators.required),
-      measurement: new FormControl([], Validators.required),
     });
     this.ingredientAddForm.markAsPristine();
     this.ingredientAddForm.markAsUntouched();

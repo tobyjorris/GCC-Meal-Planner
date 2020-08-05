@@ -1,22 +1,26 @@
-<div class="list-group-item container" (click)="onRecipeSelected()">
+<div class="list-group-item container-fluid" (click)="onRecipeSelected()">
   <div class="row">
-    <div class="col-9">
+    <div class="col-8">
       <h6>{{ recipe.title }}</h6>
     </div>
-    <div class="col-3">
-      <div class="accommodations" *ngFor="let accommodations of recipe.accommodations">
+    <div class="col-4">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="accommodations" *ngFor="let accommodations of recipe.accommodations">
         <span *ngIf="accommodations.type === 'Paleo'">
           <p>P</p>
         </span>
-        <span *ngIf="accommodations.type === 'Gluten'">
+            <span *ngIf="accommodations.type === 'Gluten'">
           <p>GF</p>
         </span>
-        <span *ngIf="accommodations.type === 'Dairy'">
+            <span *ngIf="accommodations.type === 'Dairy'">
           <p>DF</p>
         </span>
-        <span *ngIf="accommodations.type === 'Vegetarian'">
+            <span *ngIf="accommodations.type === 'Vegetarian'">
           <p>V</p>
         </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

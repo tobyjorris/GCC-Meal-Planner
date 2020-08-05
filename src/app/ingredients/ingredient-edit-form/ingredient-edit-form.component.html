@@ -1,13 +1,14 @@
 <div class="container-fluid ingredient-add-form">
     <form [formGroup]="ingredientAddForm">
+      <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col align-self-center">
             <mat-form-field appearance="fill">
               <mat-label>Name</mat-label>
               <input matInput formControlName="name">
             </mat-form-field>
           </div>
-          <div class="col">
+          <div class="col align-self-center">
             <mat-form-field appearance="fill">
               <mat-label>Department</mat-label>
               <mat-select formControlName="department">
@@ -22,20 +23,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col">
-            <mat-form-field appearance="fill" id="measurement-field">
-              <mat-label>Unit</mat-label>
-              <mat-select formControlName="measurement">
-                <mat-option value="tsp">Tsp</mat-option>
-                <mat-option value="tbsp">Tbsp</mat-option>
-                <mat-option value="oz">Oz</mat-option>
-                <mat-option value="cups">Cups</mat-option>
-                <mat-option value="pounds">Pounds</mat-option>
-                <mat-option value="eaches">Eaches</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="save">
+          <div class="save col align-self-center">
             <button
               class="btn btn-success"
               type="button"
@@ -53,5 +41,6 @@
             </button>
           </div>
         </div>
+      </div>
     </form>
 </div>

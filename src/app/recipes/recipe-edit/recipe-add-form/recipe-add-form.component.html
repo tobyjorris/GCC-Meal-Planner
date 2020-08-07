@@ -13,7 +13,7 @@
         </div>
         <div class="container-fluid recipe-body">
           <div class="container-fluid ingredients">
-            <h2 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h2>
+            <h3 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h3>
             <div class="container ingredient-container" [ngClass]="ingredientsToggleStatus ? 'visible' : 'hidden'"  formArrayName="ingredients">
               <div
                 class="row content-row"
@@ -68,55 +68,65 @@
             </div>
           </div>
           <div class="container-fluid directions">
-            <h2 (click)="toggleDirections()">Directions<span [ngClass]="directionsToggleStatus? 'caret-up' : 'caret-down'"></span></h2>
-            <div [ngClass]="directionsToggleStatus ? 'visible' : 'hidden'">
-            <p>Meal Preparation Steps</p>
-            <div class="col" formArrayName="prepDirections">
-              <div
+            <div class="content">
+              <h3 (click)="toggleDirections()">Directions<span [ngClass]="directionsToggleStatus? 'caret-up' : 'caret-down'"></span></h3>
+              <div [ngClass]="directionsToggleStatus ? 'visible' : 'hidden'">
+              <p>Meal Preparation Steps</p>
+              <div class="col" formArrayName="prepDirections">
+                <div
                 class="row content-row"
                 *ngFor="let directionsCtrl of getPrepDirectionsControls(); let j = index"
                 [formGroupName]="j"
               >
-                <div class="col-xs-11 p-direction-div">
-                  <mat-form-field appearance="outline" id="p-direction-field">
-                    <mat-label>Enter Prep Direction</mat-label>
-                    <textarea matInput formControlName="content"></textarea>
-                  </mat-form-field>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class="btn btn-danger delete col-xs-1"
-                    (click)="onDeletePrepDirections(j)">X</button>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <button
-                    type="button"
-                    class="btn btn-info add-btn"
-                    (click)="onAddPrepDirections()">Add Prep Direction</button>
+                <div class="container-fluid textarea">
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field appearance="outline" id="p-direction-field">
+                        <mat-label>Enter Prep Direction</mat-label>
+                        <textarea matInput formControlName="content"></textarea>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-danger delete col-xs-2"
+                        (click)="onDeletePrepDirections(j)">X</button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <p>Directions on Day of Cooking</p>
-            <div class="col" formArrayName="cookDirections">
-              <div
-                class="row content-row"
-                *ngFor="let directionsCtrl of getCookDirectionsControls(); let x = index"
-                [formGroupName]="x"
-              >
-                <div class="col-xs-11 c-direction-div">
-                  <mat-form-field appearance="outline" id="c-direction-field">
-                    <mat-label>Enter Cooking Direction</mat-label>
-                    <textarea matInput formControlName="content"></textarea>
-                  </mat-form-field>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <button
+                      type="button"
+                      class="btn btn-info add-btn"
+                      (click)="onAddPrepDirections()">Add Prep Direction</button>
+                  </div>
                 </div>
-                <div>
-                  <button
-                    type="button"
-                    class="btn btn-danger delete col-xs-1"
-                    (click)="onDeleteCookDirections(x)">X</button>
+              </div>
+              <p>Directions on Day of Cooking</p>
+              <div class="col" formArrayName="cookDirections">
+                <div
+                  class="row content-row"
+                  *ngFor="let directionsCtrl of getCookDirectionsControls(); let x = index"
+                  [formGroupName]="x"
+                >
+                  <div class="container-fluid textarea">
+                    <div class="row">
+                      <div class="col">
+                       <mat-form-field appearance="outline">
+                         <mat-label>Enter Cooking Direction</mat-label>
+                         <textarea matInput formControlName="content"></textarea>
+                       </mat-form-field>
+                      </div>
+                    <div>
+                    <button
+                      type="button"
+                      class="btn btn-danger delete col-xs-1"
+                      (click)="onDeleteCookDirections(x)">X
+                    </button>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -128,14 +138,11 @@
                 </div>
               </div>
             </div>
+              </div>
             </div>
           </div>
           <div class="container-fluid details">
-            <div class="row header">
-              <div class="col-xs-12">
-                <h2 (click)="toggleDetails()">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h2>
-              </div>
-            </div>
+            <h3 (click)="toggleDetails()" class="header">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h3>
             <div class="toggle container-fluid" [ngClass]="detailsToggleStatus ? 'visible' : 'hidden'">
               <div class="row rec-details">
                 <div class="protein-div col">
@@ -223,10 +230,10 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col">
                       <button
                         type="button"
-                        class="btn btn-info add-btn"
+                        class="btn btn-info accommodations-btn"
                         (click)="onAddAccommodation()">Add Accommodation</button>
                     </div>
                   </div>

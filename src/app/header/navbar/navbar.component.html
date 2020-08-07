@@ -14,7 +14,7 @@
           </mat-menu>
         </div>
         <div>
-          <button class="btn"><a routerLink="/shopping-cart">Shopping Cart</a></button>
+          <button class="btn"><a routerLink="/shopping-cart">Shopping List</a></button>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <button class="menubutton" mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
       <mat-menu #profileMenu='matMenu'>
         <button mat-menu-item><a class="nav-link" routerLink="/profile">View Profile</a></button>
-        <button mat-menu-item (click)="signOut()">Sign Out</button>
+        <button mat-menu-item (click)="signOut()"><a class="nav-link"> Sign Out</a></button>
       </mat-menu>
     </div>
   </div>

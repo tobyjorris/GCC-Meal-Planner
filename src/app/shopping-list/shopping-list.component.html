@@ -1,15 +1,15 @@
 <div class="container-fluid shopping-list">
   <div class="row">
     <div class="col">
-      <h2>Shopping Cart</h2>
-      <button class="btn btn-danger" (click)="onClearShoppingList()">Clear Shopping Cart</button>
+      <h2>Shopping List</h2>
+      <button class="btn btn-danger" (click)="onClearShoppingList()">Clear Shopping List</button>
     </div>
   </div>
   <hr>
   <div class="container-fluid">
     <div class="row">
       <div class="col-6">
-        <h5>Recipes in cart:</h5>
+        <h5>Recipes on list:</h5>
         <ul>
           <li *ngFor="let recipe of shoppingList">
             {{recipe.title}} (x

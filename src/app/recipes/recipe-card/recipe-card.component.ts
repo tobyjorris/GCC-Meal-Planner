@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Recipe} from '../../interfaces/recipe';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Recipe } from '../../interfaces/recipe';
 
 @Component({
   selector: 'app-recipe-card',
@@ -8,15 +7,11 @@ import {Recipe} from '../../interfaces/recipe';
   styleUrls: ['./recipe-card.component.css']
 })
 
-export class RecipeCardComponent implements OnInit {
+export class RecipeCardComponent {
   @Input() recipe: Recipe;
   @Output() recipeSelected = new EventEmitter<void>();
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+  constructor() {}
 
   onRecipeSelected() {
     this.recipeSelected.emit();

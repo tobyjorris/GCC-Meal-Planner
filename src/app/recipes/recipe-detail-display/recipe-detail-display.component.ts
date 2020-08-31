@@ -1,11 +1,11 @@
 import { Component, ElementRef, Inject, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
-import { FirestormService } from '../../services/firestore/firestore.service';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { FormControl, FormGroup } from '@angular/forms';
-import { PrintService } from '../../services/print.service';
+import { PrintService } from '../../services/print/print.service';
 
 @Component({
   selector: 'app-recipe-detail-display',
@@ -21,7 +21,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   multiBatchMode = false;
   quantitySelect: FormGroup;
 
-  constructor(private db: FirestormService,
+  constructor(private db: FirestoreService,
               private slService: ShoppingListService,
               public dialog: MatDialog,
               private printService: PrintService

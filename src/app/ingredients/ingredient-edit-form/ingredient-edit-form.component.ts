@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestormService } from '../../services/firestore/firestore.service';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Ingredient} from '../../interfaces/ingredient';
 
 @Component({
@@ -14,7 +14,7 @@ export class IngredientEditFormComponent implements OnInit {
   editMode = false;
   editedIngredient: Ingredient;
 
-  constructor(private db: FirestormService) {
+  constructor(private db: FirestoreService) {
   }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConversionService } from '../services/conversion/conversion.service';
+import { UnitConversionService } from '../services/conversion/unit-conversion.service';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -15,7 +15,7 @@ export class ShoppingListComponent implements OnInit {
   finalIngredientsArray = [];
   ingredientDistributionForm: FormGroup;
 
-  constructor( private slService: ShoppingListService, public dialog: MatDialog, private convertService: ConversionService) {
+  constructor( private slService: ShoppingListService, public dialog: MatDialog, private convertService: UnitConversionService) {
   }
 
   ngOnInit(): void {

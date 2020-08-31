@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {FirestormService} from '../../services/firestore/firestore.service';
-import {Observable} from 'rxjs';
+import { FirestoreService } from '../../services/firestore/firestore.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.css'],
-  providers: [FirestormService]
+  providers: [FirestoreService]
 })
-export class RecipeEditComponent implements OnInit {
+export class RecipeEditComponent {
   recipes: Observable<any[]>;
-  constructor(private db: FirestormService) {
+  constructor(private db: FirestoreService) {
     this.recipes = this.db.recipes;
-  }
-
-  ngOnInit(): void {
   }
 
   onEditRecipe(recipe) {

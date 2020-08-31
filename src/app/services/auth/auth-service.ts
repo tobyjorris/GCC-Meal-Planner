@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import {Observable, Subject} from 'rxjs';
-import {AngularFireAuth} from '@angular/fire/auth';
+import { Observable, Subject } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class AuthServiceService {
+export class AuthService {
   private loggedIn = new Subject<any>();
 
   constructor(public auth: AngularFireAuth) {

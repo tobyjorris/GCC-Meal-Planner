@@ -7,7 +7,6 @@ import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component
 import { HeaderComponent } from './header/header.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdDropdownBasic } from './shared/dropdown/dropdown-basic';
 import { InstructionsListComponent } from './instructions-list/instructions-list.component';
 import { RecipeDetailDisplayComponent } from './recipes/recipe-detail-display/recipe-detail-display.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -41,7 +40,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { UnitDisplayPipe } from './pipes/unit-display.pipe';
 import { ShoppingDistributionComponent } from './shopping-list/shopping-distribution/shopping-distribution.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LoggedInGuard } from 'ngx-auth-firebaseui';
 import { ProfilePageComponent } from './user/profile-page/profile-page.component';
@@ -76,7 +74,6 @@ firebase.initializeApp(environment.firebase);
     RecipeCardComponent,
     HeaderComponent,
     ShoppingListComponent,
-    NgbdDropdownBasic,
     InstructionsListComponent,
     RecipeDetailDisplayComponent,
     RecipeListComponent,
@@ -92,7 +89,6 @@ firebase.initializeApp(environment.firebase);
     IngredientEditFormComponent,
     UnitDisplayPipe,
     ShoppingDistributionComponent,
-    LoadingSpinnerComponent,
     ProfilePageComponent,
     PrintLayoutComponent,
     PrintRecipeComponent,

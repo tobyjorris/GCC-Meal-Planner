@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import { Observable, Subject} from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Recipe } from '../../interfaces/recipe';
-import {Ingredient} from '../../interfaces/ingredient';
-import {AngularFireAuth} from "@angular/fire/auth";
+import { Ingredient } from '../../interfaces/ingredient';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class FirestormService{
+export class FirestoreService{
   public recipes: Observable<any[]>;
   public ingredients: Observable<any[]>;
   public recipeCol: AngularFirestoreCollection<Recipe>;

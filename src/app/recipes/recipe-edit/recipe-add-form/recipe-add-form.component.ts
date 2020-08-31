@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestormService} from '../../../services/firestore/firestore.service';
+import { FirestoreService } from '../../../services/firestore/firestore.service';
 import { Recipe } from '../../../interfaces/recipe';
 import { Ingredient } from '../../../interfaces/ingredient';
 import { Directions } from '../../../interfaces/directions';
@@ -23,7 +23,7 @@ export class RecipeAddFormComponent implements OnInit {
   detailsToggleStatus = true;
   directionsToggleStatus = true;
 
-  constructor(private db: FirestormService) {
+  constructor(private db: FirestoreService) {
     this.ingredients = this.db.ingredients;
     this.ingredients.subscribe(ingredients => {
       this.data = ingredients as Ingredient[];

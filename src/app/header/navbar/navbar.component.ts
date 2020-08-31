@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from '../../services/authService/auth-service.service';
+import { AuthService } from '../../services/auth/auth-service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   loggedIn;
 
-  constructor(public auth: AuthServiceService, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(public auth: AuthService, public afAuth: AngularFireAuth, private router: Router) {
     this.auth.checkLogin().subscribe(loggedInValue => {
       this.loggedIn = loggedInValue;
       console.log('this.loggedIn', this.loggedIn);

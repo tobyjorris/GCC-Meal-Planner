@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
-import { FirestormService } from '../../services/firestore/firestore.service';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,24 +8,16 @@ import { Observable } from 'rxjs';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css'],
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent {
   @Output() recipeWasSelected = new EventEmitter<Recipe>();
   recipes: Observable<any[]>;
   term: string;
   searchText: string;
-  constructor(private db: FirestormService ) {
-    // setTimeout(() => {
-    //   this.recipes = this.db.recipes;
-    // }, 800);
+  constructor(private db: FirestoreService ) {
     this.recipes = this.db.recipes;
-
-  }
-
-  ngOnInit(): void {
   }
 
   onRecipeSelected(recipe: Recipe) {
     this.recipeWasSelected.emit(recipe);
   }
-
 }

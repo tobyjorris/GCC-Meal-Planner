@@ -5,7 +5,7 @@ import * as convertUnits from 'convert-units';
 @Injectable({
   providedIn: 'root'
 })
-export class ConversionService {
+export class UnitConversionService {
 
   constructor() { }
 
@@ -17,7 +17,6 @@ export class ConversionService {
         quantity: Number(convertUnits(quantity).from(measurement).to('cup')).toFixed(2),
         measurement: 'cup'
       };
-      // console.log('Service: Converted Ingredient:', convertedIngredient);
       return convertedIngredient;
     } else if (measurement === 'oz') {
       convertedIngredient = {

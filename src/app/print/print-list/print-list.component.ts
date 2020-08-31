@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PrintService} from '../../services/print.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { PrintService } from '../../services/print/print.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-print-list',

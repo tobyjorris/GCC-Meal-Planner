@@ -1,6 +1,6 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Recipe} from '../interfaces/recipe';
-import {AuthServiceService} from '../services/authService/auth-service.service';
+import { Component, OnInit } from '@angular/core';
+import { Recipe } from '../interfaces/recipe';
+import { AuthService } from '../services/auth/auth-service';
 
 @Component({
   selector: 'app-recipes',
@@ -11,7 +11,7 @@ export class RecipesComponent implements OnInit {
   selectedRecipe: Recipe;
   loggedIn = true;
 
-  constructor(private auth: AuthServiceService) {
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -19,5 +19,4 @@ export class RecipesComponent implements OnInit {
       this.loggedIn = loggedInValue;
     });
   }
-
 }

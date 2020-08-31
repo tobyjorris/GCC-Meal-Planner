@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
-import { FirestormService } from '../../services/firestore/firestore.service';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../../interfaces/ingredient';
-import { PrintService } from '../../services/print.service';
+import { PrintService } from '../../services/print/print.service';
 
 @Component({
   selector: 'app-shopping-distribution',
@@ -25,7 +25,7 @@ export class ShoppingDistributionComponent implements OnInit {
   distributedIngredientsArray = [];
 
   constructor(private slService: ShoppingListService,
-              private db: FirestormService,
+              private db: FirestoreService,
               private printService: PrintService
   ) {
     this.ingredientsRef = this.db.ingredients;

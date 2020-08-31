@@ -1,15 +1,14 @@
-import {Component } from '@angular/core';
-import { FirestormService } from '../../services/firestore/firestore.service';
+import { Component } from '@angular/core';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../../interfaces/ingredient';
-import {Sort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ingredient-edit',
   templateUrl: './ingredient-edit.component.html',
   styleUrls: ['./ingredient-edit.component.css'],
-  providers: [FirestormService]
+  providers: [FirestoreService]
 })
 
 export class IngredientEditComponent {
@@ -19,7 +18,7 @@ export class IngredientEditComponent {
   dataSource;
   displayedColumns: string[] = ['name', 'department'];
 
-  constructor(private db: FirestormService) {
+  constructor(private db: FirestoreService) {
     this.ingredients = this.db.ingredients;
     this.ingredients.subscribe(ingredients => {
       this.data = ingredients as Ingredient[];

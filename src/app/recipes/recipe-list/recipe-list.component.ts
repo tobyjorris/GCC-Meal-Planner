@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css'],
 })
+
 export class RecipeListComponent {
   @Output() recipeWasSelected = new EventEmitter<Recipe>();
   recipes: Observable<any[]>;

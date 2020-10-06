@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
-import { MatDialog } from '@angular/material/dialog';
 import { UnitConversionService } from '../services/conversion/unit-conversion.service';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import {FirestoreService} from "../services/firestore/firestore.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,11 +15,13 @@ export class ShoppingListComponent implements OnInit {
   finalIngredientsArray = [];
   ingredientDistributionForm: FormGroup;
 
-  constructor( private slService: ShoppingListService, public dialog: MatDialog, private convertService: UnitConversionService) {
+  constructor( private slService: ShoppingListService, private convertService: UnitConversionService, private db: FirestoreService) {
   }
 
   ngOnInit(): void {
     this.shoppingList = this.slService.getFromStorage();
+    this.db.writeRecipesToHistory(this.shoppingList);
+    console.log(this.shoppingList);
     if (this.shoppingList) {
       this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
       const convertedIngredientsArray = [];

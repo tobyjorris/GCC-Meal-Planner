@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Recipe } from '../../interfaces/recipe';
 import { Ingredient } from '../../interfaces/ingredient';
 import { AngularFireAuth } from '@angular/fire/auth';
+import {ShoppingHistory} from "../../interfaces/shopping-history";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class FirestoreService{
   public ingredients: Observable<any[]>;
   public recipeCol: AngularFirestoreCollection<Recipe>;
   public ingredientCol: AngularFirestoreCollection<Ingredient>;
-  public distShoppingListCol: AngularFirestoreCollection<Ingredient>;
+  public recipeHistoryCol: AngularFirestoreCollection<ShoppingHistory>;
   startedEditingRecipe = new Subject<object>();
   recipeWasSelected = new Subject<object>();
   startedEditingIngredient = new Subject<object>();
@@ -23,10 +24,10 @@ export class FirestoreService{
   constructor(private db: AngularFirestore, private auth: AngularFireAuth) {
     const recipeCollection = db.collection<Recipe>('recipes');
     const ingredientCollection = db.collection<Ingredient>('ingredients');
-    const distShoppingListCollection = db.collection<Ingredient>('dist-shopping-list');
+    const recipeHistoryCollection = db.collection<ShoppingHistory>('cooking-history');
     this.recipeCol = recipeCollection;
     this.ingredientCol = ingredientCollection;
-    this.distShoppingListCol = distShoppingListCollection;
+    this.recipeHistoryCol = recipeHistoryCollection;
     this.recipes = db.collection('/recipes').valueChanges();
     this.ingredients = db.collection('/ingredients').valueChanges();
   }
@@ -67,14 +68,19 @@ export class FirestoreService{
     return this.recipeCol.doc(name);
   }
 
-  sendToDist(ingredient) {
-    this.auth.user.subscribe(user => {
-      this.distShoppingListCol.doc(user.uid).set(ingredient).then(() => {
-        console.log('dist ingredient success');
-      }).catch(error => {
-        console.log(error);
-      });
-    });
+  writeRecipesToHistory(recipe: Recipe[]) {
+    const todaysDate = new Date();
+    const historySubmission: ShoppingHistory = {
+      recipesCooked: [],
+      completedDate: todaysDate,
+    };
+
+    for (const singleRecipe of recipe) {
+      const singleRecipeInfo = {recipeName: singleRecipe.title, recipeMulti: singleRecipe.multi };
+      historySubmission.recipesCooked.push(singleRecipeInfo);
+    }
+    console.log(historySubmission);
   }
+
 
 }

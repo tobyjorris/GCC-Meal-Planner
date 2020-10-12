@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
 import { UnitConversionService } from '../services/conversion/unit-conversion.service';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import {FirestoreService} from "../services/firestore/firestore.service";
+import { FirestoreService } from '../services/firestore/firestore.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -20,21 +20,35 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.shoppingList = this.slService.getFromStorage();
-    this.db.writeRecipesToHistory(this.shoppingList);
-    console.log(this.shoppingList);
+    // this.db.writeRecipesToHistory(this.shoppingList);
     if (this.shoppingList) {
       this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
       const convertedIngredientsArray = [];
       this.ingredientsArray.map(ingredient => convertedIngredientsArray.push(this.convertService.convert(ingredient)));
-      const sortedIngredients = {};
-      convertedIngredientsArray.map(ingredient => {
-        if (sortedIngredients[ingredient.name]) {
-          // tslint:disable-next-line:max-line-length
-          sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
-        } else {
+      const sortedIngredients = [];
+      // const sortedIngredients = {};
+      console.log(convertedIngredientsArray);
+      for (const ingredient of convertedIngredientsArray) {
+        if (!sortedIngredients[ingredient.name]) {
           sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
+        } else if (sortedIngredients[ingredient.name] && ingredient.measurement !== sortedIngredients[ingredient.name][ingredient.measurement]) {
+          sortedIngredients[ingredient.name][ingredient.measurement] = Number(ingredient.quantity);
+        } else {
+          console.log('final block', ingredient);
+          sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
         }
-      });
+      }
+      console.log(sortedIngredients);
+      // convertedIngredientsArray.map(ingredient => {
+      //   if (!sortedIngredients[ingredient.name]) {
+      //     sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
+      //     console.log('if', sortedIngredients[ingredient.name]);
+      //   } else {
+      //     tslint:disable-next-line:max-line-length
+      //     sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
+      //     console.log('else', sortedIngredients[ingredient.name]);
+      //   }
+      // });
       this.ingredientsArray = Object.entries(sortedIngredients);
       this.ingredientsArray.forEach(([name, details]) => {
         Object.entries(details).forEach(([key, value]) => {
@@ -89,5 +103,6 @@ export class ShoppingListComponent implements OnInit {
 
   onClearShoppingList() {
     this.slService.clearShoppingList();
+    this.slService.distClearStorage();
   }
 }

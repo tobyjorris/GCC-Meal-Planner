@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Recipe } from '../../interfaces/recipe';
 import { Ingredient } from '../../interfaces/ingredient';
 import { AngularFireAuth } from '@angular/fire/auth';
-import {ShoppingHistory} from "../../interfaces/shopping-history";
+import { ShoppingHistory } from '../../interfaces/shopping-history';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ import {ShoppingHistory} from "../../interfaces/shopping-history";
 export class FirestoreService{
   public recipes: Observable<any[]>;
   public ingredients: Observable<any[]>;
+  public history: Observable<any[]>;
   public recipeCol: AngularFirestoreCollection<Recipe>;
   public ingredientCol: AngularFirestoreCollection<Ingredient>;
   public recipeHistoryCol: AngularFirestoreCollection<ShoppingHistory>;
@@ -30,6 +31,7 @@ export class FirestoreService{
     this.recipeHistoryCol = recipeHistoryCollection;
     this.recipes = db.collection('/recipes').valueChanges();
     this.ingredients = db.collection('/ingredients').valueChanges();
+    this.history = db.collection('/history').valueChanges();
   }
 
   addNewRecipe(recipe: Recipe){
@@ -79,7 +81,7 @@ export class FirestoreService{
       const singleRecipeInfo = {recipeName: singleRecipe.title, recipeMulti: singleRecipe.multi };
       historySubmission.recipesCooked.push(singleRecipeInfo);
     }
-    console.log(historySubmission);
+    // this.recipeHistoryCol.doc(todaysDate.toDateString())
   }
 
 

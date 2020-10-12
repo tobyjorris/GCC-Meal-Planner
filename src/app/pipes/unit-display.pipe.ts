@@ -13,7 +13,7 @@ export class UnitDisplayPipe implements PipeTransform {
     } else if (unit === 'fl-oz') {
       return 'oz';
     } else if (unit === 'Tbs') {
-      return 'tbsp';
+      return 'tbs';
     } else {
       return unit;
     }

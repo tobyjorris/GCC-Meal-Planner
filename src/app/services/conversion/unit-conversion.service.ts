@@ -11,18 +11,25 @@ export class UnitConversionService {
 
   convert({name, quantity, measurement}) {
     let convertedIngredient = {};
-    if  (measurement === 'Tbs' || measurement === 'tsp' || measurement === 'fl-oz') {
+    if  (measurement === 'tsp' || measurement === 'tbs' || measurement === 'Tbs') {
       convertedIngredient = {
         name,
-        quantity: Number(convertUnits(quantity).from(measurement).to('cup')).toFixed(2),
-        measurement: 'cup'
+        quantity: Number(convertUnits(quantity).from(measurement).to('Tbs')).toFixed(2),
+        measurement: 'tbs'
       };
       return convertedIngredient;
-    } else if (measurement === 'oz') {
+    } else if (measurement === 'cups' || measurement === 'fl-oz'){
       convertedIngredient = {
         name,
-        quantity: Number(convertUnits(quantity).from(measurement).to('lb')).toFixed(2),
-        measurement: 'pounds'
+        quantity: Number(convertUnits(quantity).from(measurement).to('fl-oz')).toFixed(2),
+        measurement: 'fl oz'
+      };
+      return convertedIngredient;
+    } else if (measurement === 'lb' || measurement === 'oz') {
+      convertedIngredient = {
+        name,
+        quantity: Number(convertUnits(quantity).from(measurement).to('oz')).toFixed(2),
+        measurement: 'oz'
       };
       return convertedIngredient;
     } else {

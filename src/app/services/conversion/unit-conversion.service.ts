@@ -12,33 +12,29 @@ export class UnitConversionService {
   convert({name, quantity, measurement}) {
     let convertedIngredient = {};
     if  (measurement === 'tsp' || measurement === 'tbs' || measurement === 'Tbs') {
-      convertedIngredient = {
+      return convertedIngredient = {
         name,
         quantity: Number(convertUnits(quantity).from(measurement).to('Tbs')).toFixed(2),
         measurement: 'tbs'
       };
-      return convertedIngredient;
     } else if (measurement === 'cups' || measurement === 'fl-oz'){
-      convertedIngredient = {
+      return convertedIngredient = {
         name,
         quantity: Number(convertUnits(quantity).from(measurement).to('fl-oz')).toFixed(2),
         measurement: 'fl oz'
       };
-      return convertedIngredient;
     } else if (measurement === 'lb' || measurement === 'oz') {
-      convertedIngredient = {
+      return convertedIngredient = {
         name,
         quantity: Number(convertUnits(quantity).from(measurement).to('oz')).toFixed(2),
         measurement: 'oz'
       };
-      return convertedIngredient;
     } else {
-      convertedIngredient = {
+      return convertedIngredient = {
         name,
         quantity,
         measurement
       };
-      return convertedIngredient;
     }
   }
 }

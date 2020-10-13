@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../services/shopping-list/shopping-list.service';
 import { UnitConversionService } from '../services/conversion/unit-conversion.service';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { condenseIngredients } from '../helperMethods/shoppingList/condenseIngredients';
 import { FirestoreService } from '../services/firestore/firestore.service';
 
 @Component({
@@ -22,55 +23,10 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList = this.slService.getFromStorage();
     // this.db.writeRecipesToHistory(this.shoppingList);
     if (this.shoppingList) {
-      this.ingredientsArray = this.shoppingList.map(x => (x.ingredients)).flat();
+      this.ingredientsArray = this.shoppingList.map(recipe => (recipe.ingredients)).flat();
       const convertedIngredientsArray = [];
       this.ingredientsArray.map(ingredient => convertedIngredientsArray.push(this.convertService.convert(ingredient)));
-      const sortedIngredients = [];
-      // const sortedIngredients = {};
-      console.log(convertedIngredientsArray);
-      for (const ingredient of convertedIngredientsArray) {
-        if (!sortedIngredients[ingredient.name]) {
-          sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
-        } else if (sortedIngredients[ingredient.name] && ingredient.measurement !== sortedIngredients[ingredient.name][ingredient.measurement]) {
-          sortedIngredients[ingredient.name][ingredient.measurement] = Number(ingredient.quantity);
-        } else {
-          console.log('final block', ingredient);
-          sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
-        }
-      }
-      console.log(sortedIngredients);
-      // convertedIngredientsArray.map(ingredient => {
-      //   if (!sortedIngredients[ingredient.name]) {
-      //     sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
-      //     console.log('if', sortedIngredients[ingredient.name]);
-      //   } else {
-      //     tslint:disable-next-line:max-line-length
-      //     sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
-      //     console.log('else', sortedIngredients[ingredient.name]);
-      //   }
-      // });
-      this.ingredientsArray = Object.entries(sortedIngredients);
-      this.ingredientsArray.forEach(([name, details]) => {
-        Object.entries(details).forEach(([key, value]) => {
-          const tempObj = {
-            name,
-            quantity: value,
-            measurement: key,
-          };
-          this.finalIngredientsArray.push(tempObj);
-          this.finalIngredientsArray.sort((a, b) => {
-            const bandA = a.name.toUpperCase();
-            const bandB = b.name.toUpperCase();
-            let comparison = 0;
-            if (bandA > bandB) {
-              comparison = 1;
-            } else if (bandA < bandB) {
-              comparison = -1;
-            }
-            return comparison;
-          });
-        });
-      });
+      this.finalIngredientsArray = condenseIngredients(convertedIngredientsArray);
     }
 
     this.ingredientDistributionForm = new FormGroup({

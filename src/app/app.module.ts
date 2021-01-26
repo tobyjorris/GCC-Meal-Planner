@@ -15,7 +15,6 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeAddFormComponent } from './recipes/recipe-edit/recipe-add-form/recipe-add-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,30 +40,11 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UnitDisplayPipe } from './pipes/unit-display.pipe';
 import { ShoppingDistributionComponent } from './shopping-list/shopping-distribution/shopping-distribution.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { LoggedInGuard } from 'ngx-auth-firebaseui';
 import { ProfilePageComponent } from './user/profile-page/profile-page.component';
 import { PrintLayoutComponent } from './print/print-layout/print-layout.component';
 import { PrintRecipeComponent } from './print/print-recipe/print-recipe.component';
 import { PrintListComponent } from './print/print-list/print-list.component';
-
-const appRoutes: Routes = [
-  {path: '', component: RecipesComponent, canActivate: [LoggedInGuard] },
-  {path: 'profile', component: ProfilePageComponent, canActivate: [LoggedInGuard]},
-  {path: 'log-in', component: LoginPageComponent },
-  {path: 'recipes', component: RecipesComponent, canActivate: [LoggedInGuard]},
-  {path: 'shopping-cart', component: ShoppingListComponent, canActivate: [LoggedInGuard]},
-  {path: 'recipe-edit', component: RecipeEditComponent, canActivate: [LoggedInGuard]},
-  {path: 'ingredient-edit', component: IngredientEditComponent, canActivate: [LoggedInGuard]},
-  {path: '**', component: PageNotFoundComponent},
-  { path: 'print',
-    outlet: 'print',
-    component: PrintLayoutComponent,
-    children: [
-      {path: 'recipe-print/:recipeIds', component: PrintRecipeComponent},
-      {path: 'shopping-print/:shoppingIds', component: PrintListComponent}
-    ]
-  }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 firebase.initializeApp(environment.firebase);
 
@@ -99,7 +79,6 @@ firebase.initializeApp(environment.firebase);
         NgbModule,
         Ng2SearchPipeModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
         ReactiveFormsModule,
         BrowserAnimationsModule,
         MatFormFieldModule,
@@ -135,6 +114,7 @@ firebase.initializeApp(environment.firebase);
         MatCheckboxModule,
         MatRadioModule,
         MatTabsModule,
+        AppRoutingModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,11 +6,9 @@
   </div>
   <div class="row content-row">
     <div class="col-3 recipe-list">
-      <ul>
-        <li *ngFor="let recipe of recipes | async, let i = index" (click)="onEditRecipe(recipe)">{{recipe.title}}</li>
-      </ul>
+        <div class="recipe-list-item" *ngFor="let recipe of recipes | async, let i = index" (click)="onEditRecipe(recipe)">{{recipe.title}}</div>
     </div>
-    <div class="col-9">
+    <div class="col-9 recipe-edit-form-col">
       <app-recipe-add-form></app-recipe-add-form>
     </div>
   </div>

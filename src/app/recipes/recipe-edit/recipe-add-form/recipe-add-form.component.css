@@ -1,6 +1,7 @@
 .recipe-add-form {
   height: 828px;
   width: 1000px;
+  padding: 0;
 }
 
 .mat-form-field {
@@ -180,6 +181,10 @@ h3:hover {
 p {
   margin-bottom: 5px;
   font-size: 20px;
+}
+
+.recipe-add-form-col {
+  padding: 0;
 }
 
 

@@ -22,6 +22,19 @@ li {
 .recipe-list {
   overflow: scroll;
   height: 830px;
+  padding-right: 0;
+}
+
+.recipe-list-item:hover {
+  cursor: pointer;
+  background: #8ebf77;
+  transition: 0.2s;
+}
+
+.recipe-list-item {
+  margin-bottom: 5px;
+  border: 1px solid gray;
+  padding: 10px 15px;
 }
 
 .recipe-list::-webkit-scrollbar {
@@ -36,4 +49,8 @@ li {
   background-color: black;
   border-radius: 20px;
   border: 1px solid black;
+}
+
+.recipe-edit-form-col {
+  padding: 0 !important;
 }

@@ -8,16 +8,16 @@
         <div class="row">
           <div class="accommodations" *ngFor="let accommodations of recipe.accommodations">
         <span *ngIf="accommodations.type === 'Paleo'">
-          <p>P</p>
+          <span>P</span>
         </span>
             <span *ngIf="accommodations.type === 'Gluten'">
-          <p>GF</p>
+          <span>GF</span>
         </span>
             <span *ngIf="accommodations.type === 'Dairy'">
-          <p>DF</p>
+          <span>DF</span>
         </span>
             <span *ngIf="accommodations.type === 'Vegetarian'">
-          <p>V</p>
+          <span>V</span>
         </span>
           </div>
         </div>

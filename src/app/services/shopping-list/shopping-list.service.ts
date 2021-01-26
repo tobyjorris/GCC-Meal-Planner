@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +31,7 @@ export class ShoppingListService {
   sendToDistribution(ingredient, source) {
     const distributedIngredient = {
       name: ingredient.name,
-      quantity: ingredient.quantity,
-      measurement: ingredient.measurement,
+      measurements: ingredient.measurements,
       source,
     };
     this.distributedIngredient.next(distributedIngredient);

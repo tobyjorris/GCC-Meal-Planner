@@ -140,7 +140,9 @@
       <ul>
         <ng-container *ngFor="let ingredient of costcoIngredients, let i = index">
           <li>
-            <i class="far fa-square"></i><strong (click)="onDistIngredientSelect(ingredient, i, 'costco')">{{ingredient.name}}</strong> - {{ingredient.quantity}} {{ingredient.measurement | unitDisplay}}</li>
+            <i class="far fa-square"></i><strong (click)="onDistIngredientSelect(ingredient, i, 'costco')">{{ingredient.name}}</strong>
+            <ng-container *ngFor="let measurement of ingredient.measurements"> -  {{measurement.quantity}} {{measurement.unit}}</ng-container>
+          </li>
         </ng-container>
       </ul>
       <button *ngIf="costcoIngredients.length >= 1" class="btn btn-info" (click)="costcoPrint()">Print Costco List</button>

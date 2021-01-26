@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col">
       <h2>Shopping List</h2>
-      <button class="btn btn-danger" (click)="onClearShoppingList()">Clear Shopping List</button>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button class="btn btn-danger shopping-opt-btn" (click)="onClearShoppingList()">Delete Shopping List</button>
+      <button class="btn btn-success shopping-opt-btn" (click)="onSaveShoppingList($event)">Complete Shopping List</button>
     </div>
   </div>
   <hr>
@@ -20,7 +23,7 @@
         <h4>Ingredient List:</h4>
         <div class="container-fluid">
           <div class="row ingredient-row d-flex" *ngFor="let ingredient of finalIngredientsArray, let i=index">
-            <div class="col-4 ing-details">
+            <div class="col-5 ing-details">
               <strong>
                 {{ingredient.name}} -
               </strong>
@@ -28,7 +31,7 @@
                   {{measurement.quantity}} {{measurement.unit | unitDisplay}}
               </ng-container>
             </div>
-            <div class="col shopping-dist-opts">
+            <div class="col d-flex justify-content-end shopping-dist-opts">
               <div class="row">
                 <div class="shopping-opt" (click)="onDistribute(ingredient, 'costco', i)">Costco</div>
                 <div class="shopping-opt" (click)="onDistribute(ingredient, 'grocery', i)">Grocery</div>

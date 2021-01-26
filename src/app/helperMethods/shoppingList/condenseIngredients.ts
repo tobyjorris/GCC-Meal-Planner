@@ -3,6 +3,7 @@ export const condenseIngredients = ingredientArray => {
   const originalArray = ingredientArray;
   let ingredientsArray: any[];
   const returnedArray = [];
+
   for (const ingredient of originalArray) {
     if (!condensedIngredients[ingredient.name]) {
       condensedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
@@ -47,7 +48,6 @@ export const condenseIngredients = ingredientArray => {
 //     sortedIngredients[ingredient.name] = {[ingredient.measurement]: Number(ingredient.quantity)};
 //     console.log('if', sortedIngredients[ingredient.name]);
 //   } else {
-//     tslint:disable-next-line:max-line-length
 //     sortedIngredients[ingredient.name][ingredient.measurement] = sortedIngredients[ingredient.name][ingredient.measurement] + Number(ingredient.quantity);
 //     console.log('else', sortedIngredients[ingredient.name]);
 //   }

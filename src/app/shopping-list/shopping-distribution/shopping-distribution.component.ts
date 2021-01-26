@@ -35,6 +35,7 @@ export class ShoppingDistributionComponent implements OnInit {
     });
 
     this.slService.distributedIngredient.subscribe(distIngredient => {
+      console.log('distIngredient', distIngredient);
       this.ingredientRefData.find(ingRef => {
         if (ingRef.name === distIngredient.name) {
           distIngredient.department = ingRef.department;

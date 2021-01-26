@@ -27,6 +27,7 @@ export class ShoppingListComponent implements OnInit {
       const convertedIngredientsArray = [];
       this.ingredientsArray.map(ingredient => convertedIngredientsArray.push(this.convertService.convert(ingredient)));
       this.finalIngredientsArray = condenseIngredients(convertedIngredientsArray);
+      console.log(this.finalIngredientsArray)
     }
 
     this.ingredientDistributionForm = new FormGroup({
@@ -49,6 +50,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onDistribute(ingredient, source: string, i: number) {
+    console.log(ingredient)
     this.slService.sendToDistribution(ingredient, source);
     this.finalIngredientsArray.splice(i, 1);
   }
@@ -60,5 +62,14 @@ export class ShoppingListComponent implements OnInit {
   onClearShoppingList() {
     this.slService.clearShoppingList();
     this.slService.distClearStorage();
+  }
+
+  onSaveShoppingList(e) {
+    if (this.shoppingList === null) {
+      e.preventDefault();
+      console.log('shopping list empty');
+    } else {
+      console.log(this.shoppingList);
+    }
   }
 }

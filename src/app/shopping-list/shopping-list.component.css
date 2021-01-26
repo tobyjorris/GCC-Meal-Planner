@@ -27,8 +27,16 @@
   margin-right: 2px;
 }
 
+.shopping-opt-btn {
+  margin-left: 10px;
+}
+
 .ingredient-row {
   padding: 3px 0 3px 0;
+}
+
+.ing-details {
+  padding-left: 0;
 }
 
 .shopping-opt:hover {

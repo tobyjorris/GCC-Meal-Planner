@@ -1,16 +1,8 @@
-#measurement-field {
-  width: 125px;
+.form-col {
+  height: 63px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.ingredient-add-form {
-  margin: auto;
-}
 
-.delete {
-  float: right;
-  margin-left: 5px;
-}
 
-.save {
-  float: right;
-}

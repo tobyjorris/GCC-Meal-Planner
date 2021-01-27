@@ -45,6 +45,7 @@ import { PrintLayoutComponent } from './print/print-layout/print-layout.componen
 import { PrintRecipeComponent } from './print/print-recipe/print-recipe.component';
 import { PrintListComponent } from './print/print-list/print-list.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeKeyComponent } from './recipes/recipe-key/recipe-key.component';
 
 firebase.initializeApp(environment.firebase);
 
@@ -73,6 +74,7 @@ firebase.initializeApp(environment.firebase);
     PrintLayoutComponent,
     PrintRecipeComponent,
     PrintListComponent,
+    RecipeKeyComponent,
   ],
     imports: [
         BrowserModule,

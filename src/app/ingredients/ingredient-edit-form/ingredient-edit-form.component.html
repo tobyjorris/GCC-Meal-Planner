@@ -1,46 +1,46 @@
-<div class="container-fluid ingredient-add-form">
-    <form [formGroup]="ingredientAddForm">
-      <div class="container">
-        <div class="row">
-          <div class="col align-self-center">
-            <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input matInput formControlName="name">
-            </mat-form-field>
-          </div>
-          <div class="col align-self-center">
-            <mat-form-field appearance="fill">
-              <mat-label>Department</mat-label>
-              <mat-select formControlName="department">
-                <mat-option value="Meat">Meat</mat-option>
-                <mat-option value="Produce">Produce</mat-option>
-                <mat-option value="Dried">Dry Goods</mat-option>
-                <mat-option value="Baked">Baked Goods</mat-option>
-                <mat-option value="Canned">Canned Goods</mat-option>
-                <mat-option value="Dairy">Dairy</mat-option>
-                <mat-option value="Frozen">Frozen</mat-option>
-                <mat-option value="Misc">Miscellaneous</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="save col align-self-center">
-            <button
-              class="btn btn-success"
-              type="button"
-              (click)="onSubmit()"
-            >{{editMode ? 'Save' : 'Submit'}}</button>
-          </div>
-          <div class="delete">
-            <button
-              class="btn btn-danger opt-btn"
-              type="button"
-              (click)="onDelete()"
-              *ngIf="editMode"
-            >
-              Delete
-            </button>
-          </div>
+<div class="container-fluid">
+  <form [formGroup]="ingredientAddForm">
+    <div class="row ingredient-form-row">
+      <div class="col-2 form-col">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="col-2 form-col">
+        <mat-form-field appearance="outline">
+          <mat-label>Department</mat-label>
+          <mat-select formControlName="department">
+            <mat-option value="Meat">Meat</mat-option>
+            <mat-option value="Produce">Produce</mat-option>
+            <mat-option value="Dried">Dry Goods</mat-option>
+            <mat-option value="Baked">Baked Goods</mat-option>
+            <mat-option value="Canned">Canned Goods</mat-option>
+            <mat-option value="Dairy">Dairy</mat-option>
+            <mat-option value="Frozen">Frozen</mat-option>
+            <mat-option value="Misc">Miscellaneous</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-2 d-flex align-self-center">
+        <div class="save">
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="onSubmit()"
+          >{{editMode ? 'Save' : 'Submit'}}</button>
+        </div>
+        <div class="delete">
+          <button
+            class="btn btn-danger opt-btn"
+            type="button"
+            (click)="onDelete()"
+            *ngIf="editMode"
+          >
+          Delete
+          </button>
         </div>
       </div>
-    </form>
+    </div>
+  </form>
 </div>

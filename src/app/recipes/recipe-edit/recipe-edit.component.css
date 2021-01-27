@@ -2,10 +2,10 @@
   height: 830px;
 }
 
+/* don't think this needed
 .content-row {
   height: 830px;
-  widht: 1150px
-}
+} */
 
 ul {
   padding-left: 15px;
@@ -33,7 +33,6 @@ li {
 
 .recipe-list-item {
   margin-bottom: 5px;
-  border: 1px solid gray;
   padding: 10px 15px;
 }
 

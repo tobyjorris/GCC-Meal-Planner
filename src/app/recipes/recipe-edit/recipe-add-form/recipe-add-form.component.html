@@ -12,7 +12,7 @@
           </mat-form-field>
         </div>
         <div class="container-fluid recipe-body">
-          <div class="container-fluid ingredients">
+          <div class="container-fluid ingredients has-border">
             <h3 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h3>
             <div class="container ingredient-container" [ngClass]="ingredientsToggleStatus ? 'visible' : 'hidden'"  formArrayName="ingredients">
               <div
@@ -68,7 +68,7 @@
               </div>
             </div>
           </div>
-          <div class="container-fluid directions">
+          <div class="container-fluid directions has-border">
             <div class="content">
               <h3 (click)="toggleDirections()">Directions<span [ngClass]="directionsToggleStatus? 'caret-up' : 'caret-down'"></span></h3>
               <div [ngClass]="directionsToggleStatus ? 'visible' : 'hidden'">
@@ -142,7 +142,7 @@
               </div>
             </div>
           </div>
-          <div class="container-fluid details">
+          <div class="container-fluid details has-border">
             <h3 (click)="toggleDetails()" class="header">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h3>
             <div class="toggle container-fluid" [ngClass]="detailsToggleStatus ? 'visible' : 'hidden'">
               <div class="row rec-details">

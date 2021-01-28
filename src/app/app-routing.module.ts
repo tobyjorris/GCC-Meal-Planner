@@ -5,7 +5,7 @@ import { LoggedInGuard } from 'ngx-auth-firebaseui';
 import { ProfilePageComponent } from './user/profile-page/profile-page.component';
 import { LoginPageComponent } from './user/login-page/login-page.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit/recipe-edit.component';
 import { IngredientEditComponent } from './ingredients/ingredient-edit/ingredient-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PrintLayoutComponent } from './print/print-layout/print-layout.component';

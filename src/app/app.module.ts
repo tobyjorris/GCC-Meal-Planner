@@ -15,8 +15,8 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipeAddFormComponent } from './recipes/recipe-edit/recipe-add-form/recipe-add-form.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit/recipe-edit.component';
+import { RecipeAddFormComponent } from './recipe-edit/recipe-edit/recipe-add-form/recipe-add-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule} from '@angular/material/select';
@@ -46,6 +46,7 @@ import { PrintRecipeComponent } from './print/print-recipe/print-recipe.componen
 import { PrintListComponent } from './print/print-list/print-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeKeyComponent } from './recipes/recipe-key/recipe-key.component';
+import { HistoryComponent } from './history/history.component';
 
 firebase.initializeApp(environment.firebase);
 
@@ -75,6 +76,7 @@ firebase.initializeApp(environment.firebase);
     PrintRecipeComponent,
     PrintListComponent,
     RecipeKeyComponent,
+    HistoryComponent,
   ],
     imports: [
         BrowserModule,

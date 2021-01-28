@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row content-row">
-    <div class="col-3 recipe-list">
+    <div class="col-3">
       <hr class="recipe-edit-hr">
       <div class="input-group edit-search">
         <div class="input-group-prepend">
@@ -21,8 +21,11 @@
           aria-describedby="btnGroupAddon2"
           [(ngModel)]="searchText">
       </div>
-      <app-recipe-key class="edit-key"></app-recipe-key>
-      <div class="recipe-list-item has-border" *ngFor="let recipe of recipes | async | filter: searchText, let i = index" (click)="onEditRecipe(recipe)">{{recipe.title}}</div>
+      <!-- removed the accommodations key from this component as it didn't seem necessary -->
+      <!--<app-recipe-key class="edit-key"></app-recipe-key>-->
+      <div class="recipe-edit-list">
+        <div class="recipe-edit-list-item has-border" *ngFor="let recipe of recipes | async | filter: searchText, let i = index" (click)="onEditRecipe(recipe)">{{recipe.title}}</div>
+      </div>
     </div>
     <div class="col-9 recipe-edit-form-col">
       <app-recipe-add-form></app-recipe-add-form>

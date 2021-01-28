@@ -1,9 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestoreService } from '../../../services/firestore/firestore.service';
-import { Recipe } from '../../../interfaces/recipe';
-import { Ingredient } from '../../../interfaces/ingredient';
-import { Directions } from '../../../interfaces/directions';
+import { FirestoreService } from '../../services/firestore/firestore.service';
+import { Recipe } from '../../interfaces/recipe';
+import { Ingredient } from '../../interfaces/ingredient';
+import { Directions } from '../../interfaces/directions';
 import { Observable } from 'rxjs';
 
 @Component({

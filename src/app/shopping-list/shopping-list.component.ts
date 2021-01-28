@@ -22,12 +22,12 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit(): void {
     this.shoppingList = this.slService.getFromStorage();
     // this.db.writeRecipesToHistory(this.shoppingList);
+    console.log(this.shoppingList);
     if (this.shoppingList) {
       this.ingredientsArray = this.shoppingList.map(recipe => (recipe.ingredients)).flat();
       const convertedIngredientsArray = [];
       this.ingredientsArray.map(ingredient => convertedIngredientsArray.push(this.convertService.convert(ingredient)));
       this.finalIngredientsArray = condenseIngredients(convertedIngredientsArray);
-      console.log(this.finalIngredientsArray)
     }
 
     this.ingredientDistributionForm = new FormGroup({

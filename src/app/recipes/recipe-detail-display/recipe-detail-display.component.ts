@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';

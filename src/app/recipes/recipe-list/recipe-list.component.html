@@ -17,11 +17,18 @@
         aria-describedby="btnGroupAddon2"
         [(ngModel)]="searchText">
     </div>
-    <hr>
+    <hr class="recipe-list-hr">
   </div>
 </div>
 <hr>
-<app-recipe-key></app-recipe-key>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-recipe-key></app-recipe-key>
+    </div>
+  </div>
+</div>
+
 <div class="container recipe-list">
   <div class="row">
   <div class="col-12">

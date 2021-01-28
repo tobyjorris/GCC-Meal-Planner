@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./recipe-edit.component.css'],
   providers: [FirestoreService]
 })
+
 export class RecipeEditComponent {
+  searchText: string;
   recipes: Observable<any[]>;
   constructor(private db: FirestoreService) {
     this.recipes = this.db.recipes;

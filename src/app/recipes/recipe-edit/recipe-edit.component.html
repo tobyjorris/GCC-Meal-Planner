@@ -6,9 +6,23 @@
   </div>
   <div class="row content-row">
     <div class="col-3 recipe-list">
-      <hr>
-        <app-recipe-key></app-recipe-key>
-        <div class="recipe-list-item has-border" *ngFor="let recipe of recipes | async, let i = index" (click)="onEditRecipe(recipe)">{{recipe.title}}</div>
+      <hr class="recipe-edit-hr">
+      <div class="input-group edit-search">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon2">
+            <i class="fa fa-search"></i>
+          </div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search"
+          aria-label="Input group example"
+          aria-describedby="btnGroupAddon2"
+          [(ngModel)]="searchText">
+      </div>
+      <app-recipe-key class="edit-key"></app-recipe-key>
+      <div class="recipe-list-item has-border" *ngFor="let recipe of recipes | async | filter: searchText, let i = index" (click)="onEditRecipe(recipe)">{{recipe.title}}</div>
     </div>
     <div class="col-9 recipe-edit-form-col">
       <app-recipe-add-form></app-recipe-add-form>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Observable } from 'rxjs';
@@ -16,6 +16,7 @@ export class RecipeListComponent {
   searchText: string;
   constructor(private db: FirestoreService ) {
     this.recipes = this.db.recipes;
+    console.log(typeof location);
   }
 
   onRecipeSelected(recipe: Recipe) {

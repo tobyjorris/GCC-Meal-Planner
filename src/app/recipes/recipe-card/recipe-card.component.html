@@ -3,24 +3,20 @@
     <div class="col-8">
       <h6>{{ recipe.title }}</h6>
     </div>
-    <div class="col-4">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="accommodations" *ngFor="let accommodations of recipe.accommodations">
-        <span *ngIf="accommodations.type === 'Paleo'">
+    <div class="col d-flex flex-row justify-content-end">
+      <div class="accommodations" *ngFor="let accommodations of recipe.accommodations">
+        <ng-container *ngIf="accommodations.type === 'Paleo'">
           <span>P</span>
-        </span>
-            <span *ngIf="accommodations.type === 'Gluten'">
-          <span>GF</span>
-        </span>
-            <span *ngIf="accommodations.type === 'Dairy'">
-          <span>DF</span>
-        </span>
-            <span *ngIf="accommodations.type === 'Vegetarian'">
+        </ng-container>
+        <ng-container *ngIf="accommodations.type === 'Gluten'">
+          <span>G</span>
+        </ng-container>
+        <ng-container *ngIf="accommodations.type === 'Dairy'">
+          <span>D</span>
+        </ng-container>
+        <ng-container *ngIf="accommodations.type === 'Vegetarian'">
           <span>V</span>
-        </span>
-          </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   </div>

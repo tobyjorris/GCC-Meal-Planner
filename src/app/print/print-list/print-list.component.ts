@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-print-list',
   templateUrl: './print-list.component.html',
-  styleUrls: ['./print-list.component.css']
+  styleUrls: ['./print-list.component.scss']
 })
 export class PrintListComponent implements OnInit {
   printedList;

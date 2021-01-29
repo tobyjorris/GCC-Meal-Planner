@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-recipe-add-form',
   templateUrl: './recipe-add-form.component.html',
-  styleUrls: ['./recipe-add-form.component.css']
+  styleUrls: ['./recipe-add-form.component.scss']
 })
 
 export class RecipeAddFormComponent implements OnInit {

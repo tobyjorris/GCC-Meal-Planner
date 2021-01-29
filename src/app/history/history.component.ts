@@ -5,7 +5,7 @@ import {FirestoreService} from '../services/firestore/firestore.service';
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
   history: Observable<any[]>;

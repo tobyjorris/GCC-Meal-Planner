@@ -6,7 +6,7 @@ import { Ingredient} from '../../interfaces/ingredient';
 @Component({
   selector: 'app-ingredient-edit-form',
   templateUrl: './ingredient-edit-form.component.html',
-  styleUrls: ['./ingredient-edit-form.component.css']
+  styleUrls: ['./ingredient-edit-form.component.scss']
 })
 
 export class IngredientEditFormComponent implements OnInit {

@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-ingredient-edit',
   templateUrl: './ingredient-edit.component.html',
-  styleUrls: ['./ingredient-edit.component.css'],
+  styleUrls: ['./ingredient-edit.component.scss'],
   providers: [FirestoreService]
 })
 

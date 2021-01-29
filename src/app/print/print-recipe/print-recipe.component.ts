@@ -5,7 +5,7 @@ import { PrintService } from '../../services/print/print.service';
 @Component({
   selector: 'app-print-recipe',
   templateUrl: './print-recipe.component.html',
-  styleUrls: ['./print-recipe.component.css']
+  styleUrls: ['./print-recipe.component.scss']
 })
 export class PrintRecipeComponent implements OnInit {
   recipeId: string;

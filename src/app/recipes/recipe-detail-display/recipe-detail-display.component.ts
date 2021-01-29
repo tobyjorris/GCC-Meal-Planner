@@ -10,7 +10,7 @@ import { PrintService } from '../../services/print/print.service';
 @Component({
   selector: 'app-recipe-detail-display',
   templateUrl: './recipe-detail-display.component.html',
-  styleUrls: ['./recipe-detail-display.component.css']
+  styleUrls: ['./recipe-detail-display.component.scss']
 })
 
 export class RecipeDetailDisplayComponent implements OnInit, OnChanges {

@@ -8,7 +8,7 @@ import { PrintService } from '../../services/print/print.service';
 @Component({
   selector: 'app-shopping-distribution',
   templateUrl: './shopping-distribution.component.html',
-  styleUrls: ['./shopping-distribution.component.css']
+  styleUrls: ['./shopping-distribution.component.scss']
 })
 export class ShoppingDistributionComponent implements OnInit {
   costcoIngredients = [];

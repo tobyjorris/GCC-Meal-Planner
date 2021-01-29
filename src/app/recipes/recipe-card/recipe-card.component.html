@@ -1,4 +1,8 @@
-<div class="list-group-item has-border container-fluid" (click)="onRecipeSelected()">
+<div class="list-group-item has-border container-fluid"
+     (click)="
+        renderLocation === 'recipePage' ? onViewRecipe() :
+        renderLocation === 'recipeEdit' ? onEditRecipe(recipe) : throwClickError()
+        ">
   <div class="row">
     <div class="col-8">
       <h6>{{ recipe.title }}</h6>

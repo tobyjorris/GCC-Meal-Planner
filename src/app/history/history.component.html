@@ -3,6 +3,12 @@
     <div class="col">
       <h2>Shopping History:</h2>
       <hr>
+      <p>This is where history items will be looped through</p>
+      <app-history-item
+        *ngFor="let historyItem of history | async | filter: 'date': null"
+        [historyItem]="historyItem"
+        [testProperty]="'property'"
+      ></app-history-item>
     </div>
   </div>
 </div>

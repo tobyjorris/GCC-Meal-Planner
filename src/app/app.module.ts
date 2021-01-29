@@ -14,7 +14,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from './pipes/filter.pipe';
+import { FilterPipe } from './pipes/filter/filter.pipe';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeAddFormComponent } from './recipe-edit/recipe-add-form/recipe-add-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
-import { FractionizeModule } from './pipes/fraction.pipe';
+import { FractionizeModule } from './pipes/fraction/fraction.pipe';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { LoginPageComponent } from './user/login-page/login-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -37,7 +37,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { UnitDisplayPipe } from './pipes/unit-display.pipe';
+import { UnitDisplayPipe } from './pipes/unit-display/unit-display.pipe';
 import { ShoppingDistributionComponent } from './shopping-list/shopping-distribution/shopping-distribution.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ProfilePageComponent } from './user/profile-page/profile-page.component';
@@ -47,6 +47,9 @@ import { PrintListComponent } from './print/print-list/print-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeKeyComponent } from './recipes/recipe-key/recipe-key.component';
 import { HistoryComponent } from './history/history.component';
+import { HistoryItemComponent } from './history/history-item/history-item.component';
+import { TestComponent } from './history/test/test.component';
+
 
 firebase.initializeApp(environment.firebase);
 
@@ -77,6 +80,8 @@ firebase.initializeApp(environment.firebase);
     PrintListComponent,
     RecipeKeyComponent,
     HistoryComponent,
+    HistoryItemComponent,
+    TestComponent,
   ],
     imports: [
         BrowserModule,

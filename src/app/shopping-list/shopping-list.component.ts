@@ -50,7 +50,6 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onDistribute(ingredient, source: string, i: number) {
-    console.log(ingredient)
     this.slService.sendToDistribution(ingredient, source);
     this.finalIngredientsArray.splice(i, 1);
   }
@@ -69,7 +68,7 @@ export class ShoppingListComponent implements OnInit {
       e.preventDefault();
       console.log('shopping list empty');
     } else {
-      console.log(this.shoppingList);
+      this.db.writeRecipesToHistory(this.shoppingList);
     }
   }
 }

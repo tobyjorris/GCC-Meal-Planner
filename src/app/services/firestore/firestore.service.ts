@@ -23,12 +23,9 @@ export class FirestoreService{
   ingredientWasSelected = new Subject<object>();
 
   constructor(private db: AngularFirestore, private auth: AngularFireAuth) {
-    const recipeCollection = db.collection<Recipe>('recipes');
-    const ingredientCollection = db.collection<Ingredient>('ingredients');
-    const recipeHistoryCollection = db.collection<ShoppingHistory>('cooking-history');
-    this.recipeCol = recipeCollection;
-    this.ingredientCol = ingredientCollection;
-    this.recipeHistoryCol = recipeHistoryCollection;
+    this.recipeCol = db.collection<Recipe>('recipes');
+    this.ingredientCol = db.collection<Ingredient>('ingredients');
+    this.recipeHistoryCol = db.collection<ShoppingHistory>('history');
     this.recipes = db.collection('/recipes').valueChanges();
     this.ingredients = db.collection('/ingredients').valueChanges();
     this.history = db.collection('/history').valueChanges();
@@ -70,19 +67,21 @@ export class FirestoreService{
     return this.recipeCol.doc(name);
   }
 
-  writeRecipesToHistory(recipe: Recipe[]) {
-    const todaysDate = new Date();
+  writeRecipesToHistory(recipes: Recipe[]) {
+    const todaysDate = Date.now();
+    console.log(todaysDate, new Date(todaysDate).toDateString());
     const historySubmission: ShoppingHistory = {
       recipesCooked: [],
-      completedDate: todaysDate,
+      completedDate: todaysDate
     };
-
-    for (const singleRecipe of recipe) {
+    for (const singleRecipe of recipes) {
       const singleRecipeInfo = {recipeName: singleRecipe.title, recipeMulti: singleRecipe.multi };
       historySubmission.recipesCooked.push(singleRecipeInfo);
     }
-    // this.recipeHistoryCol.doc(todaysDate.toDateString())
+    this.recipeHistoryCol.doc(todaysDate.toString()).set(historySubmission).then(() => {
+      console.log('History Submission Successful');
+    }).catch(error => {
+      console.error('Error Saving History Submission', error);
+    });
   }
-
-
 }

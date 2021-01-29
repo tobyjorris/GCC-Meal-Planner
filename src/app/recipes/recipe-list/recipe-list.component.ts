@@ -10,13 +10,14 @@ import { Observable } from 'rxjs';
 })
 
 export class RecipeListComponent {
+  @Input() renderLocation: string;
   @Output() recipeWasSelected = new EventEmitter<Recipe>();
   recipes: Observable<any[]>;
   term: string;
   searchText: string;
+
   constructor(private db: FirestoreService ) {
     this.recipes = this.db.recipes;
-    console.log(typeof location);
   }
 
   onRecipeSelected(recipe: Recipe) {

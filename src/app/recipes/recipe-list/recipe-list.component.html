@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <h2>Recipes</h2>
+      <h2 *ngIf="renderLocation === 'recipeList'">Recipes</h2>
     </div>
     <div class="input-group col-sm-8">
       <div class="input-group-prepend">
@@ -38,9 +38,10 @@
     <ng-template #recipeList>
       <app-recipe-card
         class="recCard"
-        *ngFor="let recipe of recipes | async | filter: searchText"
+        *ngFor="let recipe of recipes | async | filter: 'search': searchText"
         [recipe]="recipe"
-        (recipeSelected)="onRecipeSelected(recipe)"
+        [renderLocation]="renderLocation"
+        (viewRecipe)="onRecipeSelected(recipe)"
       ></app-recipe-card>
     </ng-template>
   </div>

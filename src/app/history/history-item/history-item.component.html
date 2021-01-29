@@ -1,0 +1,7 @@
+<p>{{historyItem.completedDate | date: 'medium' }}</p>
+<ng-container *ngFor="let recipe of historyItem.recipesCooked">
+  <p>{{recipe.recipeName}} (x){{recipe.recipeMulti}}</p>
+</ng-container>
+<app-test
+  [source]="testProperty"
+></app-test>

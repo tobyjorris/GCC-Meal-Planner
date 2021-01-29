@@ -1,73 +1,100 @@
-.recCard {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.recipeViewPage, .recipeEditPage {
+  .recipe-list {
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: black;
+      border-radius: 20px;
+      border: 1px solid black;
+    }
+  }
+
+  .form-control {
+    &:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+  }
 }
 
-a {
-  color: black;
+.recipeViewPage {
+  .recipe-list {
+    max-height: 800px;
+  }
+
+  .input-group {
+    max-height: 10px;
+    width: 350px;
+  }
 }
 
-.recipe-list {
-  max-height: 830px;
-  overflow: scroll;
+.recipeEditPage {
+  .recipe-list {
+    max-height: 790px;
+  }
+
+  .recipe-key {
+    display: none;
+  }
+
+  .recipe-header {
+    display: none;
+  }
+
+  .input-group {
+    max-height: 10px;
+    width: 500px;
+  }
+
+  .recipe-list-hr {
+    display: none;
+  }
+
+  .recipe-edit-search {
+    height: 50px;
+  }
 }
 
-.recipe-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.recipe-list::-webkit-scrollbar-track {
-  background-color: white;
-}
-
-.recipe-list::-webkit-scrollbar-thumb {
-  background-color: black;
-  border-radius: 20px;
-  border: 1px solid black;
-}
-
-.recipe-list-hr {
-  margin-top: 10px;
-  padding-top: 0;
-}
-
-.input-group {
-  max-height: 10px;
-  width: 350px;
-}
-
-.form-control:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-}
 
 .lds-ring {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
+
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #dfc transparent transparent transparent;
+  }
+
+  div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+
+  div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+
+  div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
 }
 
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #dfc transparent transparent transparent;
-}
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);

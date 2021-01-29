@@ -1,52 +1,57 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h2 *ngIf="renderLocation === 'recipeList'">Recipes</h2>
-    </div>
-    <div class="input-group col-sm-8">
-      <div class="input-group-prepend">
-        <div class="input-group-text" id="btnGroupAddon2">
-         <i class="fa fa-search"></i>
-        </div>
+<div
+  [ngClass]="
+    renderLocation === 'recipeViewPage' ? 'recipeViewPage' :
+    renderLocation === 'recipeEditPage' ? 'recipeEditPage' : null
+  ">
+  <div class="container recipe-edit-search">
+    <div class="row">
+      <div class="col-sm-4 recipe-header">
+        <h2 class="">Recipes</h2>
       </div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search"
-        aria-label="Input group example"
-        aria-describedby="btnGroupAddon2"
-        [(ngModel)]="searchText">
+      <div class="input-group col">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon2">
+            <i class="fa fa-search"></i>
+          </div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search"
+          aria-label="Input group example"
+          aria-describedby="btnGroupAddon2"
+          [(ngModel)]="searchText">
+      </div>
     </div>
-    <hr class="recipe-list-hr">
   </div>
-</div>
-<hr>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <app-recipe-key></app-recipe-key>
+  <hr class="recipe-list-hr">
+  <div class="container recipe-key">
+    <div class="row">
+      <div class="col-12">
+        <app-recipe-key></app-recipe-key>
+      </div>
+    </div>
+  </div>
+  <div class="container recipe-list">
+    <div class="row">
+      <div class="col-12">
+        <div *ngIf="!recipes else recipeList" class="d-flex justify-content-center">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <ng-template #recipeList>
+          <app-recipe-card
+            class="recCard"
+            *ngFor="let recipe of recipes | async | filter: 'search': searchText"
+            [recipe]="recipe"
+            [renderLocation]="renderLocation"
+            (viewRecipe)="onRecipeSelected(recipe)"
+          ></app-recipe-card>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container recipe-list">
-  <div class="row">
-  <div class="col-12">
-    <div *ngIf="!recipes else recipeList" class="d-flex justify-content-center">
-      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    </div>
-    <ng-template #recipeList>
-      <app-recipe-card
-        class="recCard"
-        *ngFor="let recipe of recipes | async | filter: 'search': searchText"
-        [recipe]="recipe"
-        [renderLocation]="renderLocation"
-        (viewRecipe)="onRecipeSelected(recipe)"
-      ></app-recipe-card>
-    </ng-template>
-  </div>
-  </div>
-</div>
 
 
 

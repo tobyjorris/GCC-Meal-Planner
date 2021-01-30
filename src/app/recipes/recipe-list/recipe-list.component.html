@@ -44,7 +44,6 @@
             *ngFor="let recipe of recipes | async | filter: 'search': searchText"
             [recipe]="recipe"
             [renderLocation]="renderLocation"
-            (viewRecipe)="onRecipeSelected(recipe)"
           ></app-recipe-card>
         </ng-template>
       </div>

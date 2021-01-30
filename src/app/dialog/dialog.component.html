@@ -1,5 +1,28 @@
-<h1 mat-dialog-title>Success!</h1>
-<div mat-dialog-content>{{data.title}} (x{{data.multi}}) has been added to the shopping list.</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-</div>
+<ng-container *ngIf="data.title else error">
+  <h1 mat-dialog-title>Success!</h1>
+  <div mat-dialog-content >{{data.title}} (x{{data.multi}}) has been added to the shopping list.</div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </div>
+</ng-container>
+<ng-template #error>
+  <ng-container *ngIf="data.error else deleteMessage" >
+    <h1 mat-dialog-title>Uh Oh!</h1>
+    <div mat-dialog-content>{{data.error}}</div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close><a routerLink="/recipes">View Recipes</a></button>
+      <button mat-button mat-dialog-close>Close</button>
+    </div>
+  </ng-container>
+</ng-template>
+  <ng-template #deleteMessage>
+    <ng-container *ngIf="data.deleteMessage" >
+    <h1 mat-dialog-title>IMPORTANT</h1>
+    <div mat-dialog-content>{{data.deleteMessage}}</div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close (click)="onClearShopping()">Delete</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+  </ng-container>
+</ng-template>
+

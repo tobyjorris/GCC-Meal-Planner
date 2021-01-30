@@ -27,15 +27,8 @@ export const condenseIngredients = ingredientArray => {
     returnedArray.push(ingredientObj);
   });
   returnedArray.sort((a, b) => {
-    const bandA = a.name.toUpperCase();
-    const bandB = b.name.toUpperCase();
-    let comparison = 0;
-    if (bandA > bandB) {
-      comparison = 1;
-    } else if (bandA < bandB) {
-      comparison = -1;
-    }
-    return comparison;
+    return (a.name.toUpperCase() > b.name.toUpperCase()) ? 1 :
+      (a.name.toUpperCase() < b.name.toUpperCase()) ? -1 : 0;
   });
   return returnedArray;
 };

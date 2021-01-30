@@ -1,4 +1,4 @@
-import {Component, DoCheck, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
@@ -7,6 +7,7 @@ import { DialogComponent } from '../../dialog/dialog.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PrintService } from '../../services/print/print.service';
 import { RecipesService } from '../../services/recipes/recipes.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-recipe-detail-display',
@@ -15,8 +16,9 @@ import { RecipesService } from '../../services/recipes/recipes.service';
 })
 
 export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
-  recipe;
   @ViewChild('quantityChange', {static: false}) quantityChangeRef: ElementRef;
+
+  recipe: {};
   recipeCopy: Recipe;
   batchMultiDisplay: number;
   multiBatchMode = false;
@@ -67,6 +69,7 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
       this.multiBatchMode = false;
       this.recipeCopy.multi = 1;
     }
+    console.log(this.recipeCopy.multi, this.recipe);
   }
 
   resetBatch() {

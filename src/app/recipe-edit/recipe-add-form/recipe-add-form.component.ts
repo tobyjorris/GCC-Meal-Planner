@@ -5,6 +5,7 @@ import { Recipe } from '../../interfaces/recipe';
 import { Ingredient } from '../../interfaces/ingredient';
 import { Directions } from '../../interfaces/directions';
 import { Observable } from 'rxjs';
+import {RecipesService} from "../../services/recipes/recipes.service";
 
 @Component({
   selector: 'app-recipe-add-form',
@@ -23,7 +24,7 @@ export class RecipeAddFormComponent implements OnInit {
   detailsToggleStatus = true;
   directionsToggleStatus = true;
 
-  constructor(private db: FirestoreService) {
+  constructor(private db: FirestoreService, private recipesService: RecipesService) {
     this.ingredients = this.db.ingredients;
     this.ingredients.subscribe(ingredients => {
       this.data = ingredients as Ingredient[];
@@ -34,7 +35,7 @@ export class RecipeAddFormComponent implements OnInit {
   ngOnInit(): void {
     this.initNewForm();
 
-    this.db.startedEditingRecipe.subscribe(
+    this.recipesService.startedEditingRecipe.subscribe(
       (recipe: Recipe) => {
         this.editMode = true;
         this.editedRecipe = Object.assign({}, recipe);

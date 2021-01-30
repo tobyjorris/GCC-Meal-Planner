@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PrintService } from '../../services/print/print.service';
+import { RecipesService } from '../../services/recipes/recipes.service';
 
 @Component({
   selector: 'app-recipe-detail-display',
@@ -14,7 +15,7 @@ import { PrintService } from '../../services/print/print.service';
 })
 
 export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
-  @Input() recipe: Recipe;
+  recipe;
   @ViewChild('quantityChange', {static: false}) quantityChangeRef: ElementRef;
   recipeCopy: Recipe;
   batchMultiDisplay: number;
@@ -24,22 +25,25 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   constructor(private db: FirestoreService,
               private slService: ShoppingListService,
               public dialog: MatDialog,
-              private printService: PrintService
-  ) { }
+              private printService: PrintService,
+              private recipesService: RecipesService) {
+  }
 
   ngOnInit(): void {
-    this.recipeCopy.multi = 1;
-    this.recipeCopy.ingredients.map(ingredient => {
-     return {...ingredient, quantity: Number(ingredient.quantity)};
-    });
-
-    this.quantitySelect = new FormGroup({
-      quantity: new FormControl([1])
+    this.recipesService.recipeWasSelected.subscribe(recipe => {
+      this.recipe = recipe;
+      this.recipeCopy = JSON.parse(JSON.stringify(recipe));
+      this.recipeCopy.multi = 1;
+      this.recipeCopy.ingredients.map(ingredient => {
+        return {...ingredient, quantity: Number(ingredient.quantity)};
+      });
+      this.quantitySelect = new FormGroup({
+        quantity: new FormControl([1])
+      });
     });
   }
 
   ngOnChanges() {
-    this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
     this.recipeCopy.multi = 1;
     this.multiBatchMode = false;
   }

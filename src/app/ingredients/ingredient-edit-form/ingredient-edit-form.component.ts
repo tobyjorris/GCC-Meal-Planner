@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Ingredient} from '../../interfaces/ingredient';
+import { RecipesService } from '../../services/recipes/recipes.service';
 
 @Component({
   selector: 'app-ingredient-edit-form',
@@ -14,7 +15,7 @@ export class IngredientEditFormComponent implements OnInit {
   editMode = false;
   editedIngredient: Ingredient;
 
-  constructor(private db: FirestoreService) {
+  constructor(private db: FirestoreService, private recipesService: RecipesService ) {
   }
 
   ngOnInit(): void {
@@ -23,7 +24,7 @@ export class IngredientEditFormComponent implements OnInit {
       department: new FormControl([], Validators.required),
     });
 
-    this.db.startedEditingIngredient.subscribe(
+    this.recipesService.startedEditingIngredient.subscribe(
       (ingredient: Ingredient) => {
         this.editMode = true;
         this.editedIngredient = Object.assign({}, ingredient);

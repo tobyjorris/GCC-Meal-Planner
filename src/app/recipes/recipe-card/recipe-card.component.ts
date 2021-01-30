@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { FirestoreService } from '../../services/firestore/firestore.service';
+import {RecipesService} from "../../services/recipes/recipes.service";
 
 @Component({
   selector: 'app-recipe-card',
@@ -11,16 +12,16 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 export class RecipeCardComponent {
   @Input() renderLocation: string;
   @Input() recipe: Recipe;
-  @Output() viewRecipe = new EventEmitter<void>();
 
-  constructor(private db: FirestoreService) {}
+  constructor(private db: FirestoreService, private recipesService: RecipesService) {}
 
-  onViewRecipe() {
-    this.viewRecipe.emit();
+  onViewRecipe(recipe) {
+    // this.viewRecipe.emit();
+    this.recipesService.recipeWasSelected.next(recipe);
   }
 
   onEditRecipe(recipe) {
-    this.db.startedEditingRecipe.next(recipe);
+    this.recipesService.startedEditingRecipe.next(recipe);
   }
 
   throwClickError() {

@@ -2,18 +2,11 @@
   <div class="row recipes">
     <div class="col-md-5">
       <app-recipe-list
-        (recipeWasSelected)="selectedRecipe = $event"
         [renderLocation]="'recipeViewPage'"
       ></app-recipe-list>
     </div>
     <div class="col-md-7">
-      <app-recipe-detail-display
-        *ngIf="selectedRecipe else infoText"
-        [recipe]="selectedRecipe"
-      ></app-recipe-detail-display>
-      <ng-template #infoText>
-        <h2 class="justify-content-center">Please select a Recipe!</h2>
-      </ng-template>
+      <app-recipe-detail-display></app-recipe-detail-display>
     </div>
   </div>
 </div>

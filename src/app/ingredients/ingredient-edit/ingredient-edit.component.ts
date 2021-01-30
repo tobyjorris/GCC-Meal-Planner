@@ -3,6 +3,7 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../../interfaces/ingredient';
 import { MatTableDataSource } from '@angular/material/table';
+import { RecipesService } from '../../services/recipes/recipes.service';
 
 @Component({
   selector: 'app-ingredient-edit',
@@ -18,9 +19,8 @@ export class IngredientEditComponent {
   dataSource;
   displayedColumns: string[] = ['name', 'department'];
 
-  constructor(private db: FirestoreService) {
-    this.ingredients = this.db.ingredients;
-    this.ingredients.subscribe(ingredients => {
+  constructor(private db: FirestoreService, private recipesService: RecipesService) {
+    this.db.ingredients.subscribe(ingredients => {
       this.data = ingredients as Ingredient[];
       this.ingredientData = this.data.slice();
       this.dataSource = new MatTableDataSource(this.ingredientData);
@@ -28,7 +28,7 @@ export class IngredientEditComponent {
   }
 
   onEditIngredient(ingredient) {
-    this.db.startedEditingIngredient.next(ingredient);
+    this.recipesService.startedEditingIngredient.next(ingredient);
   }
 
   applyFilter(event: Event) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject} from 'rxjs';
+import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Recipe } from '../../interfaces/recipe';
 import { Ingredient } from '../../interfaces/ingredient';
@@ -17,10 +17,6 @@ export class FirestoreService{
   public recipeCol: AngularFirestoreCollection<Recipe>;
   public ingredientCol: AngularFirestoreCollection<Ingredient>;
   public recipeHistoryCol: AngularFirestoreCollection<ShoppingHistory>;
-  startedEditingRecipe = new Subject<object>();
-  recipeWasSelected = new Subject<object>();
-  startedEditingIngredient = new Subject<object>();
-  ingredientWasSelected = new Subject<object>();
 
   constructor(private db: AngularFirestore, private auth: AngularFireAuth) {
     this.recipeCol = db.collection<Recipe>('recipes');

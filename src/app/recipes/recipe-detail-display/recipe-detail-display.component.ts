@@ -7,7 +7,6 @@ import { DialogComponent } from '../../dialog/dialog.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PrintService } from '../../services/print/print.service';
 import { RecipesService } from '../../services/recipes/recipes.service';
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-recipe-detail-display',
@@ -15,12 +14,11 @@ import {Observable} from "rxjs";
   styleUrls: ['./recipe-detail-display.component.scss']
 })
 
-export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
+export class RecipeDetailDisplayComponent implements OnInit {
   @ViewChild('quantityChange', {static: false}) quantityChangeRef: ElementRef;
-
   recipe: {};
   recipeCopy: Recipe;
-  batchMultiDisplay: number;
+  batchMultiDisplay = 1;
   multiBatchMode = false;
   quantitySelect: FormGroup;
 
@@ -34,20 +32,11 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.recipesService.recipeWasSelected.subscribe(recipe => {
       this.recipe = recipe;
-      this.recipeCopy = JSON.parse(JSON.stringify(recipe));
-      this.recipeCopy.multi = 1;
+      this.reinitialize();
       this.recipeCopy.ingredients.map(ingredient => {
         return {...ingredient, quantity: Number(ingredient.quantity)};
       });
-      this.quantitySelect = new FormGroup({
-        quantity: new FormControl([1])
-      });
     });
-  }
-
-  ngOnChanges() {
-    this.recipeCopy.multi = 1;
-    this.multiBatchMode = false;
   }
 
   updateQuantity() {
@@ -66,29 +55,34 @@ export class RecipeDetailDisplayComponent implements OnInit, OnChanges {
       this.batchMultiDisplay = batchMulti;
       this.recipeCopy.multi = batchMulti;
     } else if (batchMulti === 1) {
-      this.multiBatchMode = false;
-      this.recipeCopy.multi = 1;
+      this.reinitialize();
     }
     console.log(this.recipeCopy.multi, this.recipe);
   }
 
   resetBatch() {
-    this.ngOnChanges();
-    this.quantitySelect = new FormGroup({
-      quantity: new FormControl([])
-    });
+    this.reinitialize();
   }
 
   addToShoppingList() {
-    this.multiBatchMode = false;
-    this.batchMultiDisplay = null;
     this.slService.writeToStorage(this.recipeCopy);
     this.dialog.open(DialogComponent, {data: this.recipeCopy});
+    this.reinitialize();
   }
 
   onPrint() {
     this.printService.printDocument('recipe-print', this.recipeCopy.title);
     this.printService.printedRecipe.next(this.recipeCopy);
+  }
+
+  reinitialize() {
+    this.batchMultiDisplay = 1;
+    this.multiBatchMode = false;
+    this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
+    this.recipeCopy.multi = 1;
+    this.quantitySelect = new FormGroup({
+      quantity: new FormControl([1])
+    });
   }
 
 }

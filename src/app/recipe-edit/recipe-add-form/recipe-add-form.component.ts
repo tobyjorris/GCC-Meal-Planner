@@ -6,6 +6,8 @@ import {Ingredient} from '../../interfaces/ingredient';
 import {Directions} from '../../interfaces/directions';
 import {Observable} from 'rxjs';
 import {RecipesService} from '../../services/recipes/recipes.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogComponent} from '../../dialog/dialog.component';
 
 @Component({
   selector: 'app-recipe-add-form',
@@ -25,7 +27,10 @@ export class RecipeAddFormComponent implements OnInit {
   detailsToggleStatus = true;
   directionsToggleStatus = true;
 
-  constructor(private db: FirestoreService, private recipesService: RecipesService) {
+  constructor( private db: FirestoreService,
+               private recipesService: RecipesService,
+               public dialog: MatDialog
+  ) {
     this.ingredients = this.db.ingredients;
     this.ingredients.subscribe(ingredients => {
       this.data = ingredients as Ingredient[];
@@ -180,9 +185,20 @@ export class RecipeAddFormComponent implements OnInit {
   }
 
   onDelete() {
-    this.db.deleteRecipe(this.editedRecipe.title);
-    this.editMode = false;
-    this.initNewForm();
+    const dialogData = {
+      recipeToDelete: this.editedRecipe.title,
+      deleteRecipeMessage: 'Are you sure you want to delete this recipe?'
+    };
+    const dialogRef = this.dialog.open(DialogComponent, {data: dialogData});
+    dialogRef.afterClosed().subscribe(closedResult => {
+      if (closedResult === 'delete-cancelled') {
+        return;
+      } else {
+        this.db.deleteRecipe(this.editedRecipe.title);
+        this.editMode = false;
+        this.initNewForm();
+      }
+    });
   }
 
   toggleDetails() {

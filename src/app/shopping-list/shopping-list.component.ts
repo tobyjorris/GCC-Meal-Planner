@@ -58,7 +58,7 @@ export class ShoppingListComponent implements OnInit {
 
   onClearShoppingList() {
     const dialogData = {
-      deleteMessage: 'Are you sure you want to delete you shopping list?'
+      deleteShoppingMessage: 'Are you sure you want to delete you shopping list?'
     };
     this.dialog.open(DialogComponent, {data: dialogData});
   }

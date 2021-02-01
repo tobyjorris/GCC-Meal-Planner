@@ -6,7 +6,7 @@
   </div>
 </ng-container>
 <ng-template #error>
-  <ng-container *ngIf="data.error else deleteMessage" >
+  <ng-container *ngIf="data.error else deleteShoppingMessage" >
     <h1 mat-dialog-title>Uh Oh!</h1>
     <div mat-dialog-content>{{data.error}}</div>
     <div mat-dialog-actions>
@@ -15,13 +15,23 @@
     </div>
   </ng-container>
 </ng-template>
-  <ng-template #deleteMessage>
-    <ng-container *ngIf="data.deleteMessage" >
-    <h1 mat-dialog-title>IMPORTANT</h1>
-    <div mat-dialog-content>{{data.deleteMessage}}</div>
+<ng-template #deleteShoppingMessage>
+  <ng-container *ngIf="data.deleteShoppingMessage else deleteRecipeMessage" >
+    <h1 mat-dialog-title>WARNING</h1>
+    <div mat-dialog-content>{{data.deleteShoppingMessage}}</div>
     <div mat-dialog-actions>
       <button mat-button mat-dialog-close (click)="onClearShopping()">Delete</button>
       <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+  </ng-container>
+</ng-template>
+<ng-template #deleteRecipeMessage>
+  <ng-container *ngIf="data.deleteRecipeMessage">
+    <h1 mat-dialog-title>WARNING</h1>
+    <div mat-dialog-content>{{data.deleteRecipeMessage}}</div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close (click)="onDeleteRecipe()">Delete</button>
+      <button mat-button mat-dialog-close (click)="onCancelDeleteRecipe()">Cancel</button>
     </div>
   </ng-container>
 </ng-template>

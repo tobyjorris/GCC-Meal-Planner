@@ -58,7 +58,7 @@ export class RecipeAddFormComponent implements OnInit {
               type: new FormControl(accommodation.type),
               comment: new FormControl(accommodation.comment),
             });
-          }), Validators.required),
+          })),
           ingredients: new FormArray(this.editedRecipe.ingredients.map((ingredient: Ingredient) => {
           return new FormGroup({
             name: new FormControl(ingredient.name, Validators.required),

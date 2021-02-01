@@ -1,16 +1,17 @@
-import { Component, OnInit} from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestoreService } from '../../services/firestore/firestore.service';
-import { Recipe } from '../../interfaces/recipe';
-import { Ingredient } from '../../interfaces/ingredient';
-import { Directions } from '../../interfaces/directions';
-import { Observable } from 'rxjs';
-import {RecipesService} from "../../services/recipes/recipes.service";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FirestoreService} from '../../services/firestore/firestore.service';
+import {Recipe} from '../../interfaces/recipe';
+import {Ingredient} from '../../interfaces/ingredient';
+import {Directions} from '../../interfaces/directions';
+import {Observable} from 'rxjs';
+import {RecipesService} from '../../services/recipes/recipes.service';
 
 @Component({
   selector: 'app-recipe-add-form',
   templateUrl: './recipe-add-form.component.html',
-  styleUrls: ['./recipe-add-form.component.scss']
+  styleUrls: ['./recipe-add-form.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class RecipeAddFormComponent implements OnInit {

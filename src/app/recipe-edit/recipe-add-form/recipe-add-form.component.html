@@ -4,7 +4,7 @@
       <form [formGroup]="recipeAddForm">
         <div class="title-div">
           <mat-form-field appearance="fill" id="title-field">
-            <mat-label>Enter Recipe Title</mat-label>
+            <mat-label class="title-label">Enter Recipe Title</mat-label>
             <input matInput
                    formControlName="title"
                    [readonly]="editMode"
@@ -13,7 +13,7 @@
         </div>
         <div class="container-fluid recipe-body">
           <div class="container-fluid ingredients has-border">
-            <h3 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h3>
+            <h4 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h4>
             <div class="container ingredient-container" [ngClass]="ingredientsToggleStatus ? 'visible' : 'hidden'"  formArrayName="ingredients">
               <div
                 class="row content-row"
@@ -68,82 +68,79 @@
               </div>
             </div>
           </div>
-          <div class="container-fluid directions has-border">
-            <div class="content">
-              <h3 (click)="toggleDirections()">Directions<span [ngClass]="directionsToggleStatus? 'caret-up' : 'caret-down'"></span></h3>
-              <div [ngClass]="directionsToggleStatus ? 'visible' : 'hidden'">
-              <p>Meal Preparation Steps</p>
-              <div class="col" formArrayName="prepDirections">
-                <div
-                class="row content-row"
-                *ngFor="let directionsCtrl of getPrepDirectionsControls(); let j = index"
-                [formGroupName]="j"
-              >
-                <div class="container-fluid textarea">
-                  <div class="row">
-                    <div class="col">
-                      <mat-form-field appearance="outline" id="p-direction-field">
-                        <mat-label>Enter Prep Direction</mat-label>
-                        <textarea matInput formControlName="content"></textarea>
-                      </mat-form-field>
-                    </div>
-                    <div>
-                      <button
-                        type="button"
-                        class="btn btn-danger delete col-xs-2"
-                        (click)="onDeletePrepDirections(j)">X</button>
-                    </div>
-                  </div>
-                </div>
+          <div class="container directions has-border">
+            <div class="row directions-row">
+              <div class="col">
+                <h4 (click)="toggleDirections()">Directions<span [ngClass]="directionsToggleStatus? 'caret-up' : 'caret-down'"></span></h4>
               </div>
-                <div class="row">
-                  <div class="col-xs-12">
+            </div>
+            <div [ngClass]="directionsToggleStatus ? 'visible' : 'hidden'">
+            <div class="row">
+              <div class="col">
+                <p>Meal Preparation Steps</p>
+              </div>
+            </div>
+            <div class="row  directions-row">
+              <div class="col">
+                <div formArrayName="prepDirections">
+                  <div *ngFor="let directionsCtrl of getPrepDirectionsControls(); let j = index" [formGroupName]="j">
+                    <mat-form-field appearance="outline" id="p-direction-field">
+                      <mat-label>Enter Prep Direction</mat-label>
+                      <textarea cdkTextareaAutosize cdkAutosizeMaxRows="5" cdkAutosizeMinRows="2" matInput formControlName="content"></textarea>
+                    </mat-form-field>
                     <button
                       type="button"
-                      class="btn btn-info add-btn"
-                      (click)="onAddPrepDirections()">Add Prep Direction</button>
-                  </div>
-                </div>
-              </div>
-              <p>Directions on Day of Cooking</p>
-              <div class="col" formArrayName="cookDirections">
-                <div
-                  class="row content-row"
-                  *ngFor="let directionsCtrl of getCookDirectionsControls(); let x = index"
-                  [formGroupName]="x"
-                >
-                <div class="container-fluid textarea">
-                    <div class="row">
-                      <div class="col">
-                       <mat-form-field appearance="outline">
-                         <mat-label>Enter Cooking Direction</mat-label>
-                         <textarea matInput formControlName="content"></textarea>
-                       </mat-form-field>
-                      </div>
-                    <div>
-                    <button
-                      type="button"
-                      class="btn btn-danger delete col-xs-1"
-                      (click)="onDeleteCookDirections(x)">X
+                      class="btn btn-danger delete"
+                      (click)="onDeletePrepDirections(j)">X
                     </button>
-                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <button
-                    type="button"
-                    class="btn btn-info add-btn"
-                    (click)="onAddCookDirections()">Add Cook Direction</button>
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-info add-btn"
+                  (click)="onAddPrepDirections()">Add Prep Direction
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>Directions on Day of Cooking</p>
+              </div>
+            </div>
+            <div class="row directions-row">
+              <div class="col">
+                <div formArrayName="cookDirections">
+                  <div *ngFor="let directionsCtrl of getCookDirectionsControls(); let x = index" [formGroupName]="x">
+                    <mat-form-field appearance="outline" id="c-direction-field">
+                      <mat-label>Enter Cooking Direction</mat-label>
+                      <textarea cdkTextareaAutosize cdkAutosizeMaxRows="5" cdkAutosizeMinRows="2" matInput formControlName="content"></textarea>
+                    </mat-form-field>
+                    <button
+                      type="button"
+                      class="btn btn-danger delete"
+                      (click)="onDeleteCookDirections(x)">X
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row directions-row">
+              <div class="col">
+                <button
+                  type="button"
+                  class="btn btn-info add-btn"
+                  (click)="onAddCookDirections()">Add Cook Direction
+                </button>
               </div>
             </div>
           </div>
+          </div>
           <div class="container-fluid details has-border">
-            <h3 (click)="toggleDetails()" class="header">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h3>
+            <h4 (click)="toggleDetails()" class="header">Recipe Details<span [ngClass]="detailsToggleStatus ? 'caret-up' : 'caret-down'"></span></h4>
             <div class="toggle container-fluid" [ngClass]="detailsToggleStatus ? 'visible' : 'hidden'">
               <div class="row rec-details">
                 <div class="protein-div col">

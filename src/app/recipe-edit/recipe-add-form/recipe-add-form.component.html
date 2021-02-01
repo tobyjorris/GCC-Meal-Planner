@@ -16,7 +16,7 @@
             <h4 (click)="toggleIngredients()">Ingredients<span [ngClass]="ingredientsToggleStatus ? 'caret-up' : 'caret-down'"></span></h4>
             <div class="container ingredient-container" [ngClass]="ingredientsToggleStatus ? 'visible' : 'hidden'"  formArrayName="ingredients">
               <div
-                class="row content-row"
+                class="row content-row ingredients-row"
                 *ngFor="let ingredientCtrl of getIngredientsControls(); let i = index"
                 [formGroupName]="i"
               >

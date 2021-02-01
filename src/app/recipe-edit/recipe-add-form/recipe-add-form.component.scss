@@ -50,9 +50,17 @@
   padding: 0;
 }
 
+.ingredients-row {
+  margin: 15px 0;
+}
+
 #ingredient-field {
   width: 378px;
   padding-right: 10px;
+}
+
+.ingredient-container {
+  padding: 0;
 }
 
 .ingredient-div {
@@ -95,7 +103,7 @@ button:disabled {
 }
 
 .add-ing-btn {
-  margin-top: 15px;
+  margin-left: 15px;
 }
 
 hr {

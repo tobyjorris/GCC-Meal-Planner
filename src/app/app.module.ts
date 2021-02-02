@@ -48,8 +48,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeKeyComponent } from './recipes/recipe-key/recipe-key.component';
 import { HistoryComponent } from './history/history.component';
 import { HistoryItemComponent } from './history/history-item/history-item.component';
-import { TestComponent } from './history/test/test.component';
-
 
 firebase.initializeApp(environment.firebase);
 
@@ -81,7 +79,6 @@ firebase.initializeApp(environment.firebase);
     RecipeKeyComponent,
     HistoryComponent,
     HistoryItemComponent,
-    TestComponent,
   ],
     imports: [
         BrowserModule,

@@ -18,3 +18,7 @@
   border-radius: 20px;
   border: 1px solid black;
 }
+
+.history-item-container:nth-child(odd) .history-item{
+  background-color: black;
+}

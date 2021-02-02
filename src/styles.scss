@@ -36,3 +36,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   app-root > * { display: none; }
   app-root app-print-layout { display: block; }
 }
+
+.confirmation {
+  background-color: #8ebf77;
+}
+
+.warning {
+  background-color: #CF5C36;
+}
+
+.utility {
+  background-color: #8D9EC6;
+}
+
+button {
+  color: white !important;
+}

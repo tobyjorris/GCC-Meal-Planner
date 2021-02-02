@@ -13,6 +13,10 @@
   margin-bottom: 15px;
 }
 
+.mat-form-field-appearance-fill, .mat-form-field-flex {
+  background-color: white;
+}
+
 .recipe-body {
   height: 790px;
   overflow: scroll;

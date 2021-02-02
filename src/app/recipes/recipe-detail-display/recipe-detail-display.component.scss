@@ -1,31 +1,11 @@
 .recipe-detail {
   max-height: 900px;
-  width: 900px;
   overflow: scroll;
   overflow-x: hidden;
 }
 
-form {
-  width: 150px;
-  height: 30px;
-}
-
-.mat-form-field {
-  width: 150px;
-}
-
-.mat-form-field-wrapper {
-  width: 150px;
-}
-
-.input-button {
-  width: 80px;
-  height: 60px;
-  margin-top: 5px;
-}
-
-button {
-  margin: 0 0 5px 5px;
+.batches-form {
+  font-size: 12px;
 }
 
 hr {
@@ -35,12 +15,7 @@ hr {
 p {
   margin: 0;
   padding: 0;
-}
-
-img {
-  height: 25px;
-  width: 25px;
-  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .accommodations-div {
@@ -49,5 +24,19 @@ img {
 
 .details-section {
   margin-left: 20px;
+}
+
+.button-row {
+  height: 40px;
+  margin-top: 6px;
+}
+
+.input-button {
+  margin-left: 10px;
+}
+
+.divider-span {
+  margin-left: 10px;
+  border-left: 2px solid gray;
 }
 

@@ -31,8 +31,8 @@
         </li>
       </ul>
       <div class="quantity-form container">
-        <div class="row qty-change">
-          <form [formGroup]="quantitySelect" class="form">
+        <div class="row">
+          <form [formGroup]="quantitySelect" class="batches-form">
             <mat-form-field appearance="outline">
               <mat-label>Batches</mat-label>
               <mat-select formControlName="quantity" [value]="1">
@@ -44,8 +44,14 @@
               </mat-select>
             </mat-form-field>
           </form>
-          <button class="btn btn-info input-button" (click)="updateQuantity()">Update</button>
-          <button class="btn btn-danger input-button" (click)="resetBatch()">Reset</button>
+          <div class="button-row">
+            <button type="button" class="btn confirmation input-button" (click)="updateQuantity()">Update</button>
+            <button type="button" class="btn warning input-button" (click)="resetBatch()">Reset</button>
+            <span class="divider-span"></span>
+            <button type="button" class="btn confirmation input-button" (click)="addToShoppingList()">Add To Shopping List</button>
+            <span class="divider-span"></span>
+            <button type="button" class="btn utility input-button" (click)="onPrint()">Print</button>
+          </div>
         </div>
       </div>
     </div>
@@ -56,10 +62,6 @@
         <h6>Notes To The Chef</h6>
         <p>{{recipeCopy.chefNotes}}</p>
       </div>
-    </div>
-    <div>
-      <button type="button" class="btn btn-outline-dark" (click)="addToShoppingList()">Add To Shopping List</button>
-      <button type="button" class="btn btn-outline-dark" (click)="onPrint()">Print</button>
     </div>
   </div>
   <ng-template #infoText>

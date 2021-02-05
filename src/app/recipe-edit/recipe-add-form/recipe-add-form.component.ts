@@ -46,7 +46,7 @@ export class RecipeAddFormComponent implements OnInit {
         this.editMode = true;
         this.editedRecipe = Object.assign({}, recipe);
         this.recipeAddForm = new FormGroup({
-          title: new FormControl(this.editedRecipe.title, Validators.required),
+          title: new FormControl(this.editedRecipe.title),
           proteinBase: new FormControl(this.editedRecipe.proteinBase, Validators.required),
           cookingMethod: new FormControl(this.editedRecipe.cookingMethod, Validators.required),
           credit: new FormControl(this.editedRecipe.credit),

@@ -4,7 +4,7 @@
       <form [formGroup]="recipeAddForm">
         <div class="title-div">
           <mat-form-field appearance="fill" id="title-field">
-            <mat-label class="title-label">Enter Recipe Title</mat-label>
+            <mat-label class="title-label">Enter Recipe Title<span *ngIf="editMode"> (cannot be edited)</span></mat-label>
             <input matInput
                    formControlName="title"
                    [readonly]="editMode"

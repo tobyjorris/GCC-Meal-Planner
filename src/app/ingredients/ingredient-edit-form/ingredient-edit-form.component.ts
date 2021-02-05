@@ -12,7 +12,7 @@ import { RecipesService } from '../../services/recipes/recipes.service';
 
 export class IngredientEditFormComponent implements OnInit {
   ingredientAddForm: FormGroup;
-  editMode = false;
+  ingredientEditMode = false;
   editedIngredient: Ingredient;
 
   constructor(private db: FirestoreService, private recipesService: RecipesService ) {
@@ -26,7 +26,7 @@ export class IngredientEditFormComponent implements OnInit {
 
     this.recipesService.startedEditingIngredient.subscribe(
       (ingredient: Ingredient) => {
-        this.editMode = true;
+        this.ingredientEditMode = true;
         this.editedIngredient = Object.assign({}, ingredient);
         this.ingredientAddForm = new FormGroup({
           name: new FormControl(this.editedIngredient.name, Validators.required),
@@ -44,7 +44,7 @@ export class IngredientEditFormComponent implements OnInit {
     const submittedIngredient = this.ingredientAddForm.value;
     console.log(submittedIngredient);
     this.db.addNewIngredient(submittedIngredient);
-    this.editMode = false;
+    this.ingredientEditMode = false;
     this.ingredientAddForm = new FormGroup({
       name: new FormControl([], Validators.required),
       department: new FormControl([], Validators.required),
@@ -55,7 +55,7 @@ export class IngredientEditFormComponent implements OnInit {
 
   onDelete() {
     this.db.deleteIngredient(this.editedIngredient.name);
-    this.editMode = false;
+    this.ingredientEditMode = false;
     this.ingredientAddForm = new FormGroup({
       name: new FormControl([], Validators.required),
       department: new FormControl([], Validators.required),

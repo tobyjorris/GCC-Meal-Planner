@@ -3,8 +3,8 @@
     <div class="row ingredient-form-row">
       <div class="col-2 form-col">
         <mat-form-field appearance="outline">
-          <mat-label>Name</mat-label>
-            <input matInput formControlName="name">
+          <mat-label>Name<span *ngIf="ingredientEditMode"> (cannot be edited)</span></mat-label>
+            <input [readonly]="ingredientEditMode" matInput formControlName="name">
         </mat-form-field>
       </div>
       <div class="col-2 form-col">
@@ -28,14 +28,14 @@
             class="btn btn-success"
             type="button"
             (click)="onSubmit()"
-          >{{editMode ? 'Save' : 'Submit'}}</button>
+          >{{ingredientEditMode ? 'Save' : 'Submit'}}</button>
         </div>
         <div class="delete">
           <button
             class="btn btn-danger opt-btn"
             type="button"
             (click)="onDelete()"
-            *ngIf="editMode"
+            *ngIf="ingredientEditMode"
           >
           Delete
           </button>

@@ -23,23 +23,19 @@
         </mat-form-field>
       </div>
       <div class="col-2 d-flex align-self-center">
-        <div class="save">
           <button
-            class="btn btn-success"
+            class="btn btn-success ing-form-btn"
             type="button"
             (click)="onSubmit()"
           >{{ingredientEditMode ? 'Save' : 'Submit'}}</button>
-        </div>
-        <div class="delete">
           <button
-            class="btn btn-danger opt-btn"
+            class="btn btn-danger ing-form-btn"
             type="button"
             (click)="onDelete()"
             *ngIf="ingredientEditMode"
           >
           Delete
           </button>
-        </div>
       </div>
     </div>
   </form>

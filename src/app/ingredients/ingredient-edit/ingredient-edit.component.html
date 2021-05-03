@@ -23,8 +23,8 @@
           <td mat-cell *matCellDef="let ingredient" (click)="onEditIngredient(ingredient)"> {{ingredient.name}} </td>
         </ng-container>
         <ng-container matColumnDef="department">
-          <th mat-header-cell *matHeaderCellDef> Department </th>
-          <td mat-cell *matCellDef="let ingredient"> {{ingredient.department}} </td>
+          <th mat-header-cell *matHeaderCellDef class="department-column"> Department </th>
+          <td mat-cell *matCellDef="let ingredient" class="department-column"> {{ingredient.department}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="top-row"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
